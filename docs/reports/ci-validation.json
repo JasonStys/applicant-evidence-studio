@@ -1,0 +1,44 @@
+{
+  "conclusion": "success",
+  "created_at": "2026-09-30T05:01:34Z",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "name": "Dependency audit and ranking benchmark"
+    },
+    {
+      "conclusion": "success",
+      "name": "Python 3.14 / windows-latest"
+    },
+    {
+      "conclusion": "success",
+      "name": "Python 3.14 / macos-latest"
+    },
+    {
+      "conclusion": "success",
+      "name": "Python 3.12 / windows-latest"
+    },
+    {
+      "conclusion": "success",
+      "name": "Python 3.12 / ubuntu-latest"
+    },
+    {
+      "conclusion": "success",
+      "name": "Python 3.12 / macos-latest"
+    },
+    {
+      "conclusion": "success",
+      "name": "Browser, accessibility and build"
+    },
+    {
+      "conclusion": "success",
+      "name": "Python 3.14 / ubuntu-latest"
+    }
+  ],
+  "run_id": 36671509486,
+  "source_sha": "4d129e330dd4f9a20cabfa1557c4e432861cfdd7",
+  "status": "completed",
+  "updated_at": "2026-09-30T05:03:59Z",
+  "url": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/36671509486",
+  "scope": "Synthetic engineering validation; not real applicant outcome, AI quality, fairness or legal validation"
+}

@@ -16,7 +16,13 @@ This is a local portfolio demonstration release, not a production hiring deploym
 - [x] Dependency audit findings corrected; no known findings after rerun.
 - [x] Synthetic performance measurements recorded with scope/limits.
 - [x] Only independently written code and clearly fictional examples prepared for publication; runtime/secrets/real applicant records excluded.
-- [ ] Published revision's GitHub Actions jobs verified successful.
+- [x] Published source revision's GitHub Actions jobs verified successful.
+
+## Published validation
+
+[Actions run 36671509486](https://github.com/JasonStys/applicant-evidence-studio/actions/runs/36671509486) completed successfully for source revision `4d129e330dd4f9a20cabfa1557c4e432861cfdd7`. All eight jobs passed: Python 3.12/3.14 on Linux, Windows and macOS; four-profile browser/accessibility/build checks; and dependency audit/ranking benchmark. The initial run failed on macOS and is retained as diagnostic history; the corrected worker limit policy and platform regression tests resolved that failure without skipping the platform.
+
+The checked-in `docs/reports/ci-validation.json` captures this source-validation baseline. Subsequent documentation-only revisions run the same gates; the live Actions badge shows current branch status. Artifacts contain synthetic records only. No live model or real hiring outcome was evaluated.
 
 ## Production gates intentionally unmet
 

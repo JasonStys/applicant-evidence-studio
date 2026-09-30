@@ -105,7 +105,7 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 | `tests/test_providers.py` | Mocked AI protocols/privacy, consent, output bounds, fixed GitHub destinations and malicious URL rejection. |
 | `tests/test_operations.py` | CLI, worker contract, bounded-score properties and metadata audit checks. |
 | `tests/test_platform.py` | Linux-only worker resource limits and Windows/macOS timeout portability. |
-| `tests/browser.spec.ts` | Six real-browser workflows per browser/device profile, downloads, accessibility and visual evidence. |
+| `tests/browser.spec.ts` | Seven real-browser workflows per browser/device profile, downloads, accessibility, session renewal and visual evidence. |
 | `scripts/browser_server.py` | Disposable synthetic browser-test server, independent of real runtime data. |
 | `scripts/code_index.py` | Python-AST declaration/variable line-map generation and read-only drift check. |
 | `scripts/ts_index.mjs` | TypeScript compiler-AST declaration/variable map generation and drift check. |
