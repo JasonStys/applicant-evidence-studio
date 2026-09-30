@@ -11,7 +11,8 @@ This is a local portfolio demonstration release, not a production hiring deploym
 - [x] Factual escaped downloads and transfer qualifiers tested.
 - [x] Python suite, strict types, build, formatting and source-map checks.
 - [x] Chromium/WebKit/mobile workflows and automated accessibility checks.
-- [x] Firefox runtime rerun finalized: six scenarios passed outside the local sandbox.
+- [x] Firefox runtime rerun finalized: seven scenarios passed outside the local sandbox.
+- [x] Linux-only worker resource limits and renewed browser session links regression-tested.
 - [x] Dependency audit findings corrected; no known findings after rerun.
 - [x] Synthetic performance measurements recorded with scope/limits.
 - [x] Only independently written code and clearly fictional examples prepared for publication; runtime/secrets/real applicant records excluded.

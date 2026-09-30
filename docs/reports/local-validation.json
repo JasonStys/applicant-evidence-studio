@@ -1,8 +1,8 @@
 {
   "date_local": "2026-09-29",
   "scope": "Synthetic local engineering validation, not validated hiring outcomes or legal compliance",
-  "python": {"version": "3.14.6", "passed": 66, "failed": 0, "combined_line_branch_coverage_percent": 94.55, "coverage_floor_percent": 85},
-  "browser": {"passed": 24, "failed": 0, "seconds": 34.5, "profiles": ["Chromium", "Firefox", "WebKit", "mobile Chromium"], "execution": "Trusted unrestricted local test process with isolated synthetic storage"},
+  "python": {"version": "3.14.6", "passed": 69, "failed": 0, "combined_line_branch_coverage_percent": 95.06, "coverage_floor_percent": 85},
+  "browser": {"passed": 28, "failed": 0, "seconds": 36.5, "profiles": ["Chromium", "Firefox", "WebKit", "mobile Chromium"], "execution": "Trusted unrestricted local test process with isolated synthetic storage"},
   "static_checks": ["Ruff", "strict TypeScript", "Vite production build", "Prettier", "Python AST line map", "TypeScript compiler AST line map"],
   "audits": {"npm_known_vulnerabilities": 0, "pip_known_vulnerabilities": 0, "pip_dependency_conflicts": 0},
   "live_ai": "Not configured or claimed; Ollama/compatible adapters validated with mocked contracts and privacy/citation checks",

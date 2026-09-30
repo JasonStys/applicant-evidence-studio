@@ -1,5 +1,5 @@
 // Purpose: authenticated same-origin API and private downloads; secrets stay in tab memory/session storage.
-// Index: fragment@3, initialToken@4, token@9, authorize@12, value@12, api@18, body@18, method@18, path@18, response@19, data@25, download@31, filename@31, path@31, response@32, url@37, link@38, encode@46, file@46, bytes@49, value@50, start@51
+// Index: fragment@3, initialToken@4, token@9, authorize@18, value@18, api@24, body@24, method@24, path@24, response@25, data@31, download@37, filename@37, path@37, response@38, url@43, link@44, encode@52, file@52, bytes@55, value@56, start@57
 const fragment = new URLSearchParams(location.hash.slice(1));
 const initialToken = fragment.get('token');
 if (initialToken) {
@@ -7,6 +7,12 @@ if (initialToken) {
   history.replaceState(null, '', location.pathname);
 }
 let token = sessionStorage.getItem('aes-token') || '';
+
+// A restarted launcher can supply a new token to an existing tab via its URL fragment.
+// Reload the module/record state instead of continuing with the previous process session.
+window.addEventListener('hashchange', () => {
+  if (new URLSearchParams(location.hash.slice(1)).has('token')) location.reload();
+});
 
 /** Replace only the session token; applicant data is never placed in browser storage. */
 export function authorize(value: string) {

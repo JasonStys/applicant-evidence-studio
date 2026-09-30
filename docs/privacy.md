@@ -26,7 +26,7 @@ AI calls require the record's AI consent and an explicit operator request. They 
 | Credential/data exposure | No keys in browser configuration, no applicant browser caching, no access logs, no private-input echo in schema errors, gitignored runtime/exports. Local OS accounts/backup access still matter. |
 | XSS/document markup | React renders source text; generated resume HTML escapes all facts. CSP denies remote script/object/frame content. |
 | SQL injection/stale writes | Parameter-bound SQL, atomic batch transactions, compare-and-swap revisions. Database connections close deterministically. |
-| Document bombs/active content | 2 MB upload cap; DOCX expansion/count/ratio limits; XML entity protection; no archive extraction/embedded execution; timed subprocess; Linux CPU/memory limits. Windows hard memory isolation is not implemented. |
+| Document bombs/active content | 2 MB upload cap; DOCX expansion/count/ratio limits; XML entity protection; no archive extraction/embedded execution; timed subprocess; Linux CPU/memory limits. Windows/macOS hard memory isolation is not implemented. |
 | SSRF/profile probing | Exact authorized GitHub URL grammar and fixed API target; no arbitrary browser-controlled connector URL. AI endpoints are administrator environment settings, not public user input. |
 | Model prompt injection/hallucination | No raw document/job-description prompts; schema-only canonical data; bounded output; known skill/action checks; matching citation checks; no unchecked free-form model decisions. |
 | Wrong inference about education | Explicit outcomes/transfers, unknown flags, no degree or failure inference from dates/credits. Human verification is still required. |

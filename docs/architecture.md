@@ -40,7 +40,7 @@ A native Rust/C++ ranking core was not justified by the measured workload. The 1
 
 Keep source text privately for verification and correction; standardized claims must cite a source. This avoids silently discarding context while keeping ranking inputs clean. Education outcomes use explicit status values. No inference is made from school names, dates, transferred credits or major changes. Verified employment duration is separate and does not enter scoring.
 
-TXT/MD, DOCX and PDF are bounded and parsed as data in a trusted subprocess. No uploaded code, macro or embedded object is run. Scanned content is flagged. Windows uses a process timeout but lacks the Linux worker's hard memory cap; production Windows document processing needs an appropriate containment boundary.
+TXT/MD, DOCX and PDF are bounded and parsed as data in a trusted subprocess. No uploaded code, macro or embedded object is run. Scanned content is flagged. Windows/macOS use a process timeout but lack the Linux worker's hard memory cap; production processing on those systems needs an appropriate containment boundary. Linux address-space limits must not be applied indiscriminately to macOS framework processes with different resource semantics.
 
 ## Complexity and capacity
 

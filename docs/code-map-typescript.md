@@ -73,6 +73,7 @@ Generated with the TypeScript compiler AST. Lexical bindings and named declarati
 | `result` | 90 |
 | `info` | 97 |
 | `page` | 97 |
+| `page` | 103 |
 
 ## vite.config.ts
 
@@ -328,25 +329,25 @@ Generated with the TypeScript compiler AST. Lexical bindings and named declarati
 | `fragment` | 3 |
 | `initialToken` | 4 |
 | `token` | 9 |
-| `authorize` | 12 |
-| `value` | 12 |
-| `api` | 18 |
-| `body` | 18 |
-| `method` | 18 |
-| `path` | 18 |
-| `response` | 19 |
-| `data` | 25 |
-| `download` | 31 |
-| `filename` | 31 |
-| `path` | 31 |
-| `response` | 32 |
-| `url` | 37 |
-| `link` | 38 |
-| `encode` | 46 |
-| `file` | 46 |
-| `bytes` | 49 |
-| `value` | 50 |
-| `start` | 51 |
+| `authorize` | 18 |
+| `value` | 18 |
+| `api` | 24 |
+| `body` | 24 |
+| `method` | 24 |
+| `path` | 24 |
+| `response` | 25 |
+| `data` | 31 |
+| `download` | 37 |
+| `filename` | 37 |
+| `path` | 37 |
+| `response` | 38 |
+| `url` | 43 |
+| `link` | 44 |
+| `encode` | 52 |
+| `file` | 52 |
+| `bytes` | 55 |
+| `value` | 56 |
+| `start` | 57 |
 
 ## web/main.tsx
 

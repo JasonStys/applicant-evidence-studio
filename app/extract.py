@@ -1,6 +1,6 @@
 """Trusted document-worker entrypoint; Linux workers also cap memory and CPU.
 
-Windows timeout is enforced by the parent; a hard memory cap is not claimed there.
+Windows/macOS timeout is enforced by the parent; a hard memory cap is not claimed there.
 """
 
 # Index: base64@7, json@8, sys@9, main@12, main.resource@15, main.extract_bytes@20, main.data@22, main.result@23, main.result@25
@@ -11,7 +11,7 @@ import sys
 
 def main():
     """Read one bounded document and emit JSON; hide parser exception details."""
-    if sys.platform != "win32":
+    if sys.platform.startswith("linux"):
         import resource
 
         resource.setrlimit(resource.RLIMIT_AS, (512 * 1024 * 1024, 512 * 1024 * 1024))

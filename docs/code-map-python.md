@@ -889,6 +889,27 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `test_audit_contains_no_resume_content.connection` | 68 |
 | `test_audit_contains_no_resume_content.rows` | 69 |
 
+## tests/test_platform.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `base64` | 4 |
+| `io` | 5 |
+| `json` | 6 |
+| `sys` | 7 |
+| `SimpleNamespace` | 8 |
+| `pytest` | 10 |
+| `extract` | 12 |
+| `test_parser_resource_policy` | 16 |
+| `test_parser_resource_policy.capsys` | 16 |
+| `test_parser_resource_policy.monkeypatch` | 16 |
+| `test_parser_resource_policy.platform` | 16 |
+| `test_parser_resource_policy.calls` | 18 |
+| `test_parser_resource_policy.resource` | 19 |
+| `test_parser_resource_policy.key` | 20 |
+| `test_parser_resource_policy.value` | 20 |
+| `test_parser_resource_policy.data` | 24 |
+
 ## tests/test_providers.py
 
 | Declaration / variable | Line |

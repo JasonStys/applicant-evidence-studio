@@ -1,5 +1,5 @@
 // Purpose: real-browser reviewer, applicant intake, job editing, source review and download regressions.
-// Index: expect@3, test@3, AxeBuilder@4, page@6, page@12, page@35, pending@39, result@41, info@49, page@49, info@71, page@71, page@85, stage@86, result@90, info@97, page@97
+// Index: expect@3, test@3, AxeBuilder@4, page@6, page@12, page@35, pending@39, result@41, info@49, page@49, info@71, page@71, page@85, stage@86, result@90, info@97, page@97, page@103
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -97,4 +97,12 @@ test('accessibility and responsive layout', async ({ page }) => {
 test('visual evidence', async ({ page }, info) => {
   await page.screenshot({ path: 'artifacts/' + info.project.name + '-queue.png', fullPage: true });
   await expect(page.getByRole('heading', { name: 'Review queue', exact: true })).toBeVisible();
+});
+
+/** A new launcher session link must replace a stale token even in an existing browser tab. */
+test('session link replaces stale authorization', async ({ page }) => {
+  await page.goto('/#token=invalid_session_for_test');
+  await expect(page.getByRole('heading', { name: 'Authorize this local session' })).toBeVisible();
+  await page.goto('/#token=synthetic_browser_session_0123456789_abcdef');
+  await expect(page.getByRole('heading', { name: 'Evidence-ranked queue' })).toBeVisible();
 });
