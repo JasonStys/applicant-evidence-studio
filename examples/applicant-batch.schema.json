@@ -1,0 +1,294 @@
+{
+  "$defs": {
+    "Applicant": {
+      "additionalProperties": false,
+      "description": "Consistent record with provenance, consent, education context and skill claims.",
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "display_name": {
+          "maxLength": 240,
+          "title": "Display Name",
+          "type": "string"
+        },
+        "consent_sources": {
+          "default": false,
+          "title": "Consent Sources",
+          "type": "boolean"
+        },
+        "consent_ai": {
+          "default": false,
+          "title": "Consent Ai",
+          "type": "boolean"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/Source"
+          },
+          "maxItems": 30,
+          "title": "Sources",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "maxItems": 150,
+          "title": "Evidence",
+          "type": "array"
+        },
+        "education": {
+          "items": {
+            "$ref": "#/$defs/Education"
+          },
+          "maxItems": 20,
+          "title": "Education",
+          "type": "array"
+        },
+        "verified_employment_months": {
+          "anyOf": [
+            {
+              "maximum": 1200,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Verified Employment Months"
+        },
+        "notes": {
+          "default": "",
+          "maxLength": 3000,
+          "title": "Notes",
+          "type": "string"
+        },
+        "review_status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "reviewed",
+            "clarification_requested"
+          ],
+          "title": "Review Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "display_name"
+      ],
+      "title": "Applicant",
+      "type": "object"
+    },
+    "Education": {
+      "additionalProperties": false,
+      "description": "Explicit chronology prevents assuming that every school awarded a degree.",
+      "properties": {
+        "institution": {
+          "maxLength": 240,
+          "title": "Institution",
+          "type": "string"
+        },
+        "program": {
+          "maxLength": 240,
+          "title": "Program",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "in_progress",
+            "transferred",
+            "coursework_only",
+            "unclear"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "transferred_to": {
+          "default": "",
+          "maxLength": 240,
+          "title": "Transferred To",
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "maxLength": 1200,
+          "title": "Notes",
+          "type": "string"
+        }
+      },
+      "required": [
+        "institution",
+        "program",
+        "status"
+      ],
+      "title": "Education",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "description": "One job-relevant claim; reviewed means a human checked the cited source.",
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "skill": {
+          "title": "Skill",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "project",
+            "coursework",
+            "employment",
+            "certification",
+            "work_sample"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "level": {
+          "$ref": "#/$defs/Level",
+          "default": "declared"
+        },
+        "summary": {
+          "maxLength": 1200,
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        },
+        "source_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "locator": {
+          "default": "",
+          "maxLength": 240,
+          "title": "Locator",
+          "type": "string"
+        },
+        "reviewed": {
+          "default": false,
+          "title": "Reviewed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "skill",
+        "kind",
+        "summary",
+        "source_id"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Level": {
+      "description": "Evidence strength, not years of employment or a personality assessment.",
+      "enum": [
+        "declared",
+        "practiced",
+        "demonstrated",
+        "assessed"
+      ],
+      "title": "Level",
+      "type": "string"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "description": "Preserved, private source text for human verification, never an AI prompt.",
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "maxLength": 240,
+          "title": "Label",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "resume",
+            "github",
+            "linkedin",
+            "work_sample",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 80000,
+          "title": "Text",
+          "type": "string"
+        },
+        "url": {
+          "default": "",
+          "maxLength": 400,
+          "title": "Url",
+          "type": "string"
+        },
+        "warnings": {
+          "items": {
+            "maxLength": 240,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "kind",
+        "text"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Bounded atomic batch; identities cannot collide within an import.",
+  "properties": {
+    "applicants": {
+      "items": {
+        "$ref": "#/$defs/Applicant"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Applicants",
+      "type": "array"
+    },
+    "replace": {
+      "default": false,
+      "title": "Replace",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "applicants"
+  ],
+  "title": "BulkImport",
+  "type": "object"
+}

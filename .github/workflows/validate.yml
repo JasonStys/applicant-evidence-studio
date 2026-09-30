@@ -1,0 +1,93 @@
+name: Validate
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  python:
+    name: Python ${{ matrix.python }} / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.12', '3.14']
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --upgrade pip==26.2
+      - run: python -m pip install -e ".[dev]"
+      - run: ruff check app tests scripts
+      - run: ruff format --check app tests scripts
+      - run: python scripts/code_index.py --check
+      - run: python -m pytest --cov=app --cov-branch --cov-fail-under=85 --cov-report=xml:artifacts/coverage.xml --junitxml=artifacts/pytest.xml -W error::ResourceWarning
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: python-${{ matrix.os }}-${{ matrix.python }}
+          path: artifacts/
+          retention-days: 14
+  browser:
+    name: Browser, accessibility and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: python -m pip install --upgrade pip==26.2
+      - run: python -m pip install -e .
+      - run: npm ci
+      - run: npm run build
+      - run: node scripts/ts_index.mjs --check
+      - run: npx prettier --check web tests/browser.spec.ts '*.ts' scripts/ts_index.mjs index.html
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: browser-evidence
+          path: |
+            playwright-report/
+            test-results/
+            artifacts/
+            dist/
+          retention-days: 14
+  audit-and-performance:
+    name: Dependency audit and ranking benchmark
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24'
+      - run: python -m pip install --upgrade pip==26.2
+      - run: python -m pip install -e ".[dev]" pip-audit==2.9.0
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - run: python scripts/benchmark.py
+      - run: python -m pip_audit --local --format=json --output=artifacts/pip-audit.json
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: audit-performance-evidence
+          path: artifacts/
+          retention-days: 14

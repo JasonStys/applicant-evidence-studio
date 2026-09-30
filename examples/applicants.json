@@ -1,0 +1,462 @@
+{
+  "applicants": [
+    {
+      "id": "A101",
+      "display_name": "Morgan Rivera (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "typescript",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "sql",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "testing",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "documentation",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [
+        {
+          "institution": "North Valley College (synthetic)",
+          "program": "Electrical Engineering coursework",
+          "status": "transferred",
+          "transferred_to": "Metro University (synthetic)",
+          "notes": "Changed major; credits transferred. No degree awarded by the first school is claimed."
+        },
+        {
+          "institution": "Metro University (synthetic)",
+          "program": "BS Computer Science",
+          "status": "completed",
+          "transferred_to": "",
+          "notes": "Completion explicitly stated in this synthetic record."
+        }
+      ],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    {
+      "id": "A102",
+      "display_name": "Taylor Chen (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "cpp",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "linux",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "embedded",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "protocols",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "testing",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "documentation",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": 18,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    {
+      "id": "A103",
+      "display_name": "Jordan Ellis (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "sql",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "statistics",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "data_analysis",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "machine_learning",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "testing",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    {
+      "id": "A104",
+      "display_name": "Casey Stone (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e1",
+          "skill": "typescript",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e2",
+          "skill": "sql",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e3",
+          "skill": "testing",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e4",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        }
+      ],
+      "education": [
+        {
+          "institution": "Central Institute (synthetic)",
+          "program": "Computer Science",
+          "status": "unclear",
+          "transferred_to": "",
+          "notes": "Dates listed without an explicit degree outcome."
+        }
+      ],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    {
+      "id": "A105",
+      "display_name": "Riley Park (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "testing",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": 6,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    {
+      "id": "A106",
+      "display_name": "Sam Quinn (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "typescript",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "sql",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "testing",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    }
+  ],
+  "replace": false
+}

@@ -1,0 +1,80 @@
+{
+  "applicant_id": "A101",
+  "score": 100.0,
+  "status": "needs_review",
+  "criteria": [
+    {
+      "skill": "python",
+      "label": "Python",
+      "weight": 4,
+      "required": true,
+      "target": "demonstrated",
+      "attainment": 1.0,
+      "evidence_id": "e0",
+      "source_id": "portfolio",
+      "level": "demonstrated"
+    },
+    {
+      "skill": "typescript",
+      "label": "TypeScript",
+      "weight": 3,
+      "required": true,
+      "target": "demonstrated",
+      "attainment": 1.0,
+      "evidence_id": "e1",
+      "source_id": "portfolio",
+      "level": "demonstrated"
+    },
+    {
+      "skill": "sql",
+      "label": "SQL",
+      "weight": 3,
+      "required": true,
+      "target": "demonstrated",
+      "attainment": 1.0,
+      "evidence_id": "e2",
+      "source_id": "portfolio",
+      "level": "demonstrated"
+    },
+    {
+      "skill": "testing",
+      "label": "Automated testing",
+      "weight": 5,
+      "required": true,
+      "target": "demonstrated",
+      "attainment": 1.0,
+      "evidence_id": "e3",
+      "source_id": "portfolio",
+      "level": "demonstrated"
+    },
+    {
+      "skill": "api_design",
+      "label": "API design",
+      "weight": 4,
+      "required": true,
+      "target": "demonstrated",
+      "attainment": 1.0,
+      "evidence_id": "e4",
+      "source_id": "portfolio",
+      "level": "demonstrated"
+    },
+    {
+      "skill": "documentation",
+      "label": "Documentation",
+      "weight": 2,
+      "required": false,
+      "target": "demonstrated",
+      "attainment": 1.0,
+      "evidence_id": "e5",
+      "source_id": "portfolio",
+      "level": "demonstrated"
+    }
+  ],
+  "flags": [
+    "A source has extraction or access warnings; check the original document."
+  ],
+  "required_gaps": [],
+  "rubric_hash": "7c6b5307e0814b96",
+  "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+  "method": "reviewed-evidence-rubric-v1"
+}

@@ -1,0 +1,131 @@
+[
+  {
+    "id": "software",
+    "title": "Software Engineer — Integration Systems",
+    "description": "Python and TypeScript APIs, SQL, reliable automated testing and documented delivery.",
+    "criteria": [
+      {
+        "skill": "python",
+        "weight": 4,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "typescript",
+        "weight": 3,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "sql",
+        "weight": 3,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "testing",
+        "weight": 5,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "api_design",
+        "weight": 4,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "documentation",
+        "weight": 2,
+        "target": "demonstrated",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "embedded",
+    "title": "Embedded / Industrial Software Engineer",
+    "description": "C++ on Linux, embedded protocols, testing and clear engineering documentation.",
+    "criteria": [
+      {
+        "skill": "cpp",
+        "weight": 5,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "linux",
+        "weight": 3,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "embedded",
+        "weight": 4,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "protocols",
+        "weight": 3,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "testing",
+        "weight": 4,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "documentation",
+        "weight": 2,
+        "target": "demonstrated",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "data",
+    "title": "Data Analyst / Applied ML Developer",
+    "description": "Python, SQL, statistics, data analysis, machine learning and testable experiments.",
+    "criteria": [
+      {
+        "skill": "python",
+        "weight": 4,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "sql",
+        "weight": 4,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "statistics",
+        "weight": 4,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "data_analysis",
+        "weight": 5,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "machine_learning",
+        "weight": 3,
+        "target": "demonstrated",
+        "required": true
+      },
+      {
+        "skill": "testing",
+        "weight": 3,
+        "target": "demonstrated",
+        "required": true
+      }
+    ]
+  }
+]

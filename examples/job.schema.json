@@ -1,0 +1,84 @@
+{
+  "$defs": {
+    "Criterion": {
+      "additionalProperties": false,
+      "description": "Weighted job-relevant skill, with required gaps surfaced for human review.",
+      "properties": {
+        "skill": {
+          "title": "Skill",
+          "type": "string"
+        },
+        "weight": {
+          "default": 3,
+          "maximum": 10,
+          "minimum": 1,
+          "title": "Weight",
+          "type": "integer"
+        },
+        "target": {
+          "$ref": "#/$defs/Level",
+          "default": "demonstrated"
+        },
+        "required": {
+          "default": true,
+          "title": "Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "skill"
+      ],
+      "title": "Criterion",
+      "type": "object"
+    },
+    "Level": {
+      "description": "Evidence strength, not years of employment or a personality assessment.",
+      "enum": [
+        "declared",
+        "practiced",
+        "demonstrated",
+        "assessed"
+      ],
+      "title": "Level",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Human-approved rubric; description is context, not hidden ranking features.",
+  "properties": {
+    "id": {
+      "maxLength": 64,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 240,
+      "title": "Title",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "maxLength": 10000,
+      "title": "Description",
+      "type": "string"
+    },
+    "criteria": {
+      "items": {
+        "$ref": "#/$defs/Criterion"
+      },
+      "maxItems": 36,
+      "minItems": 1,
+      "title": "Criteria",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "criteria"
+  ],
+  "title": "Job",
+  "type": "object"
+}

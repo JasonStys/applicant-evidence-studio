@@ -1,0 +1,8 @@
+Synthetic applicant: Alex Example
+This is fictional demonstration content, not a real person's resume.
+Project: Python service with request validation and negative-input tests. Own contribution: implemented the parsing and error boundaries.
+Coursework: SQL query optimization lab with reproducible query plans and explicit limitations.
+Skills: TypeScript, JavaScript, Python, SQL
+Education: Valley College — engineering coursework; credits transferred to City University after changing majors. No first-school degree is claimed.
+Education: City University — Computer Science degree in progress, not completed.
+Employment: No verified employment duration supplied. Project and course practice are separate skill evidence.

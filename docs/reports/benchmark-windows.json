@@ -1,0 +1,41 @@
+{
+  "python": "3.14.6",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "repeats": 3,
+  "scope": "in-process scoring/sorting; excludes DB loading, parsing, network, concurrent users and AI",
+  "results": [
+    {
+      "applicants": 100,
+      "seconds": [
+        0.002621200001158286,
+        0.003140299999358831,
+        0.003768099999433616
+      ],
+      "median_seconds": 0.003140299999358831,
+      "records_per_second": 31844.091335355683,
+      "peak_traced_bytes": 228372
+    },
+    {
+      "applicants": 1000,
+      "seconds": [
+        0.03746520000277087,
+        0.038286700000753626,
+        0.035959299999376526
+      ],
+      "median_seconds": 0.03746520000277087,
+      "records_per_second": 26691.43631759717,
+      "peak_traced_bytes": 2398616
+    },
+    {
+      "applicants": 10000,
+      "seconds": [
+        0.3374867999991693,
+        0.37652929999967455,
+        0.3561467999970773
+      ],
+      "median_seconds": 0.3561467999970773,
+      "records_per_second": 28078.309281684025,
+      "peak_traced_bytes": 24724448
+    }
+  ]
+}
