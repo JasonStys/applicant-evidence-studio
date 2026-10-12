@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "date": "2026-10-12",
+  "author": "Jason Stys",
+  "data": "synthetic only; no real applicant or account information",
+  "python": {"platform": "Windows / Python 3.14.6", "passed": 76, "coverage_percent": 88.46, "branch_coverage_included": true, "resource_warnings_as_errors": true},
+  "security": ["real scrypt password checks", "cross-account ciphertext isolation", "Host/Origin/CSRF/body limits", "safe validation errors", "cookie flags", "session expiry/revocation", "random recovery rotation", "password-confirmed account deletion", "ciphertext CAS concurrency"],
+  "browser_checks": ["ciphertext-only traffic", "wrong-key and tampered-backup rejection", "local TXT/DOCX/PDF parsing", "disabled third-party providers", "conflicting-device protection", "18 Python/TypeScript reference assessment matches", "accessibility", "installation metadata", "factual exports"],
+  "local_browsers": {"chromium": "6 passed", "webkit": "6 passed", "mobile_chromium": "6 passed", "firefox": "Official runtime reinstalls successfully, but Windows process launch returns spawn UNKNOWN; Linux CI must validate Firefox. OS security protections were not weakened."},
+  "desktop_windows": {"packaged_service_smoke_checks": 8, "result": "passed on initial build; final source is rebuilt before release", "signing": "unsigned portable executable"},
+  "audits": {"npm": "0 reported vulnerabilities after source-map-js patch", "pip": "No known vulnerabilities found; build/audit environment included"},
+  "remaining_gates": ["actual HTTPS host/domain selection and deployment validation", "operator retention/backup/incident policy", "independent security and organizational responsible-use review", "publisher signing/notarization if required"],
+  "storage": {"billing_meter_percent": 100, "billing_used_gb": 0.5, "billing_included_gb": 0.5, "billable_usage_usd": 0, "ci_artifact_uploads": "opt-in, not required for test checks"}
+}

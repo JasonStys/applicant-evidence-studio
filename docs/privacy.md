@@ -39,3 +39,15 @@ Records are not uploaded automatically. Use a private data directory with approp
 ## Before organizational hiring use
 
 Obtain appropriate jurisdiction-specific review of hiring/privacy obligations, establish validated job-related rubrics, evaluate adverse outcomes and error rates, provide accessible alternatives/accommodations, add role-based authorization and tenant isolation, encrypt storage/transport, implement retention/access/deletion policies and correction/appeal paths, conduct penetration testing and real user/accessibility evaluation. Human review alone is not a substitute for these controls.
+# Version 0.2 account service
+
+For real private accounts use [the ciphertext-only architecture and threat model](private-accounts.md),
+[hosting gates](hosting.md) and [installation/help](install.md). User vault keys
+remain in browser memory; account metadata does not become anonymous. Optional
+external AI and source fetching are disabled in private mode. No administrator
+can read stored plaintext through this service, but a malicious host serving new
+code or an infected device is outside that guarantee.
+
+The material below describes the original **0.1 loopback developer mode** and
+its limitations. Never expose that plaintext mode as the account website.
+

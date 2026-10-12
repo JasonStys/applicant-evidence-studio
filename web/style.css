@@ -804,3 +804,80 @@ footer {
     max-width: 100%;
   }
 }
+/* Jason Stys: account gate and private workspace controls; no third-party fonts or tracking. */
+.account-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: #173e45;
+  color: white;
+}
+.account-bar a {
+  color: #c4f2e0;
+}
+.sidebar small a {
+  color: #c4f2e0;
+}
+.account-card {
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border: 1px solid #c7d9da;
+  border-radius: 16px;
+}
+.account-card h1 {
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  line-height: 1.2;
+}
+.account-card form {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.account-card label {
+  display: block;
+  margin: 1rem 0;
+}
+.account-card input:not([type='checkbox']) {
+  display: block;
+  width: 100%;
+}
+.account-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.account-alert {
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid #49656b;
+  background: #fff;
+}
+.account-help {
+  margin-top: 1.5rem;
+  line-height: 1.6;
+}
+.account-help summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.5rem;
+}
+.recovery-code {
+  display: block;
+  padding: 1rem;
+  overflow-wrap: anywhere;
+  background: #edf4f4;
+  margin: 1rem 0;
+}
+@media (max-width: 600px) {
+  .account-card {
+    margin: 0.8rem;
+    padding: 1.2rem;
+  }
+  .account-bar {
+    padding: 0.8rem;
+  }
+}

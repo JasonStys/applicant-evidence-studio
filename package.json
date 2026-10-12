@@ -1,17 +1,22 @@
 {
   "name": "applicant-evidence-studio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --noEmit && vite build",
+    "build": "node scripts/compile_schemas.mjs --check && tsc --noEmit && vite build",
+    "schemas": "node scripts/compile_schemas.mjs",
     "dev": "vite --host 127.0.0.1",
     "test:browser": "playwright test",
+    "test:private": "playwright test --config=playwright.private.config.ts",
     "index": "python scripts/code_index.py && node scripts/ts_index.mjs",
     "index:check": "python scripts/code_index.py --check && node scripts/ts_index.mjs --check"
   },
   "dependencies": {
+    "ajv": "8.20.0",
+    "fflate": "0.8.3",
+    "pdfjs-dist": "6.4.299",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

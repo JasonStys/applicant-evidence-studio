@@ -1,9 +1,10 @@
 // Purpose: reviewer queue, source-linked records, rubric editor, private intake and applicant coaching.
 // Variables hold explicit user state; rankings remain server-calculated and no hiring actions are offered.
-// Index: useEffect@4, useState@4, api@5, authorize@5, download@5, encode@5, EducationEditor@6, AIResult@8, Applicant@9, Assessment@10, Coaching@11, Config@12, Criterion@13, Evidence@14, Job@15, Level@16, Queue@17, Source@18, levels@21, explanations@22, emptyApplicant@28, viewNames@40, View@47, LevelSelect@50, value@51, onChange@52, label@53, value@56, event@62, level@63, App@74, config@75, setConfig@75, jobs@76, setJobs@76, jobId@77, setJobId@77, setView@78, view@78, queue@79, setQueue@79, search@80, setSearch@80, setSkill@81, skill@81, setStatus@82, status@82, offset@83, setOffset@83, record@84, setRecord@84, revision@85, setRevision@85, selected@86, setSelected@86, error@87, setError@87, message@88, setMessage@88, busy@89, setBusy@89, access@90, setAccess@90, editJob@91, setEditJob@91, coaching@92, setCoaching@92, general@93, setGeneral@93, ai@94, setAI@94, draft@95, setDraft@95, raw@96, setRaw@96, replace@97, setReplace@97, recordJSON@98, setRecordJSON@98, setSourceText@99, sourceText@99, setSourceKind@100, sourceKind@100, repoURL@101, setRepoURL@101, newSkill@102, setNewSkill@102, newSummary@103, setNewSummary@103, newSource@104, setNewSource@104, newKind@105, setNewKind@105, current@106, job@106, item@107, selectedAssessment@107, run@110, task@110, problem@116, initialize@123, settings@124, roles@125, job@128, loadQueue@131, identifier@140, select@140, data@141, active@156, value@161, problem@164, active@176, value@179, problem@182, saveRecord@192, value@192, file@199, intake@199, result@200, attachSource@226, source@226, event@238, index@252, key@252, label@252, event@286, job@292, event@326, event@376, event@387, key@393, label@393, event@404, item@427, flag@513, criterion@524, education@549, index@549, evidence@589, index@589, value@602, item@605, position@605, event@616, item@619, position@619, source@632, warning@637, event@651, key@652, label@652, event@661, source@662, event@673, kind@676, event@690, event@726, event@738, event@750, event@774, result@783, education@804, event@813, event@838, event@874, file@875, event@887, event@895, event@902, warning@906, event@944, event@955, file@956, event@969, value@977, result@978, event@1025, event@1032, event@1041, result@1049, criterion@1062, index@1062, event@1068, item@1071, position@1071, key@1077, label@1077, event@1091, item@1094, position@1094, target@1104, item@1107, position@1107, event@1117, item@1120, position@1120, _@1134, position@1134, next@1147, criterion@1148, key@1148, level@1179, event@1206, advice@1234, advice@1240, project@1248, step@1252, event@1278, index@1307, suggestion@1307
+// Index: useEffect@4, useState@4, api@5, authorize@5, download@5, encode@5, EducationEditor@6, isPrivateWorkspace@7, AIResult@9, Applicant@10, Assessment@11, Coaching@12, Config@13, Criterion@14, Evidence@15, Job@16, Level@17, Queue@18, Source@19, levels@22, explanations@23, emptyApplicant@29, viewNames@41, View@48, LevelSelect@51, value@52, onChange@53, label@54, value@57, event@63, level@64, App@75, config@76, setConfig@76, jobs@77, setJobs@77, jobId@78, setJobId@78, setView@79, view@79, queue@80, setQueue@80, search@81, setSearch@81, setSkill@82, skill@82, setStatus@83, status@83, offset@84, setOffset@84, record@85, setRecord@85, revision@86, setRevision@86, selected@87, setSelected@87, error@88, setError@88, message@89, setMessage@89, busy@90, setBusy@90, access@91, setAccess@91, editJob@92, setEditJob@92, coaching@93, setCoaching@93, general@94, setGeneral@94, ai@95, setAI@95, draft@96, setDraft@96, raw@97, setRaw@97, replace@98, setReplace@98, recordJSON@99, setRecordJSON@99, setSourceText@100, sourceText@100, setSourceKind@101, sourceKind@101, repoURL@102, setRepoURL@102, newSkill@103, setNewSkill@103, newSummary@104, setNewSummary@104, newSource@105, setNewSource@105, newKind@106, setNewKind@106, current@107, job@107, item@108, selectedAssessment@108, run@111, task@111, problem@117, initialize@124, settings@125, roles@126, job@129, loadQueue@132, identifier@141, select@141, data@142, active@157, value@162, problem@165, active@177, value@180, problem@183, saveRecord@193, value@193, file@200, intake@200, result@202, attachSource@228, source@228, event@240, index@254, key@254, label@254, event@297, job@303, event@337, event@387, event@398, key@404, label@404, event@415, item@438, flag@524, criterion@535, education@560, index@560, evidence@600, index@600, value@613, item@616, position@616, event@627, item@630, position@630, source@643, warning@648, event@662, key@663, label@663, event@672, source@673, event@684, kind@687, event@701, event@737, event@749, event@761, event@785, result@794, education@815, event@824, event@849, event@885, file@886, event@898, event@906, event@913, warning@917, event@955, event@966, file@967, event@980, value@988, result@989, event@1036, event@1043, event@1052, result@1060, criterion@1073, index@1073, event@1079, item@1082, position@1082, key@1088, label@1088, event@1102, item@1105, position@1105, target@1115, item@1118, position@1118, event@1128, item@1131, position@1131, _@1145, position@1145, next@1158, criterion@1159, key@1159, level@1190, event@1217, advice@1245, advice@1251, project@1259, step@1263, event@1289, index@1318, suggestion@1318
 import { useEffect, useState } from 'react';
 import { api, authorize, download, encode } from './api';
 import EducationEditor from './EducationEditor';
+import { isPrivateWorkspace } from './private-domain';
 import type {
   AIResult,
   Applicant,
@@ -197,6 +198,7 @@ export default function App() {
   }
   /** Import one resume into an editable, unreviewed draft; no qualifications are inferred. */
   async function intake(file: File) {
+    setDraft({ ...emptyApplicant });
     const result = await api<{ text: string; warnings: string[]; proposals: Evidence[]; filename: string }>(
       'ingest',
       'POST',
@@ -271,7 +273,16 @@ export default function App() {
             People make the decisions.
           </p>
         </div>
-        <small>v0.1 · Private local storage</small>
+        <small>
+          v0.2 · Created by{' '}
+          <a href="https://github.com/JasonStys" rel="noreferrer">
+            Jason Stys
+          </a>
+          <br />
+          <a href="https://www.linkedin.com/in/jason-stys-31b30b351/" rel="noreferrer">
+            Contact & profile
+          </a>
+        </small>
       </aside>
       <main>
         <header className="topbar">
@@ -935,7 +946,7 @@ export default function App() {
               <h2>High-volume structured import</h2>
               <p>
                 Import up to 100 normalized records per batch, with an atomic transaction and duplicate
-                checks. Local pool limit: 10,000 applicants.
+                checks. Workspace capacity: {config.capacity} applicants (encrypted size limits also apply).
               </p>
               <label>
                 Batch JSON
@@ -1346,13 +1357,23 @@ export default function App() {
               decisions. This prototype does not claim to be bias-free, legally compliant or a validated
               predictor of job success.
             </p>
-            <h3>Local privacy boundary</h3>
-            <p>
-              This is a single-user loopback application, not a public recruitment service. Records stay in a
-              private local SQLite file; optional AI calls require consent. Do not publish applicant data.
-              LinkedIn intake uses authorized professional text/export, not access-control bypassing. GitHub
-              intake reads one authorized public README and never runs applicant code.
-            </p>
+            <h3>Privacy boundary</h3>
+            {isPrivateWorkspace() ? (
+              <p>
+                Documents are decrypted and processed on this device. Only encrypted workspace ciphertext is
+                synchronized to your account. Your independent vault phrase is not sent to the service.
+                Private mode disables all external AI and source lookups; paste authorized exports instead.
+                See Account & backups for recovery, deletion, installation and limitations. Ordinary downloads
+                are unencrypted private files.
+              </p>
+            ) : (
+              <p>
+                This is a single-user loopback application, not a public recruitment service. Records stay in
+                a private local SQLite file; optional AI calls require consent. Do not publish applicant data.
+                LinkedIn intake uses authorized professional text/export, not access-control bypassing. GitHub
+                intake reads one authorized public README and never runs applicant code.
+              </p>
+            )}
             <h3>Production deployment</h3>
             <p>
               Production use needs organizational authentication, role-based access, encryption and retention

@@ -7,6 +7,119 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | Declaration / variable | Line |
 | --- | --- |
 
+## app/accounts.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `base64` | 8 |
+| `hashlib` | 9 |
+| `json` | 10 |
+| `secrets` | 11 |
+| `sqlite3` | 12 |
+| `time` | 13 |
+| `contextmanager` | 14 |
+| `Path` | 15 |
+| `BoundedSemaphore` | 16 |
+| `SESSION_SECONDS` | 18 |
+| `IDLE_SECONDS` | 19 |
+| `HASH_SLOTS` | 20 |
+| `digest` | 23 |
+| `digest.value` | 23 |
+| `password_hash` | 28 |
+| `password_hash.password` | 28 |
+| `password_hash.salt` | 28 |
+| `password_hash.salt` | 30 |
+| `password_hash.key` | 32 |
+| `password_matches` | 38 |
+| `password_matches.password` | 38 |
+| `password_matches.stored` | 38 |
+| `password_matches._` | 41 |
+| `password_matches.salt` | 41 |
+| `password_matches.version` | 41 |
+| `Accounts` | 47 |
+| `Accounts.__init__` | 50 |
+| `Accounts.__init__.path` | 50 |
+| `Accounts.__init__.self` | 50 |
+| `Accounts.__init__.db` | 56 |
+| `Accounts.connection` | 72 |
+| `Accounts.connection.self` | 72 |
+| `Accounts.connection.db` | 74 |
+| `Accounts.throttle` | 83 |
+| `Accounts.throttle.key` | 83 |
+| `Accounts.throttle.maximum` | 83 |
+| `Accounts.throttle.self` | 83 |
+| `Accounts.throttle.window` | 83 |
+| `Accounts.throttle.now` | 85 |
+| `Accounts.throttle.db` | 86 |
+| `Accounts.throttle.row` | 89 |
+| `Accounts.throttle.count` | 90 |
+| `Accounts.register` | 97 |
+| `Accounts.register.password` | 97 |
+| `Accounts.register.self` | 97 |
+| `Accounts.register.username` | 97 |
+| `Accounts.register.owner` | 99 |
+| `Accounts.register.recovery` | 99 |
+| `Accounts.register.hashed` | 100 |
+| `Accounts.register.db` | 101 |
+| `Accounts.login` | 110 |
+| `Accounts.login.password` | 110 |
+| `Accounts.login.self` | 110 |
+| `Accounts.login.username` | 110 |
+| `Accounts.login.db` | 112 |
+| `Accounts.login.row` | 113 |
+| `Accounts.login.valid` | 114 |
+| `Accounts.session` | 117 |
+| `Accounts.session.owner` | 117 |
+| `Accounts.session.self` | 117 |
+| `Accounts.session.now` | 119 |
+| `Accounts.session.token` | 119 |
+| `Accounts.session.db` | 120 |
+| `Accounts.owner` | 131 |
+| `Accounts.owner.self` | 131 |
+| `Accounts.owner.token` | 131 |
+| `Accounts.owner.now` | 133 |
+| `Accounts.owner.db` | 134 |
+| `Accounts.owner.row` | 135 |
+| `Accounts.revoke` | 143 |
+| `Accounts.revoke.self` | 143 |
+| `Accounts.revoke.token` | 143 |
+| `Accounts.revoke.db` | 145 |
+| `Accounts.vault` | 148 |
+| `Accounts.vault.owner` | 148 |
+| `Accounts.vault.self` | 148 |
+| `Accounts.vault.db` | 150 |
+| `Accounts.vault.row` | 151 |
+| `Accounts.save` | 158 |
+| `Accounts.save.envelope` | 158 |
+| `Accounts.save.owner` | 158 |
+| `Accounts.save.revision` | 158 |
+| `Accounts.save.self` | 158 |
+| `Accounts.save.db` | 160 |
+| `Accounts.save.row` | 162 |
+| `Accounts.reset` | 171 |
+| `Accounts.reset.password` | 171 |
+| `Accounts.reset.recovery` | 171 |
+| `Accounts.reset.self` | 171 |
+| `Accounts.reset.username` | 171 |
+| `Accounts.reset.db` | 173 |
+| `Accounts.reset.row` | 174 |
+| `Accounts.reset.fresh` | 177 |
+| `Accounts.reset.hashed` | 177 |
+| `Accounts.reset.db` | 178 |
+| `Accounts.reset.updated` | 179 |
+| `Accounts.delete` | 188 |
+| `Accounts.delete.owner` | 188 |
+| `Accounts.delete.password` | 188 |
+| `Accounts.delete.self` | 188 |
+| `Accounts.delete.db` | 190 |
+| `Accounts.delete.row` | 191 |
+| `Accounts.delete.db` | 194 |
+| `decode_field` | 200 |
+| `decode_field.maximum` | 200 |
+| `decode_field.minimum` | 200 |
+| `decode_field.value` | 200 |
+| `decode_field.result` | 203 |
+
 ## app/api.py
 
 | Declaration / variable | Line |
@@ -163,16 +276,18 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `uvicorn` | 9 |
 | `create_app` | 11 |
 | `samples` | 12 |
-| `Store` | 13 |
-| `main` | 16 |
-| `main.parser` | 18 |
-| `main.args` | 23 |
-| `main.applicants` | 25 |
-| `main.jobs` | 25 |
-| `main.store` | 26 |
-| `main.job` | 28 |
-| `main.token` | 34 |
-| `main.origin` | 35 |
+| `create_private_app` | 13 |
+| `Store` | 14 |
+| `main` | 17 |
+| `main.parser` | 19 |
+| `main.args` | 26 |
+| `main.applicants` | 28 |
+| `main.jobs` | 28 |
+| `main.store` | 29 |
+| `main.job` | 31 |
+| `main.origin` | 38 |
+| `main.token` | 52 |
+| `main.origin` | 53 |
 
 ## app/demo.py
 
@@ -202,6 +317,37 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `samples.education` | 128 |
 | `samples.education` | 130 |
 | `samples.education` | 146 |
+
+## app/desktop.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `os` | 8 |
+| `socket` | 9 |
+| `sys` | 10 |
+| `threading` | 11 |
+| `time` | 12 |
+| `webbrowser` | 13 |
+| `Path` | 14 |
+| `httpx` | 16 |
+| `uvicorn` | 17 |
+| `create_private_app` | 19 |
+| `private_directory` | 22 |
+| `private_directory.path` | 25 |
+| `private_directory.parent` | 29 |
+| `private_directory.parent` | 31 |
+| `private_directory.parent` | 33 |
+| `private_directory.path` | 34 |
+| `main` | 41 |
+| `main.bundle` | 43 |
+| `main.ui` | 44 |
+| `main.listener` | 47 |
+| `main.port` | 49 |
+| `main.origin` | 50 |
+| `main.application` | 51 |
+| `main.open_when_ready` | 53 |
+| `main.open_when_ready.client` | 55 |
+| `main.open_when_ready._` | 56 |
 
 ## app/extract.py
 
@@ -376,6 +522,126 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `AIRequest.applicant_id` | 191 |
 | `AIRequest.consent` | 192 |
 
+## app/private_api.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `mimetypes` | 8 |
+| `sqlite3` | 9 |
+| `Path` | 10 |
+| `urlsplit` | 11 |
+| `FastAPI` | 13 |
+| `HTTPException` | 13 |
+| `Request` | 13 |
+| `RequestValidationError` | 14 |
+| `JSONResponse` | 15 |
+| `StaticFiles` | 16 |
+| `BaseModel` | 17 |
+| `ConfigDict` | 17 |
+| `Field` | 17 |
+| `model_validator` | 17 |
+| `Accounts` | 19 |
+| `SESSION_SECONDS` | 19 |
+| `decode_field` | 19 |
+| `CSP` | 21 |
+| `Credentials` | 24 |
+| `Credentials.model_config` | 27 |
+| `Credentials.username` | 28 |
+| `Credentials.password` | 29 |
+| `Reset` | 32 |
+| `Reset.recovery` | 35 |
+| `Confirmation` | 38 |
+| `Confirmation.model_config` | 41 |
+| `Confirmation.password` | 42 |
+| `Envelope` | 45 |
+| `Envelope.model_config` | 48 |
+| `Envelope.version` | 49 |
+| `Envelope.salt` | 50 |
+| `Envelope.iv` | 51 |
+| `Envelope.ciphertext` | 52 |
+| `Envelope.validate_encoding` | 55 |
+| `Envelope.validate_encoding.self` | 55 |
+| `Save` | 63 |
+| `Save.model_config` | 66 |
+| `Save.envelope` | 67 |
+| `Save.revision` | 68 |
+| `PrivateBoundary` | 71 |
+| `PrivateBoundary.__init__` | 74 |
+| `PrivateBoundary.__init__.app` | 74 |
+| `PrivateBoundary.__init__.origin` | 74 |
+| `PrivateBoundary.__init__.self` | 74 |
+| `PrivateBoundary.__call__` | 78 |
+| `PrivateBoundary.__call__.receive` | 78 |
+| `PrivateBoundary.__call__.scope` | 78 |
+| `PrivateBoundary.__call__.self` | 78 |
+| `PrivateBoundary.__call__.send` | 78 |
+| `PrivateBoundary.__call__.protected` | 83 |
+| `PrivateBoundary.__call__.protected.message` | 83 |
+| `PrivateBoundary.__call__.reject` | 100 |
+| `PrivateBoundary.__call__.reject.code` | 100 |
+| `PrivateBoundary.__call__.reject.detail` | 100 |
+| `PrivateBoundary.__call__.headers` | 104 |
+| `PrivateBoundary.__call__.body` | 117 |
+| `PrivateBoundary.__call__.message` | 119 |
+| `PrivateBoundary.__call__.consumed` | 127 |
+| `PrivateBoundary.__call__.replay` | 129 |
+| `PrivateBoundary.__call__.replay.consumed` | 133 |
+| `create_private_app` | 140 |
+| `create_private_app.data` | 140 |
+| `create_private_app.origin` | 140 |
+| `create_private_app.ui` | 140 |
+| `create_private_app.address` | 144 |
+| `create_private_app.accounts` | 158 |
+| `create_private_app.app` | 159 |
+| `create_private_app.secure` | 164 |
+| `create_private_app.cookie` | 165 |
+| `create_private_app.invalid` | 168 |
+| `create_private_app.invalid.error` | 168 |
+| `create_private_app.invalid.request` | 168 |
+| `create_private_app.limit` | 174 |
+| `create_private_app.limit.auth` | 174 |
+| `create_private_app.limit.request` | 174 |
+| `create_private_app.limit.username` | 174 |
+| `create_private_app.limit.ip` | 176 |
+| `create_private_app.identify` | 182 |
+| `create_private_app.identify.request` | 182 |
+| `create_private_app.identify.owner` | 185 |
+| `create_private_app.signed_in` | 190 |
+| `create_private_app.signed_in.owner` | 190 |
+| `create_private_app.signed_in.recovery` | 190 |
+| `create_private_app.signed_in.response` | 192 |
+| `create_private_app.health` | 205 |
+| `create_private_app.register` | 210 |
+| `create_private_app.register.body` | 210 |
+| `create_private_app.register.request` | 210 |
+| `create_private_app.register.owner` | 214 |
+| `create_private_app.register.recovery` | 214 |
+| `create_private_app.login` | 222 |
+| `create_private_app.login.body` | 222 |
+| `create_private_app.login.request` | 222 |
+| `create_private_app.login.owner` | 225 |
+| `create_private_app.account` | 231 |
+| `create_private_app.account.request` | 231 |
+| `create_private_app.account.owner` | 233 |
+| `create_private_app.logout` | 237 |
+| `create_private_app.logout.request` | 237 |
+| `create_private_app.logout.response` | 241 |
+| `create_private_app.reset` | 246 |
+| `create_private_app.reset.body` | 246 |
+| `create_private_app.reset.request` | 246 |
+| `create_private_app.reset.fresh` | 249 |
+| `create_private_app.delete` | 255 |
+| `create_private_app.delete.body` | 255 |
+| `create_private_app.delete.request` | 255 |
+| `create_private_app.delete.owner` | 257 |
+| `create_private_app.delete.response` | 261 |
+| `create_private_app.workspace` | 266 |
+| `create_private_app.workspace.request` | 266 |
+| `create_private_app.save` | 271 |
+| `create_private_app.save.body` | 271 |
+| `create_private_app.save.request` | 271 |
+| `create_private_app.save.owner` | 273 |
+
 ## app/providers.py
 
 | Declaration / variable | Line |
@@ -544,6 +810,16 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `resume_html.record` | 181 |
 | `resume_html.duration` | 183 |
 
+## app/server.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `os` | 4 |
+| `Path` | 5 |
+| `create_private_app` | 7 |
+| `application` | 10 |
+| `application.origin` | 12 |
+
 ## app/store.py
 
 | Declaration / variable | Line |
@@ -658,6 +934,37 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `main.port` | 24 |
 | `main.application` | 25 |
 
+## scripts/build_desktop.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `hashlib` | 4 |
+| `platform` | 5 |
+| `subprocess` | 6 |
+| `sys` | 7 |
+| `tarfile` | 8 |
+| `zipfile` | 9 |
+| `Path` | 10 |
+| `main` | 13 |
+| `main.output` | 17 |
+| `main.command` | 19 |
+| `main.binary` | 52 |
+| `main.stem` | 57 |
+| `main.files` | 58 |
+| `main.archive` | 60 |
+| `main.bundle` | 61 |
+| `main.name` | 62 |
+| `main.path` | 62 |
+| `main.archive` | 65 |
+| `main.bundle` | 66 |
+| `main.name` | 67 |
+| `main.path` | 67 |
+| `main.manifest` | 69 |
+| `main.hashes` | 70 |
+| `main.name` | 71 |
+| `main.path` | 71 |
+| `main.source` | 72 |
+
 ## scripts/code_index.py
 
 | Declaration / variable | Line |
@@ -735,6 +1042,178 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `main.job` | 23 |
 | `main.filename` | 28 |
 | `main.value` | 28 |
+
+## scripts/private_browser_server.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `os` | 4 |
+| `tempfile` | 5 |
+| `Path` | 6 |
+| `uvicorn` | 8 |
+| `create_private_app` | 10 |
+| `main` | 13 |
+| `main.folder` | 15 |
+| `main.port` | 16 |
+
+## scripts/private_fixtures.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `json` | 4 |
+| `Path` | 5 |
+| `PdfWriter` | 7 |
+| `DecodedStreamObject` | 8 |
+| `DictionaryObject` | 8 |
+| `NameObject` | 8 |
+| `samples` | 10 |
+| `assess` | 11 |
+| `main` | 14 |
+| `main.folder` | 16 |
+| `main.writer` | 18 |
+| `main.page` | 19 |
+| `main.stream` | 20 |
+| `main.font` | 23 |
+| `main.output` | 33 |
+| `main.applicants` | 35 |
+| `main.jobs` | 35 |
+| `main.vectors` | 36 |
+| `main.j` | 38 |
+| `main.a` | 39 |
+
+## scripts/smoke_desktop.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `json` | 4 |
+| `os` | 5 |
+| `queue` | 6 |
+| `re` | 7 |
+| `subprocess` | 8 |
+| `sys` | 9 |
+| `tempfile` | 10 |
+| `threading` | 11 |
+| `Path` | 12 |
+| `httpx` | 14 |
+| `main` | 17 |
+| `main.binary` | 19 |
+| `main.folder` | 22 |
+| `main.environment` | 23 |
+| `main.process` | 24 |
+| `main.output` | 32 |
+| `main.collect` | 34 |
+| `main.collect.line` | 36 |
+| `main.origin` | 41 |
+| `main._` | 42 |
+| `main.line` | 44 |
+| `main.match` | 49 |
+| `main.origin` | 51 |
+| `main.headers` | 55 |
+| `main.client` | 56 |
+| `main.credentials` | 59 |
+| `main.envelope` | 62 |
+| `main.killer` | 91 |
+
+## tests/test_accounts.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `base64` | 4 |
+| `sqlite3` | 5 |
+| `ThreadPoolExecutor` | 6 |
+| `pytest` | 8 |
+| `TestClient` | 9 |
+| `decode_field` | 11 |
+| `password_hash` | 11 |
+| `password_matches` | 11 |
+| `create_private_app` | 12 |
+| `ORIGIN` | 14 |
+| `HEADERS` | 15 |
+| `PASSWORD` | 16 |
+| `ENVELOPE` | 17 |
+| `service` | 26 |
+| `service.tmp_path` | 26 |
+| `service.app` | 28 |
+| `service.client` | 29 |
+| `register` | 33 |
+| `register.client` | 33 |
+| `register.username` | 33 |
+| `register.response` | 35 |
+| `test_auth_cookie_and_no_plaintext_endpoints` | 42 |
+| `test_auth_cookie_and_no_plaintext_endpoints.service` | 42 |
+| `test_auth_cookie_and_no_plaintext_endpoints.client` | 44 |
+| `test_auth_cookie_and_no_plaintext_endpoints.store` | 44 |
+| `test_auth_cookie_and_no_plaintext_endpoints.code` | 46 |
+| `test_auth_cookie_and_no_plaintext_endpoints.cookie` | 47 |
+| `test_auth_cookie_and_no_plaintext_endpoints.response` | 49 |
+| `test_auth_cookie_and_no_plaintext_endpoints.header` | 52 |
+| `test_auth_cookie_and_no_plaintext_endpoints.db` | 57 |
+| `test_auth_cookie_and_no_plaintext_endpoints.row` | 58 |
+| `test_auth_cookie_and_no_plaintext_endpoints.result` | 65 |
+| `test_isolation_cas_and_persistence` | 75 |
+| `test_isolation_cas_and_persistence.service` | 75 |
+| `test_isolation_cas_and_persistence.tmp_path` | 75 |
+| `test_isolation_cas_and_persistence.first` | 77 |
+| `test_isolation_cas_and_persistence.store` | 77 |
+| `test_isolation_cas_and_persistence.second` | 87 |
+| `test_isolation_cas_and_persistence.restarted` | 101 |
+| `test_isolation_cas_and_persistence.db` | 104 |
+| `test_isolation_cas_and_persistence.owner` | 105 |
+| `test_isolation_cas_and_persistence.pool` | 106 |
+| `test_isolation_cas_and_persistence._` | 107 |
+| `test_isolation_cas_and_persistence.results` | 107 |
+| `test_csrf_headers_hosts_body_and_private_errors` | 111 |
+| `test_csrf_headers_hosts_body_and_private_errors.service` | 111 |
+| `test_csrf_headers_hosts_body_and_private_errors._` | 113 |
+| `test_csrf_headers_hosts_body_and_private_errors.client` | 113 |
+| `test_csrf_headers_hosts_body_and_private_errors.credentials` | 114 |
+| `test_csrf_headers_hosts_body_and_private_errors.headers` | 115 |
+| `test_csrf_headers_hosts_body_and_private_errors.result` | 121 |
+| `test_csrf_headers_hosts_body_and_private_errors.result` | 128 |
+| `test_csrf_headers_hosts_body_and_private_errors.result` | 130 |
+| `test_csrf_headers_hosts_body_and_private_errors.result` | 134 |
+| `test_csrf_headers_hosts_body_and_private_errors.header` | 135 |
+| `test_envelope_validation_and_no_input_leak` | 146 |
+| `test_envelope_validation_and_no_input_leak.service` | 146 |
+| `test_envelope_validation_and_no_input_leak._` | 148 |
+| `test_envelope_validation_and_no_input_leak.client` | 148 |
+| `test_envelope_validation_and_no_input_leak.envelope` | 150 |
+| `test_envelope_validation_and_no_input_leak.result` | 157 |
+| `test_recovery_revocation_expiry_and_deletion` | 164 |
+| `test_recovery_revocation_expiry_and_deletion.service` | 164 |
+| `test_recovery_revocation_expiry_and_deletion.client` | 166 |
+| `test_recovery_revocation_expiry_and_deletion.store` | 166 |
+| `test_recovery_revocation_expiry_and_deletion.code` | 167 |
+| `test_recovery_revocation_expiry_and_deletion.token` | 168 |
+| `test_recovery_revocation_expiry_and_deletion.new_password` | 170 |
+| `test_recovery_revocation_expiry_and_deletion.bad` | 171 |
+| `test_recovery_revocation_expiry_and_deletion.result` | 177 |
+| `test_recovery_revocation_expiry_and_deletion.owner` | 186 |
+| `test_recovery_revocation_expiry_and_deletion.expired` | 188 |
+| `test_recovery_revocation_expiry_and_deletion.db` | 189 |
+| `test_recovery_revocation_expiry_and_deletion.db` | 203 |
+| `test_hash_rate_limits_and_configuration` | 209 |
+| `test_hash_rate_limits_and_configuration.service` | 209 |
+| `test_hash_rate_limits_and_configuration.tmp_path` | 209 |
+| `test_hash_rate_limits_and_configuration.client` | 211 |
+| `test_hash_rate_limits_and_configuration.store` | 211 |
+| `test_hash_rate_limits_and_configuration.hashed` | 212 |
+| `test_hash_rate_limits_and_configuration._` | 217 |
+| `test_hash_rate_limits_and_configuration.db` | 218 |
+| `test_hash_rate_limits_and_configuration.origin` | 221 |
+| `test_hash_rate_limits_and_configuration.local` | 233 |
+| `test_hash_rate_limits_and_configuration.response` | 234 |
+| `test_hash_rate_limits_and_configuration._` | 240 |
+| `test_hash_rate_limits_and_configuration.result` | 241 |
+| `test_session_bound_and_capacity_guard` | 247 |
+| `test_session_bound_and_capacity_guard.service` | 247 |
+| `test_session_bound_and_capacity_guard.client` | 249 |
+| `test_session_bound_and_capacity_guard.store` | 249 |
+| `test_session_bound_and_capacity_guard.owner` | 251 |
+| `test_session_bound_and_capacity_guard._` | 252 |
+| `test_session_bound_and_capacity_guard.db` | 254 |
+| `test_session_bound_and_capacity_guard.i` | 258 |
+| `test_session_bound_and_capacity_guard.db` | 263 |
 
 ## tests/test_api.py
 

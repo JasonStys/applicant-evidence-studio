@@ -1,0 +1,13 @@
+.git
+.venv
+node_modules
+runtime
+artifacts
+docs/reports
+.env*
+release
+build
+*.db*
+*.pem
+*.key
+tests

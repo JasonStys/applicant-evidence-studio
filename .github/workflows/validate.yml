@@ -31,11 +31,11 @@ jobs:
       - run: python scripts/code_index.py --check
       - run: python -m pytest --cov=app --cov-branch --cov-fail-under=85 --cov-report=xml:artifacts/coverage.xml --junitxml=artifacts/pytest.xml -W error::ResourceWarning
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
-        if: always()
+        if: always() && vars.AES_UPLOAD_CI_ARTIFACTS == 'true'
         with:
           name: python-${{ matrix.os }}-${{ matrix.python }}
           path: artifacts/
-          retention-days: 14
+          retention-days: 3
   browser:
     name: Browser, accessibility and build
     runs-on: ubuntu-latest
@@ -57,8 +57,9 @@ jobs:
       - run: npx prettier --check web tests/browser.spec.ts '*.ts' scripts/ts_index.mjs index.html
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:browser
+      - run: npm run test:private
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
-        if: always()
+        if: always() && vars.AES_UPLOAD_CI_ARTIFACTS == 'true'
         with:
           name: browser-evidence
           path: |
@@ -66,7 +67,7 @@ jobs:
             test-results/
             artifacts/
             dist/
-          retention-days: 14
+          retention-days: 3
   audit-and-performance:
     name: Dependency audit and ranking benchmark
     runs-on: ubuntu-latest
@@ -86,8 +87,16 @@ jobs:
       - run: python scripts/benchmark.py
       - run: python -m pip_audit --local --format=json --output=artifacts/pip-audit.json
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
-        if: always()
+        if: always() && vars.AES_UPLOAD_CI_ARTIFACTS == 'true'
         with:
           name: audit-performance-evidence
           path: artifacts/
-          retention-days: 14
+          retention-days: 3
+  container:
+    name: Non-root account-service image
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - run: docker build -t applicant-private .
+      - run: docker run --rm --env AES_PUBLIC_ORIGIN=https://studio.example --entrypoint python applicant-private -c "import os; from app.server import application; assert os.getuid() != 0; assert application().state.accounts.path.name == 'private-accounts.db'; print('Non-root ciphertext service verified')"

@@ -9,7 +9,9 @@
     "noEmit": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["node"]
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "vite/client"]
   },
-  "include": ["web", "tests/browser.spec.ts", "vite.config.ts", "playwright.config.ts"]
+  "include": ["web", "tests/*.ts", "vite.config.ts", "playwright*.config.ts"]
 }

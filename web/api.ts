@@ -1,5 +1,7 @@
 // Purpose: authenticated same-origin API and private downloads; secrets stay in tab memory/session storage.
-// Index: fragment@3, initialToken@4, token@9, authorize@18, value@18, api@24, body@24, method@24, path@24, response@25, data@31, download@37, filename@37, path@37, response@38, url@43, link@44, encode@52, file@52, bytes@55, value@56, start@57
+// Index: isPrivateWorkspace@3, privateAPI@3, saveFile@4, fragment@5, initialToken@6, token@11, privateService@12, enablePrivateMode@15, authorize@28, value@28, api@34, body@34, method@34, path@34, response@36, data@42, download@48, filename@48, path@48, value@50, response@58, url@63, link@64, encode@72, file@72, bytes@75, value@76, start@77
+import { isPrivateWorkspace, privateAPI } from './private-domain';
+import { saveFile } from './vault';
 const fragment = new URLSearchParams(location.hash.slice(1));
 const initialToken = fragment.get('token');
 if (initialToken) {
@@ -7,6 +9,14 @@ if (initialToken) {
   history.replaceState(null, '', location.pathname);
 }
 let token = sessionStorage.getItem('aes-token') || '';
+let privateService = false;
+
+/** Never downgrade to plaintext developer requests after the private service has been detected. */
+export function enablePrivateMode() {
+  privateService = true;
+  token = '';
+  sessionStorage.removeItem('aes-token');
+}
 
 // A restarted launcher can supply a new token to an existing tab via its URL fragment.
 // Reload the module/record state instead of continuing with the previous process session.
@@ -22,6 +32,7 @@ export function authorize(value: string) {
 
 /** Make a same-origin request and surface controlled error messages without leaking private input. */
 export async function api<T>(path: string, method = 'GET', body?: unknown): Promise<T> {
+  if (privateService || isPrivateWorkspace()) return privateAPI<T>(path, method, body);
   const response = await fetch('/api/' + path, {
     method,
     headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
@@ -35,6 +46,15 @@ export async function api<T>(path: string, method = 'GET', body?: unknown): Prom
 
 /** Download an authenticated private result and revoke its temporary object URL. */
 export async function download(path: string, filename: string) {
+  if (privateService || isPrivateWorkspace()) {
+    const value = await privateAPI<unknown>(path);
+    saveFile(
+      typeof value === 'string' ? value : JSON.stringify(value, null, 2),
+      filename,
+      typeof value === 'string' ? 'text/html' : 'application/json',
+    );
+    return;
+  }
   const response = await fetch('/api/' + path, {
     headers: { Authorization: 'Bearer ' + token },
     cache: 'no-store',

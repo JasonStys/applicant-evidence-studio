@@ -2,7 +2,39 @@
 
 [![Validate](https://github.com/JasonStys/applicant-evidence-studio/actions/workflows/validate.yml/badge.svg)](https://github.com/JasonStys/applicant-evidence-studio/actions/workflows/validate.yml)
 
-A local-first, source-linked applicant review and career-coaching application. Reviewers can prioritize a large applicant pool using a transparent professional-skills rubric, inspect the original evidence, and make their own decisions. Applicants can identify evidence gaps and download a factual, role-tailored resume draft.
+A private-account, source-linked applicant review and career-coaching application, created by **Jason Stys**. Reviewers can prioritize an authorized applicant pool using a transparent professional-skills rubric, inspect original evidence, and make their own decisions. Applicants can identify evidence gaps and download a factual, role-tailored resume draft.
+
+Version **0.2** adds real registration/login, encrypted private workspaces, local browser document processing, encrypted backup/restore, account recovery/deletion, help and portable desktop downloads. The host stores **ciphertext**, not readable resumes. Account aliases and operational metadata remain visible to the host. Encryption cannot protect against a malicious future host or compromised device; see [the privacy model](docs/private-accounts.md).
+
+Use [official downloads](https://github.com/JasonStys/applicant-evidence-studio/releases) and [installation/help](docs/install.md). Contact [Jason on LinkedIn](https://www.linkedin.com/in/jason-stys-31b30b351/) or visit [his GitHub profile](https://github.com/JasonStys). Never send private documents or credentials in an issue. Public account hosting requires a separate approved HTTPS provider/domain; no public backend URL is provisioned by committing this repo.
+
+## Private website or application
+
+The one-file portable desktop build includes the Python service and browser UI:
+verify its SHA-256, extract, then launch it. No Python/Node setup is needed by end
+users. It opens your default browser and keeps a loopback-only service running.
+These are **unsigned portable executables**, not signed installers/notarized apps.
+Desktop OS/architecture support is identified in each release; mobile uses the
+website or installed web app, not a desktop executable.
+
+For developers after the dependency/build steps below:
+
+```powershell
+.\.venv\Scripts\python.exe -m app.cli accounts --data runtime/private --port 8054
+```
+
+Open `http://127.0.0.1:8054/`. Create an alias/login password and save the random
+login recovery code. Choose a **different** long vault phrase; it stays on your
+device and cannot be recovered by Jason or the server. New accounts are empty.
+Create a rubric or explicitly load fictional examples via Account & backups.
+Documents are parsed, reviewed and scored locally; only encrypted saves go to the
+account service. Private mode makes no external AI/GitHub/LinkedIn calls. Existing
+external AI adapters remain in the separate trusted developer mode below.
+
+On supported browsers install via Install app, or iOS Share → Add to Home Screen.
+Connectivity to the account service is required; the service worker deliberately
+does not cache private responses. For real HTTPS hosting see [deployment contract
+and operational gates](docs/hosting.md). GitHub Pages alone cannot run the backend.
 
 ![Synthetic review workspace](docs/reports/workspace.png)
 
@@ -25,7 +57,7 @@ A local-first, source-linked applicant review and career-coaching application. R
 
 Identity, protected traits, personal biography, school prestige, photos, follower counts and free-form source text are not ranking inputs. Raw source text is preserved privately for human review; it is not automatically sent to a model. Missing evidence is **unknown**, not proof of inability.
 
-## Run locally
+## Legacy local developer mode
 
 Requires Python 3.12+ and Node.js 24. No Docker or external AI service is needed for the normal workflow.
 
@@ -73,7 +105,16 @@ npm run test:browser
 .\.venv\Scripts\python.exe scripts/benchmark.py
 ```
 
-GitHub Actions runs Python 3.12/3.14 on Windows/macOS/Linux, real Chromium/Firefox/WebKit/mobile-browser scenarios, automated accessibility checks, dependency audits and synthetic ranking benchmarks. Logs, JUnit/coverage files, browser traces/screenshots, built UI and benchmark reports are retained as artifacts. No real resumes or provider credentials are required by CI.
+GitHub Actions runs Python 3.12/3.14 on Windows/macOS/Linux, the legacy and private-account Chromium/Firefox/WebKit/mobile-browser matrices, accessibility checks, dependency audits, ranking benchmarks and a non-root container build. Tests/logs remain enabled; report uploads are opt-in via repository variable `AES_UPLOAD_CI_ARTIFACTS=true` with three-day retention, because the account's storage meter is full. Native downloads are built/smoke-tested on three OS runners and sent directly to a QA-gated draft GitHub Release, not large Actions artifacts. No real resumes or provider credentials are required by CI. Storage must be checked before Actions work; cleanup requires fresh approval.
+
+Private browser validation: `npm run test:private`. Its six workflows cover
+encrypted traffic, separate users, tamper/wrong-key failures, conflict protection,
+local TXT/DOCX/PDF intake, downloads, accessibility, installation metadata, account
+deletion and all 18 Python/browser reference assessments. `npm run schemas` regenerates
+CSP-safe validators; `npm run build` checks them for drift. To build a native app,
+install `pyinstaller==6.20.0`, run `python scripts/build_desktop.py`, then run
+`python scripts/smoke_desktop.py release/bin/ApplicantEvidenceStudio.exe` (Unix:
+omit `.exe`). Never package runtime data.
 
 See [docs/validation.md](docs/validation.md) for observed results and honest gaps. Source headers include generated declaration/variable line locations; the complete [Python](docs/code-map-python.md) and [TypeScript/JavaScript](docs/code-map-typescript.md) maps are checked for drift in CI. After source edits, run formatters, then `npm run index` with the virtualenv Python on PATH.
 
@@ -81,6 +122,21 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 
 | File / group | Purpose and main features |
 | --- | --- |
+| `app/accounts.py` | scrypt password hashes, random session/recovery digests, SQLite account ownership, expiry/throttling, ciphertext CAS and deletion. |
+| `app/private_api.py` | Separate same-origin account service, strict security headers/input boundaries, encrypted envelopes only; no plaintext review/AI routes. |
+| `app/desktop.py`, `app/server.py` | One-file per-user loopback launcher and explicit fail-closed HTTPS deployment factory. |
+| `web/PrivatePortal.tsx`, `web/vault.ts` | Account forms, independent key derivation, AES-GCM backups, unlock/lock, help/recovery/deletion and author contact. |
+| `web/private-domain.ts` | Browser-local validated evidence/ranking/coaching/export logic; serialized encrypted sync and stale-write protection. |
+| `web/private-ingest.ts`, `private-parser.worker.ts` | Bounded local PDF.js/FFlate document extraction, timed workers and conservative unreviewed proposals. |
+| `web/validators.generated.js`, `.d.ts`, `scripts/compile_schemas.mjs` | Build-time schema functions: strict CSP without runtime eval. Generated file is deliberately not hand-edited. |
+| `tests/test_accounts.py`, `tests/private.spec.ts`, `tests/fixtures/*` | Synthetic auth/isolation/crypto/parser/backup/a11y regressions and Python/browser parity fixtures. |
+| `scripts/private_browser_server.py`, `private_fixtures.py` | Disposable test account server and fictional reference/PDF fixture generation. |
+| `scripts/build_desktop.py`, `smoke_desktop.py` | Native binary/archive/checksum creation and packaged-service verification with disposable data. |
+| `public/manifest.webmanifest`, `sw.js` | Installed-web-app metadata and network-only service worker; no private cache or offline sync claim. |
+| `playwright.private.config.ts` | Private-account browser/device matrix, independent of existing local developer tests. |
+| `Dockerfile`, `.dockerignore` | Non-root deployment build excluding runtime credentials/data. TLS/persistence/ingress remain host responsibilities. |
+| `.github/workflows/desktop-release.yml` | Exact-commit CI gate, per-OS builds/smoke checks and publication only after all succeed. |
+| `docs/private-accounts.md`, `hosting.md`, `install.md`, `releases/v0.2.0.md` | Privacy/threat model, deployment gates, user installation/help and honest release limitations. |
 | `app/models.py` | Closed professional-skill taxonomy, schema validation, source references, explicit education status, jobs, consent and bounded imports. |
 | `app/review.py` | `assess` weighted coverage/uncertainty, `rank` shared ties, `recommend` draft criteria, `coach` gap plans, `resume_html` factual escaped downloads. |
 | `app/ingest.py` | `extract_bytes` format-specific reading, `extract_isolated` timed worker, `proposed_claims` conservative unreviewed skill mentions. |

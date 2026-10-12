@@ -1,0 +1,75 @@
+# Jason Stys: QA-gated portable downloads; upload to a draft Release, not scarce Actions artifact storage.
+name: Desktop release
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: desktop-release-v0.2.0
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Require passed validation for this exact commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          gh run list --workflow validate.yml --branch main --limit 1 --json headSha,conclusion > /tmp/validation.json
+          python -c 'import json,os; row=json.load(open("/tmp/validation.json"))[0]; assert row["headSha"]==os.environ["EXPECTED_SHA"] and row["conclusion"]=="success", "Validate this exact commit before publishing"'
+      - name: Create an unpublished release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create v0.2.0 --draft --target "$GITHUB_SHA" --title "Applicant Evidence Studio 0.2 — private accounts" --notes-file docs/releases/v0.2.0.md
+  build:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24'
+      - run: python -m pip install . pyinstaller==6.20.0
+      - run: npm ci
+      - run: npm run build
+      - run: python scripts/build_desktop.py
+      - name: Smoke test Windows executable
+        if: runner.os == 'Windows'
+        run: python scripts/smoke_desktop.py release/bin/ApplicantEvidenceStudio.exe
+      - name: Smoke test Unix executable
+        if: runner.os != 'Windows'
+        run: python scripts/smoke_desktop.py release/bin/ApplicantEvidenceStudio
+      - name: Upload verified portable build and checksums
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=(release/*.zip release/*.tar.gz release/*.sha256)
+          gh release upload v0.2.0 "${files[@]}" --clobber
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Publish only after all three packaged binaries pass
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release edit v0.2.0 --draft=false

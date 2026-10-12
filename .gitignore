@@ -12,6 +12,17 @@ __pycache__/
 .ruff_cache/
 .coverage
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.encrypted.json
+resume-draft*.html
+applicant-record*.json
+advisory-report-*.json
+build/
+release/
+*.spec
 .audit-cache/
 .hypothesis/
 *.db

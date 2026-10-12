@@ -1,0 +1,3729 @@
+[
+  {
+    "applicant": {
+      "id": "A101",
+      "display_name": "Morgan Rivera (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "typescript",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "sql",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "testing",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "documentation",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [
+        {
+          "institution": "North Valley College (synthetic)",
+          "program": "Electrical Engineering coursework",
+          "status": "transferred",
+          "transferred_to": "Metro University (synthetic)",
+          "notes": "Changed major; credits transferred. No degree awarded by the first school is claimed."
+        },
+        {
+          "institution": "Metro University (synthetic)",
+          "program": "BS Computer Science",
+          "status": "completed",
+          "transferred_to": "",
+          "notes": "Completion explicitly stated in this synthetic record."
+        }
+      ],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "software",
+      "title": "Software Engineer \u2014 Integration Systems",
+      "description": "Python and TypeScript APIs, SQL, reliable automated testing and documented delivery.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "typescript",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "api_design",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A101",
+      "score": 100.0,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e0",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "typescript",
+          "label": "TypeScript",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e2",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e3",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "api_design",
+          "label": "API design",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e4",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e5",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document."
+      ],
+      "required_gaps": [],
+      "rubric_hash": "7c6b5307e0814b96",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A102",
+      "display_name": "Taylor Chen (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "cpp",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "linux",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "embedded",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "protocols",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "testing",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "documentation",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": 18,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "software",
+      "title": "Software Engineer \u2014 Integration Systems",
+      "description": "Python and TypeScript APIs, SQL, reliable automated testing and documented delivery.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "typescript",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "api_design",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A102",
+      "score": 33.3,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "typescript",
+          "label": "TypeScript",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e4",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "api_design",
+          "label": "API design",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e5",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "python",
+        "typescript",
+        "sql",
+        "api_design"
+      ],
+      "rubric_hash": "7c6b5307e0814b96",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A103",
+      "display_name": "Jordan Ellis (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "sql",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "statistics",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "data_analysis",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "machine_learning",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "testing",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "software",
+      "title": "Software Engineer \u2014 Integration Systems",
+      "description": "Python and TypeScript APIs, SQL, reliable automated testing and documented delivery.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "typescript",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "api_design",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A103",
+      "score": 38.1,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e0",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "typescript",
+          "label": "TypeScript",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e5",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "api_design",
+          "label": "API design",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "python",
+        "typescript",
+        "sql",
+        "testing",
+        "api_design"
+      ],
+      "rubric_hash": "7c6b5307e0814b96",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A104",
+      "display_name": "Casey Stone (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e1",
+          "skill": "typescript",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e2",
+          "skill": "sql",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e3",
+          "skill": "testing",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e4",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        }
+      ],
+      "education": [
+        {
+          "institution": "Central Institute (synthetic)",
+          "program": "Computer Science",
+          "status": "unclear",
+          "transferred_to": "",
+          "notes": "Dates listed without an explicit degree outcome."
+        }
+      ],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "software",
+      "title": "Software Engineer \u2014 Integration Systems",
+      "description": "Python and TypeScript APIs, SQL, reliable automated testing and documented delivery.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "typescript",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "api_design",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A104",
+      "score": 0.0,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "typescript",
+          "label": "TypeScript",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "api_design",
+          "label": "API design",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "Unreviewed claims are excluded from scoring; inspect their sources.",
+        "Education outcome unclear: ask the applicant rather than assuming a degree or failure.",
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "python",
+        "typescript",
+        "sql",
+        "testing",
+        "api_design"
+      ],
+      "rubric_hash": "7c6b5307e0814b96",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A105",
+      "display_name": "Riley Park (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "testing",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": 6,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "software",
+      "title": "Software Engineer \u2014 Integration Systems",
+      "description": "Python and TypeScript APIs, SQL, reliable automated testing and documented delivery.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "typescript",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "api_design",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A105",
+      "score": 61.9,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e0",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "typescript",
+          "label": "TypeScript",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "api_design",
+          "label": "API design",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e2",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "typescript",
+        "sql"
+      ],
+      "rubric_hash": "7c6b5307e0814b96",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A106",
+      "display_name": "Sam Quinn (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "typescript",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "sql",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "testing",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "software",
+      "title": "Software Engineer \u2014 Integration Systems",
+      "description": "Python and TypeScript APIs, SQL, reliable automated testing and documented delivery.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "typescript",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "api_design",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A106",
+      "score": 52.4,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "typescript",
+          "label": "TypeScript",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e0",
+          "source_id": "portfolio",
+          "level": "assessed"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "assessed"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e2",
+          "source_id": "portfolio",
+          "level": "assessed"
+        },
+        {
+          "skill": "api_design",
+          "label": "API design",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "python",
+        "api_design"
+      ],
+      "rubric_hash": "7c6b5307e0814b96",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A101",
+      "display_name": "Morgan Rivera (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "typescript",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "sql",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "testing",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "documentation",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [
+        {
+          "institution": "North Valley College (synthetic)",
+          "program": "Electrical Engineering coursework",
+          "status": "transferred",
+          "transferred_to": "Metro University (synthetic)",
+          "notes": "Changed major; credits transferred. No degree awarded by the first school is claimed."
+        },
+        {
+          "institution": "Metro University (synthetic)",
+          "program": "BS Computer Science",
+          "status": "completed",
+          "transferred_to": "",
+          "notes": "Completion explicitly stated in this synthetic record."
+        }
+      ],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "embedded",
+      "title": "Embedded / Industrial Software Engineer",
+      "description": "C++ on Linux, embedded protocols, testing and clear engineering documentation.",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "linux",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "embedded",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "protocols",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A101",
+      "score": 28.6,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "label": "C++",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "linux",
+          "label": "Linux",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "embedded",
+          "label": "Embedded software",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "protocols",
+          "label": "Industrial protocols",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e3",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e5",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "cpp",
+        "linux",
+        "embedded",
+        "protocols"
+      ],
+      "rubric_hash": "ca8c4f5b8d5f2ec7",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A102",
+      "display_name": "Taylor Chen (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "cpp",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "linux",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "embedded",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "protocols",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "testing",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "documentation",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": 18,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "embedded",
+      "title": "Embedded / Industrial Software Engineer",
+      "description": "C++ on Linux, embedded protocols, testing and clear engineering documentation.",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "linux",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "embedded",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "protocols",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A102",
+      "score": 100.0,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "label": "C++",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e0",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "linux",
+          "label": "Linux",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "embedded",
+          "label": "Embedded software",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e2",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "protocols",
+          "label": "Industrial protocols",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e3",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e4",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e5",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document."
+      ],
+      "required_gaps": [],
+      "rubric_hash": "ca8c4f5b8d5f2ec7",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A103",
+      "display_name": "Jordan Ellis (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "sql",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "statistics",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "data_analysis",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "machine_learning",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "testing",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "embedded",
+      "title": "Embedded / Industrial Software Engineer",
+      "description": "C++ on Linux, embedded protocols, testing and clear engineering documentation.",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "linux",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "embedded",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "protocols",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A103",
+      "score": 12.7,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "label": "C++",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "linux",
+          "label": "Linux",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "embedded",
+          "label": "Embedded software",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "protocols",
+          "label": "Industrial protocols",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e5",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "cpp",
+        "linux",
+        "embedded",
+        "protocols",
+        "testing"
+      ],
+      "rubric_hash": "ca8c4f5b8d5f2ec7",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A104",
+      "display_name": "Casey Stone (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e1",
+          "skill": "typescript",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e2",
+          "skill": "sql",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e3",
+          "skill": "testing",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e4",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        }
+      ],
+      "education": [
+        {
+          "institution": "Central Institute (synthetic)",
+          "program": "Computer Science",
+          "status": "unclear",
+          "transferred_to": "",
+          "notes": "Dates listed without an explicit degree outcome."
+        }
+      ],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "embedded",
+      "title": "Embedded / Industrial Software Engineer",
+      "description": "C++ on Linux, embedded protocols, testing and clear engineering documentation.",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "linux",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "embedded",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "protocols",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A104",
+      "score": 0.0,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "label": "C++",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "linux",
+          "label": "Linux",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "embedded",
+          "label": "Embedded software",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "protocols",
+          "label": "Industrial protocols",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "Unreviewed claims are excluded from scoring; inspect their sources.",
+        "Education outcome unclear: ask the applicant rather than assuming a degree or failure.",
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "cpp",
+        "linux",
+        "embedded",
+        "protocols",
+        "testing"
+      ],
+      "rubric_hash": "ca8c4f5b8d5f2ec7",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A105",
+      "display_name": "Riley Park (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "testing",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": 6,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "embedded",
+      "title": "Embedded / Industrial Software Engineer",
+      "description": "C++ on Linux, embedded protocols, testing and clear engineering documentation.",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "linux",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "embedded",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "protocols",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A105",
+      "score": 19.0,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "label": "C++",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "linux",
+          "label": "Linux",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "embedded",
+          "label": "Embedded software",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "protocols",
+          "label": "Industrial protocols",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "cpp",
+        "linux",
+        "embedded",
+        "protocols"
+      ],
+      "rubric_hash": "ca8c4f5b8d5f2ec7",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A106",
+      "display_name": "Sam Quinn (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "typescript",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "sql",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "testing",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "embedded",
+      "title": "Embedded / Industrial Software Engineer",
+      "description": "C++ on Linux, embedded protocols, testing and clear engineering documentation.",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "linux",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "embedded",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "protocols",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "documentation",
+          "weight": 2,
+          "target": "demonstrated",
+          "required": false
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A106",
+      "score": 19.0,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "cpp",
+          "label": "C++",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "linux",
+          "label": "Linux",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "embedded",
+          "label": "Embedded software",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "protocols",
+          "label": "Industrial protocols",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e2",
+          "source_id": "portfolio",
+          "level": "assessed"
+        },
+        {
+          "skill": "documentation",
+          "label": "Documentation",
+          "weight": 2,
+          "required": false,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "cpp",
+        "linux",
+        "embedded",
+        "protocols"
+      ],
+      "rubric_hash": "ca8c4f5b8d5f2ec7",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A101",
+      "display_name": "Morgan Rivera (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "typescript",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "sql",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "testing",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "documentation",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Integration console: implemented schema validation, parameterized queries, retry limits, 48 regression tests and a reproducible load script.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [
+        {
+          "institution": "North Valley College (synthetic)",
+          "program": "Electrical Engineering coursework",
+          "status": "transferred",
+          "transferred_to": "Metro University (synthetic)",
+          "notes": "Changed major; credits transferred. No degree awarded by the first school is claimed."
+        },
+        {
+          "institution": "Metro University (synthetic)",
+          "program": "BS Computer Science",
+          "status": "completed",
+          "transferred_to": "",
+          "notes": "Completion explicitly stated in this synthetic record."
+        }
+      ],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "data",
+      "title": "Data Analyst / Applied ML Developer",
+      "description": "Python, SQL, statistics, data analysis, machine learning and testable experiments.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "statistics",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "data_analysis",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "machine_learning",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A101",
+      "score": 47.8,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e0",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e2",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "statistics",
+          "label": "Statistics",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "data_analysis",
+          "label": "Data analysis",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "machine_learning",
+          "label": "Machine learning",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e3",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "statistics",
+        "data_analysis",
+        "machine_learning"
+      ],
+      "rubric_hash": "802e3b90014da30a",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A102",
+      "display_name": "Taylor Chen (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "cpp",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "linux",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "embedded",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "protocols",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "testing",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "documentation",
+          "kind": "work_sample",
+          "level": "demonstrated",
+          "summary": "Controller simulator: implemented bounded buffers, protocol decoding, malformed-frame tests, Linux build instructions and sanitizer checks.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": 18,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "data",
+      "title": "Data Analyst / Applied ML Developer",
+      "description": "Python, SQL, statistics, data analysis, machine learning and testable experiments.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "statistics",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "data_analysis",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "machine_learning",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A102",
+      "score": 13.0,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "statistics",
+          "label": "Statistics",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "data_analysis",
+          "label": "Data analysis",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "machine_learning",
+          "label": "Machine learning",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e4",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "python",
+        "sql",
+        "statistics",
+        "data_analysis",
+        "machine_learning"
+      ],
+      "rubric_hash": "802e3b90014da30a",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A103",
+      "display_name": "Jordan Ellis (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "sql",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "statistics",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e3",
+          "skill": "data_analysis",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e4",
+          "skill": "machine_learning",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e5",
+          "skill": "testing",
+          "kind": "coursework",
+          "level": "practiced",
+          "summary": "Advanced data coursework: wrote reproducible notebooks, leakage checks, a held-out evaluation and a SQL analysis with explicit limitations.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "data",
+      "title": "Data Analyst / Applied ML Developer",
+      "description": "Python, SQL, statistics, data analysis, machine learning and testable experiments.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "statistics",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "data_analysis",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "machine_learning",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A103",
+      "score": 66.7,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e0",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "statistics",
+          "label": "Statistics",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e2",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "data_analysis",
+          "label": "Data analysis",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e3",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "machine_learning",
+          "label": "Machine learning",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e4",
+          "source_id": "portfolio",
+          "level": "practiced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0.6667,
+          "evidence_id": "e5",
+          "source_id": "portfolio",
+          "level": "practiced"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "python",
+        "sql",
+        "statistics",
+        "data_analysis",
+        "machine_learning",
+        "testing"
+      ],
+      "rubric_hash": "802e3b90014da30a",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A104",
+      "display_name": "Casey Stone (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e1",
+          "skill": "typescript",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e2",
+          "skill": "sql",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e3",
+          "skill": "testing",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        },
+        {
+          "id": "e4",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "declared",
+          "summary": "Resume lists technologies; repository ownership, tests and reproducible results have not yet been supplied.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": false
+        }
+      ],
+      "education": [
+        {
+          "institution": "Central Institute (synthetic)",
+          "program": "Computer Science",
+          "status": "unclear",
+          "transferred_to": "",
+          "notes": "Dates listed without an explicit degree outcome."
+        }
+      ],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "data",
+      "title": "Data Analyst / Applied ML Developer",
+      "description": "Python, SQL, statistics, data analysis, machine learning and testable experiments.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "statistics",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "data_analysis",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "machine_learning",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A104",
+      "score": 0.0,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "statistics",
+          "label": "Statistics",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "data_analysis",
+          "label": "Data analysis",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "machine_learning",
+          "label": "Machine learning",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        }
+      ],
+      "flags": [
+        "Unreviewed claims are excluded from scoring; inspect their sources.",
+        "Education outcome unclear: ask the applicant rather than assuming a degree or failure.",
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "python",
+        "sql",
+        "statistics",
+        "data_analysis",
+        "machine_learning",
+        "testing"
+      ],
+      "rubric_hash": "802e3b90014da30a",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A105",
+      "display_name": "Riley Park (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "python",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "testing",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "api_design",
+          "kind": "project",
+          "level": "demonstrated",
+          "summary": "Career-change work sample: implemented an HTTP service, request bounds, failing-input tests and documented trade-offs.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": 6,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "data",
+      "title": "Data Analyst / Applied ML Developer",
+      "description": "Python, SQL, statistics, data analysis, machine learning and testable experiments.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "statistics",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "data_analysis",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "machine_learning",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A105",
+      "score": 30.4,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e0",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "statistics",
+          "label": "Statistics",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "data_analysis",
+          "label": "Data analysis",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "machine_learning",
+          "label": "Machine learning",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "demonstrated"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "sql",
+        "statistics",
+        "data_analysis",
+        "machine_learning"
+      ],
+      "rubric_hash": "802e3b90014da30a",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  },
+  {
+    "applicant": {
+      "id": "A106",
+      "display_name": "Sam Quinn (synthetic)",
+      "consent_sources": true,
+      "consent_ai": false,
+      "sources": [
+        {
+          "id": "portfolio",
+          "label": "Synthetic professional evidence",
+          "kind": "work_sample",
+          "text": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "url": "",
+          "warnings": [
+            "This entire record is synthetic; no real repository or test result is claimed."
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "e0",
+          "skill": "typescript",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e1",
+          "skill": "sql",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        },
+        {
+          "id": "e2",
+          "skill": "testing",
+          "kind": "work_sample",
+          "level": "assessed",
+          "summary": "Synthetic reviewer-assessed work sample: traced query plans, implemented UI validation and reproduced edge-case tests.",
+          "source_id": "portfolio",
+          "locator": "Synthetic work-sample description",
+          "reviewed": true
+        }
+      ],
+      "education": [],
+      "verified_employment_months": null,
+      "notes": "Synthetic portfolio demonstration; replace only with consented real records in private local storage.",
+      "review_status": "pending"
+    },
+    "job": {
+      "id": "data",
+      "title": "Data Analyst / Applied ML Developer",
+      "description": "Python, SQL, statistics, data analysis, machine learning and testable experiments.",
+      "criteria": [
+        {
+          "skill": "python",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "sql",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "statistics",
+          "weight": 4,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "data_analysis",
+          "weight": 5,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "machine_learning",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        },
+        {
+          "skill": "testing",
+          "weight": 3,
+          "target": "demonstrated",
+          "required": true
+        }
+      ]
+    },
+    "assessment": {
+      "applicant_id": "A106",
+      "score": 30.4,
+      "status": "needs_review",
+      "criteria": [
+        {
+          "skill": "python",
+          "label": "Python",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "sql",
+          "label": "SQL",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e1",
+          "source_id": "portfolio",
+          "level": "assessed"
+        },
+        {
+          "skill": "statistics",
+          "label": "Statistics",
+          "weight": 4,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "data_analysis",
+          "label": "Data analysis",
+          "weight": 5,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "machine_learning",
+          "label": "Machine learning",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 0,
+          "evidence_id": null,
+          "source_id": null,
+          "level": "not_evidenced"
+        },
+        {
+          "skill": "testing",
+          "label": "Automated testing",
+          "weight": 3,
+          "required": true,
+          "target": "demonstrated",
+          "attainment": 1.0,
+          "evidence_id": "e2",
+          "source_id": "portfolio",
+          "level": "assessed"
+        }
+      ],
+      "flags": [
+        "A source has extraction or access warnings; check the original document.",
+        "Required evidence gaps need clarification or a relevant work sample, not automatic rejection."
+      ],
+      "required_gaps": [
+        "python",
+        "statistics",
+        "data_analysis",
+        "machine_learning"
+      ],
+      "rubric_hash": "802e3b90014da30a",
+      "notice": "Advisory evidence ranking only. Read the original application and cited work before making a hiring decision.",
+      "method": "reviewed-evidence-rubric-v1"
+    }
+  }
+]
