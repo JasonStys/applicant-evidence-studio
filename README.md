@@ -48,12 +48,12 @@ and operational gates](docs/hosting.md). GitHub Pages alone cannot run the backe
 | Job configuration | Vetted professional skills, weights, target evidence strengths and required-evidence flags. Description-based suggestions are editable drafts requiring approval. |
 | Consistent applicant records | Private sources, professional claims, explicit education outcomes/transfers, employment duration, review state and consent in a normalized JSON contract. |
 | Resume intake | Bounded UTF-8 TXT/MD, text-based PDF and DOCX extraction. Unsupported, encrypted, scanned, damaged or ambiguous content is surfaced for review rather than guessed. |
-| Professional sources | One explicitly authorized public GitHub README; applicant-provided LinkedIn professional exports/text. No broad people search, login bypass or applicant-code execution. |
+| Professional sources | Private mode accepts applicant-provided professional exports/text. Legacy developer mode can import one explicitly authorized public GitHub README. No broad people search, login bypass or applicant-code execution. |
 | Evidence quality | Reviewers check citations and choose declared, practiced, demonstrated or assessed strength. Coursework and projects can demonstrate skills without being relabeled as paid employment. |
 | Applicant coaching | General/role-specific resume advice, LinkedIn presentation suggestions and practical portfolio-gap project plans. |
 | Downloadable results | Escaped printable HTML resume draft, consistent applicant JSON and criterion-by-criterion advisory report with rubric fingerprint. |
-| Optional AI | Ollama or a server-configured compatible chat API selects citation-validated improvement actions. Only canonical skill IDs, evidence kind/strength and temporary opaque IDs enter prompts. Scores remain deterministic. |
-| High-volume local workflow | Atomic batches of up to 100 records; a 10,000-record local capacity. Optimistic revisions prevent stale-edit overwrites. Performance measurements are reproducible, not production capacity claims. |
+| Optional AI | Legacy developer mode offers Ollama/compatible chat API citation-validated suggestions. Private accounts use deterministic local coaching and never send data to these providers. Scores remain deterministic in both modes. |
+| Batched workflow | Atomic batches of up to 100 records. Private mode: up to 1,000 records within an 8 MiB workspace budget; legacy developer mode: 10,000 records. Optimistic revisions prevent stale-edit overwrites. Measurements are not production capacity claims. |
 
 Identity, protected traits, personal biography, school prestige, photos, follower counts and free-form source text are not ranking inputs. Raw source text is preserved privately for human review; it is not automatically sent to a model. Missing evidence is **unknown**, not proof of inability.
 

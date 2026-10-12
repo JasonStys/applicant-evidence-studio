@@ -1,8 +1,25 @@
 # User guide
 
+## Private accounts and desktop app (0.2)
+
+See [installation and account help](install.md). Register an alias with a unique
+login password, privately save the random recovery code, then choose a different
+long vault phrase. New accounts start empty: add a role and authorized applicants,
+or explicitly replace the workspace with fictional examples via Account & backups.
+Lock or sign out when finished. Only ciphertext syncs; private mode does not make
+external AI/profile requests. Save encrypted backups and protect plaintext exports.
+Login recovery cannot recover the independent vault phrase.
+
+The reviewer/coaching workflows below are shared with the earlier local mode.
+In private accounts, ignore the old session-link instructions: use login/unlock.
+The private workspace caps at 1,000 applicants and 100 jobs within an 8 MiB total
+budget. GitHub fetching, optional external AI and the 10,000-record capacity below
+apply only to the separate **legacy developer mode**, never the public service.
+Accounts are individually isolated; reviewer/coaching views are not team roles.
+
 ## Reviewer workflow
 
-Open the private session link from the launcher. The review queue initially hides names; selecting a record reveals its source-linked details. Search accepts ID/name, filters accept reviewed skills and evidence status. These do not change the rank in the full pool. Ties share a rank.
+In private mode, sign in and unlock. In legacy developer mode, open the session link from the launcher. The review queue initially hides names; selecting a record reveals its source-linked details. Search accepts ID/name, filters accept reviewed skills and evidence status. These do not change the rank in the full pool. Ties share a rank.
 
 Select a role, then open **Job criteria**. Edit its title/description, skill weights (1–10), target strength and required flags. **Suggest draft criteria** recognizes professional terms and returns an editable draft; inspect relevance before **Save approved rubric**. Adding or duplicating a skill cannot bypass the closed schema. Required gaps trigger clarification, not automatic disqualification.
 
@@ -45,4 +62,4 @@ Download the HTML resume draft. It reorders reviewed skills around the selected 
 
 Optional AI coaching requires server setup and explicit applicant/operator consent. The model sees structured professional metadata only. Its constrained suggestions require human verification. A missing/unreachable provider does not disable offline ranking/coaching.
 
-The local application has no separate employer/applicant accounts. Those views are workflow surfaces, not authorization roles. Add proper access control before organizational hosting.
+Private mode isolates each signed-in account, but has no employer/applicant organization roles or sharing. Those views are workflow surfaces, not authorization roles. The legacy local developer application has no user accounts. Neither mode claims multi-user organizational access management.

@@ -22,10 +22,15 @@ jobs:
         run: |
           gh run list --workflow validate.yml --branch main --limit 1 --json headSha,conclusion > /tmp/validation.json
           python -c 'import json,os; row=json.load(open("/tmp/validation.json"))[0]; assert row["headSha"]==os.environ["EXPECTED_SHA"] and row["conclusion"]=="success", "Validate this exact commit before publishing"'
-      - name: Create an unpublished release
+      - name: Create or resume an unpublished release for this exact commit
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create v0.2.0 --draft --target "$GITHUB_SHA" --title "Applicant Evidence Studio 0.2 — private accounts" --notes-file docs/releases/v0.2.0.md
+        run: |
+          if gh release view v0.2.0 --json isDraft,targetCommitish > /tmp/release.json 2>/dev/null; then
+            python -c 'import json,os; row=json.load(open("/tmp/release.json")); assert row["isDraft"] and row["targetCommitish"]==os.environ["GITHUB_SHA"], "Do not replace a published release or a different source commit"'
+          else
+            gh release create v0.2.0 --draft --target "$GITHUB_SHA" --title "Applicant Evidence Studio 0.2 — private accounts" --notes-file docs/releases/v0.2.0.md
+          fi
   build:
     needs: prepare
     strategy:

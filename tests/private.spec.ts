@@ -1,5 +1,5 @@
 // Purpose: Jason Stys — end-to-end real accounts, encrypted sync, local parsing, exports and isolation.
-// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, page@12, vectors@16, vector@17, panel@20, event@24, report@26, field@27, page@33, signUp@33, alias@34, page@48, unlock@48, value@48, loadExamples@55, page@55, page@67, browser@68, requests@70, request@71, alias@74, body@78, parsed@79, context@93, other@94, result@98, otherVault@100, firstVault@101, page@115, destinations@117, r@118, marker@123, saves@135, r@136, d@142, download@145, file@147, text@148, page@154, docx@158, page@186, browser@187, downloaded@193, backup@195, manifest@206, state@210, context@211, second@212, observed@215, changed@216, page@229, info@230
+// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, page@12, vectors@16, vector@17, panel@20, event@24, report@26, field@27, page@33, signUp@33, alias@34, registered@40, response@41, page@52, unlock@52, value@52, loadExamples@59, page@59, page@71, browser@72, requests@74, request@75, alias@78, body@82, parsed@83, context@97, other@98, result@102, otherVault@104, firstVault@105, signedIn@113, response@114, page@123, destinations@125, r@126, marker@131, saves@143, r@144, d@150, download@153, file@155, text@156, page@162, docx@166, page@194, browser@195, downloaded@201, backup@203, manifest@214, state@218, context@219, second@220, observed@223, changed@224, page@237, info@238
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { zipSync, strToU8 } from 'fflate';
@@ -37,7 +37,11 @@ async function signUp(page: Page) {
   await page.getByRole('button', { name: 'Create account', exact: true }).click();
   await page.getByLabel('Account alias', { exact: true }).fill(alias);
   await page.getByLabel('Login password', { exact: true }).fill(password);
+  const registered = page.waitForResponse(
+    (response) => response.url().endsWith('/vault/register') && response.request().method() === 'POST',
+  );
   await page.getByRole('button', { name: 'Register account', exact: true }).click();
+  expect((await registered).status(), 'real registration must succeed').toBe(200);
   await expect(page.getByRole('heading', { name: 'Unlock your private workspace' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Save your login recovery code' })).toBeVisible();
   await page.getByRole('button', { name: 'I saved it privately' }).click();
@@ -106,7 +110,11 @@ test('real accounts, ciphertext-only traffic, lock and independent-user isolatio
   await expect(page.getByLabel('Account alias', { exact: true })).toBeVisible();
   await page.getByLabel('Account alias', { exact: true }).fill(alias);
   await page.getByLabel('Login password', { exact: true }).fill(password);
+  const signedIn = page.waitForResponse(
+    (response) => response.url().endsWith('/vault/login') && response.request().method() === 'POST',
+  );
   await page.getByRole('button', { name: 'Sign in securely' }).click();
+  expect((await signedIn).status(), 'real reauthentication must succeed').toBe(200);
   await unlock(page);
   await expect(page.getByRole('button', { name: 'Review A101', exact: true })).toBeVisible();
 });

@@ -1,5 +1,34 @@
 # Test strategy and observed validation
 
+## Version 0.2 private accounts
+
+See [the private-account validation snapshot](reports/private-accounts-validation.json)
+and [threat model](private-accounts.md). Local Windows Python 3.14.6: 76 tests
+pass, 88.46% branch-inclusive app coverage, resource warnings treated as errors.
+Audits report no known Python/npm vulnerabilities after the source-map-js patch.
+The initial Windows package passed eight service/login/ciphertext/logout checks;
+the final release rebuilds and tests binaries on Windows, Linux and macOS.
+
+Six end-to-end scenarios per browser/device profile cover 18 Python/TypeScript
+assessment comparisons, local PDF/DOCX/TXT parsing, encryption/wrong-key/tamper
+checks, separate-user isolation, CAS conflicts, private exports, account deletion,
+authorship/help and axe accessibility. Chromium, WebKit and mobile Chromium each
+pass locally. Firefox cannot start on this Windows device (`spawn UNKNOWN`), but
+all six Firefox scenarios passed in the initial Linux CI run. No OS security
+controls were bypassed and Firefox remains in the complete CI matrix.
+
+The initial four-profile CI run passed 19 private scenarios, then the final
+mobile profile exceeded the shared disposable server's real auth rate limit.
+Each profile now uses a separate disposable database and port. Production limits
+remain unchanged; explicit HTTP success assertions expose auth failures promptly.
+See Actions and the snapshot for the final exact-commit outcome.
+
+Public TLS/hosting, signing/notarization, team sharing, huge-scale load,
+independent penetration testing and legal/fairness certification are not claimed.
+No public service is provisioned until an approved host/domain is configured.
+The remaining sections are historical **0.1 local developer-mode** evidence, not
+a claim that its plaintext single-user API is safe to expose publicly.
+
 ## Scope and acceptance criteria
 
 Risk-driven tests emphasize job-relevant evidence boundaries, unknowns, truthful downloads, parser isolation, persistence and human review. A passing suite is engineering evidence, not validation that this tool predicts job success or produces unbiased hiring outcomes.
@@ -53,27 +82,3 @@ The initial published Actions run exposed a macOS extraction-worker failure: add
 ## Remaining validation gaps
 
 Live AI quality is not measured without an explicitly configured model; adapters are contract-tested with mocks. Arbitrary resume interpretation, OCR/images/equations, automatic code-portfolio execution/review and sensitive-trait inference are not implemented. Native mobile hardware, assistive technologies, long-term/high-concurrency production load, formal security review, bias/outcome studies, legal compliance and actual organizational access controls remain outside this prototype's validation. No real applicant data was used in published tests or CI.
-# Version 0.2 private-account validation
-
-See [the new validation snapshot](reports/private-accounts-validation.json) and
-[private account threat model](private-accounts.md). Local Windows Python 3.14.6:
-76 tests pass, 88.46% branch-inclusive app coverage, resource warnings treated as
-errors. Audits report no known Python/npm vulnerabilities after patching the
-source-map-js transitive advisory. Packaged Windows startup/login/ciphertext/
-logout smoke checks pass with disposable data. Source maps, formatting and
-TypeScript build checks pass. Browser tests use fictional applicants only.
-
-Private mode has six end-to-end scenarios per browser/device profile, including
-18 Python/TypeScript assessment-report comparisons, local PDF/DOCX/TXT parsing,
-encryption/wrong-key/tamper tests, separate-user isolation, CAS conflicts, private
-exports, account deletion, authorship, help and axe accessibility. Local Firefox
-cannot start even after an official runtime reinstall (`spawn UNKNOWN`); it is
-retained in the Linux CI matrix rather than silently skipped. No OS security
-controls are bypassed. See Actions for exact-commit cross-platform results.
-
-Public TLS/hosting, code signing/notarization, team sharing, huge-scale load,
-independent penetration testing and legal/fairness certification are not claimed.
-No public service is provisioned until an approved host/domain is configured.
-The sections below are historical **0.1 local developer-mode** evidence, not a
-claim that its plaintext single-user API is safe to expose publicly.
-
