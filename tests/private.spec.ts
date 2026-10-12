@@ -19,7 +19,7 @@ test('browser reports match all 18 Python reference assessments', async ({ page 
     // just to export 18 reports at machine speed. Still exercise every real UI export.
     const reportPage = await page.context().newPage();
     try {
-      await reportPage.goto(page.url());
+      await reportPage.goto(page.url(), { waitUntil: 'domcontentloaded' });
       await unlock(reportPage);
       await reportPage.getByLabel('Selected role').selectOption(vector.job.id);
       await reportPage.getByRole('button', { name: 'Review ' + vector.applicant.id, exact: true }).click();
@@ -44,7 +44,7 @@ test('browser reports match all 18 Python reference assessments', async ({ page 
 async function signUp(page: Page) {
   const alias = 'test_' + randomUUID().replaceAll('-', '').slice(0, 20);
   aliases.add(alias);
-  await page.goto('/');
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
   await page.getByRole('button', { name: 'Create account', exact: true }).click();
   await page.getByLabel('Account alias', { exact: true }).fill(alias);
   await page.getByLabel('Login password', { exact: true }).fill(password);
@@ -107,7 +107,7 @@ test('real accounts, ciphertext-only traffic, lock and independent-user isolatio
   await unlock(page);
   const context = await browser.newContext();
   const other = await context.newPage();
-  await other.goto(page.url());
+  await other.goto(page.url(), { waitUntil: 'domcontentloaded' });
   await signUp(other);
   await unlock(other);
   const result = await other.request.get('/vault/workspace');
@@ -229,7 +229,7 @@ test('encrypted backup tamper detection, conflict protection and installed-web-a
   const state = await page.context().storageState();
   const context = await browser.newContext({ storageState: state });
   const second = await context.newPage();
-  await second.goto(page.url());
+  await second.goto(page.url(), { waitUntil: 'domcontentloaded' });
   await unlock(second);
   const observed = await (await page.request.get('/vault/workspace')).json();
   const changed = await second.request.put('/vault/workspace', {
@@ -247,7 +247,7 @@ test('encrypted backup tamper detection, conflict protection and installed-web-a
 test('accessible sign-in and private workspace, author contact and account deletion', async ({
   page,
 }, info) => {
-  await page.goto('/');
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page.getByRole('button', { name: 'Create account', exact: true })).toBeVisible();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await signUp(page);

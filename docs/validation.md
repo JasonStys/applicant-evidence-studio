@@ -27,6 +27,10 @@ fresh tab, preserving browser multi-download protections and still comparing all
 18 complete reports through the real UI. A limiter interaction is an inference,
 not a captured browser permission decision. Individual mobile exports already
 passed locally and in the other five mobile scenarios.
+All report comparisons then passed on CI; one Firefox navigation stalled waiting
+for the browser's full `load` event. Navigation now waits for DOM readiness and
+the tests still assert actual account/workspace controls, HTTP results and report
+contents. No test is skipped and no browser/security feature is disabled.
 See Actions and the snapshot for the final exact-commit outcome.
 
 Public TLS/hosting, signing/notarization, team sharing, huge-scale load,
