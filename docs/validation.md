@@ -21,6 +21,12 @@ The initial four-profile CI run passed 19 private scenarios, then the final
 mobile profile exceeded the shared disposable server's real auth rate limit.
 Each profile now uses a separate disposable database and port. Production limits
 remain unchanged; explicit HTTP success assertions expose auth failures promptly.
+The next run passed 23/24 private scenarios; the mobile rapid 18-export loop
+timed out waiting for a download. Each golden comparison now downloads in a
+fresh tab, preserving browser multi-download protections and still comparing all
+18 complete reports through the real UI. A limiter interaction is an inference,
+not a captured browser permission decision. Individual mobile exports already
+passed locally and in the other five mobile scenarios.
 See Actions and the snapshot for the final exact-commit outcome.
 
 Public TLS/hosting, signing/notarization, team sharing, huge-scale load,

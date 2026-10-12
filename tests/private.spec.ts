@@ -1,5 +1,5 @@
 // Purpose: Jason Stys — end-to-end real accounts, encrypted sync, local parsing, exports and isolation.
-// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, page@12, vectors@16, vector@17, panel@20, event@24, report@26, field@27, page@33, signUp@33, alias@34, registered@40, response@41, page@52, unlock@52, value@52, loadExamples@59, page@59, page@71, browser@72, requests@74, request@75, alias@78, body@82, parsed@83, context@97, other@98, result@102, otherVault@104, firstVault@105, signedIn@113, response@114, page@123, destinations@125, r@126, marker@131, saves@143, r@144, d@150, download@153, file@155, text@156, page@162, docx@166, page@194, browser@195, downloaded@201, backup@203, manifest@214, state@218, context@219, second@220, observed@223, changed@224, page@237, info@238
+// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, page@12, vectors@16, vector@17, reportPage@20, panel@26, event@30, report@32, field@33, page@44, signUp@44, alias@45, registered@51, response@52, page@63, unlock@63, value@63, loadExamples@70, page@70, page@82, browser@83, requests@85, request@86, alias@89, body@93, parsed@94, context@108, other@109, result@113, otherVault@115, firstVault@116, signedIn@124, response@125, page@134, destinations@136, r@137, marker@142, saves@154, r@155, d@161, download@164, file@166, text@167, page@173, docx@177, page@205, browser@206, downloaded@212, backup@214, manifest@225, state@229, context@230, second@231, observed@234, changed@235, page@248, info@249
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { zipSync, strToU8 } from 'fflate';
@@ -15,17 +15,28 @@ test('browser reports match all 18 Python reference assessments', async ({ page 
   await loadExamples(page);
   const vectors = JSON.parse(readFileSync('tests/fixtures/parity.json', 'utf8'));
   for (const vector of vectors) {
-    await page.getByLabel('Selected role').selectOption(vector.job.id);
-    await page.getByRole('button', { name: 'Review ' + vector.applicant.id, exact: true }).click();
-    const panel = page
-      .locator('details')
-      .filter({ has: page.getByRole('button', { name: 'Download advisory report', includeHidden: true }) });
-    if ((await panel.getAttribute('open')) === null) await panel.locator('summary').click();
-    const event = page.waitForEvent('download');
-    await page.getByRole('button', { name: 'Download advisory report' }).click();
-    const report = JSON.parse(readFileSync((await (await event).path())!, 'utf8'));
-    for (const field of ['score', 'status', 'flags', 'required_gaps', 'criteria', 'rubric_hash', 'method'])
-      expect(report[field], field).toEqual(vector.assessment[field]);
+    // One download per tab: do not disable Chromium's multiple-download protection
+    // just to export 18 reports at machine speed. Still exercise every real UI export.
+    const reportPage = await page.context().newPage();
+    try {
+      await reportPage.goto(page.url());
+      await unlock(reportPage);
+      await reportPage.getByLabel('Selected role').selectOption(vector.job.id);
+      await reportPage.getByRole('button', { name: 'Review ' + vector.applicant.id, exact: true }).click();
+      const panel = reportPage.locator('details').filter({
+        has: reportPage.getByRole('button', { name: 'Download advisory report', includeHidden: true }),
+      });
+      if ((await panel.getAttribute('open')) === null) await panel.locator('summary').click();
+      const event = reportPage.waitForEvent('download', { timeout: 10000 });
+      await reportPage.getByRole('button', { name: 'Download advisory report' }).click();
+      const report = JSON.parse(readFileSync((await (await event).path())!, 'utf8'));
+      for (const field of ['score', 'status', 'flags', 'required_gaps', 'criteria', 'rubric_hash', 'method'])
+        expect(report[field], vector.job.id + '/' + vector.applicant.id + '/' + field).toEqual(
+          vector.assessment[field],
+        );
+    } finally {
+      await reportPage.close();
+    }
   }
 });
 

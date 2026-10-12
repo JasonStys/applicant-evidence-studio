@@ -36,7 +36,7 @@ Connectivity to the account service is required; the service worker deliberately
 does not cache private responses. For real HTTPS hosting see [deployment contract
 and operational gates](docs/hosting.md). GitHub Pages alone cannot run the backend.
 
-![Synthetic review workspace](docs/reports/workspace.png)
+![Synthetic private-account review workspace](docs/reports/private-workspace.png)
 
 **Advisory only:** scores describe reviewed evidence coverage, not a probability of job success or an automatic hire/reject decision. Read the application and cited work yourself. This portfolio prototype does not claim to be bias-free, legally compliant, or production-ready for real hiring.
 
