@@ -33,6 +33,16 @@ the tests still assert actual account/workspace controls, HTTP results and repor
 contents. No test is skipped and no browser/security feature is disabled.
 See Actions and the snapshot for the final exact-commit outcome.
 
+**Observed release result:** [Validate run 38324154134](https://github.com/JasonStys/applicant-evidence-studio/actions/runs/38324154134)
+passed all nine jobs for `87933b16fd34fcdd5388749c76c3f6626e5963c4`: 76 Python
+tests in each of six OS/Python jobs, 28 legacy browser scenarios and 24 private
+browser scenarios. [Desktop release run 38324552131](https://github.com/JasonStys/applicant-evidence-studio/actions/runs/38324552131)
+built and smoke-tested Windows amd64, macOS arm64 and Linux x86_64 packages, then
+published [v0.2.0](https://github.com/JasonStys/applicant-evidence-studio/releases/tag/v0.2.0).
+The downloaded Windows archive/executable hashes matched the release manifest;
+the actual downloaded executable also passed local disposable-account checks.
+These report-only documentation updates do not change the tagged application.
+
 Public TLS/hosting, signing/notarization, team sharing, huge-scale load,
 independent penetration testing and legal/fairness certification are not claimed.
 No public service is provisioned until an approved host/domain is configured.

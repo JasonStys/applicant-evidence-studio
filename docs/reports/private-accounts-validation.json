@@ -32,11 +32,50 @@
     "installation metadata",
     "factual exports"
   ],
+  "github_validation": {
+    "source_commit": "87933b16fd34fcdd5388749c76c3f6626e5963c4",
+    "run": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/38324154134",
+    "result": "success",
+    "jobs_passed": 9,
+    "python": "76 passed in each of six Windows/macOS/Linux and Python 3.12/3.14 jobs",
+    "legacy_browser_scenarios_passed": 28,
+    "private_browser_scenarios_passed": 24,
+    "private_browser_profiles": ["Chromium", "Firefox", "WebKit", "mobile Chromium"],
+    "other_gates": [
+      "formatting and line-map drift",
+      "schema compilation and TypeScript build",
+      "axe accessibility",
+      "npm/pip dependency audits",
+      "ranking benchmark",
+      "non-root container factory"
+    ],
+    "data": "disposable synthetic accounts/applicants only",
+    "history": [
+      {
+        "run_id": 38322168035,
+        "private_passed": 19,
+        "private_failed": 5,
+        "correction": "independent disposable database/rate counters per browser profile; production limits unchanged"
+      },
+      {
+        "run_id": 38323030929,
+        "private_passed": 23,
+        "private_failed": 1,
+        "correction": "one golden-report UI download per fresh tab; browser download protections unchanged"
+      },
+      {
+        "run_id": 38323629465,
+        "private_passed": 23,
+        "private_failed": 1,
+        "correction": "DOM readiness plus real controls/results assertions instead of full browser load-event wait"
+      }
+    ]
+  },
   "local_browsers": {
     "chromium": "6 passed",
     "webkit": "6 passed",
     "mobile_chromium": "6 passed",
-    "firefox": "Official runtime reinstalls successfully, but Windows process launch returns spawn UNKNOWN; Linux CI must validate Firefox. OS security protections were not weakened."
+    "firefox": "Official runtime reinstalls successfully, but Windows process launch returns spawn UNKNOWN. All six Firefox scenarios passed on Linux CI. OS security protections were not weakened."
   },
   "desktop_windows": {
     "packaged_service_smoke_checks": 8,
@@ -44,6 +83,23 @@
     "python": "3.14.6",
     "binary_sha256": "d2607b458e8bf36ecd444ae78fe61eeda9a46df45c2010c3e99add9756ea8abc",
     "signing": "unsigned portable executable; CI release packages use Python 3.12 and have their own hashes"
+  },
+  "desktop_release": {
+    "source_commit": "87933b16fd34fcdd5388749c76c3f6626e5963c4",
+    "run": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/38324552131",
+    "release": "https://github.com/JasonStys/applicant-evidence-studio/releases/tag/v0.2.0",
+    "published_at": "2026-10-12T23:56:18Z",
+    "result": "success; published only after all three packaged binaries passed",
+    "platforms": ["Windows amd64", "macOS arm64", "Linux x86_64 / glibc 2.35+"],
+    "reported_packaged_smoke_checks_per_platform": 8,
+    "python": "3.12",
+    "artifacts": "OS archives, install/license documents and per-platform SHA-256 manifests in GitHub Releases, not Actions storage",
+    "signing": "unsigned portable executables, not signed installers or notarized app bundles",
+    "windows_download_verification": {
+      "archive_sha256": "448054fcabb2e17dcde079a6beb977a11cbee9714d55b381accb32fd8961bd4d",
+      "binary_sha256": "ffbe3adb672e31ebc42aa3ca57a0b7fd780f17b76f83d9a0b4aec1716461bee8",
+      "result": "both matched published manifest; three expected ZIP members validated before extraction; downloaded executable smoke checks passed locally"
+    }
   },
   "audits": {
     "npm": "0 reported vulnerabilities after source-map-js patch",
