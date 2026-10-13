@@ -1,5 +1,5 @@
 // Purpose: Jason Stys — end-to-end real accounts, encrypted sync, local parsing, exports and isolation.
-// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, page@12, vectors@16, vector@17, reportPage@20, panel@26, event@30, report@32, field@33, page@44, signUp@44, alias@45, registered@51, response@52, page@63, unlock@63, value@63, loadExamples@70, page@70, page@82, browser@83, requests@85, request@86, alias@89, body@93, parsed@94, context@108, other@109, result@113, otherVault@115, firstVault@116, signedIn@124, response@125, page@134, destinations@136, r@137, marker@142, saves@154, r@155, d@161, download@164, file@166, text@167, page@173, docx@177, page@205, browser@206, downloaded@212, backup@214, manifest@225, state@229, context@230, second@231, observed@234, changed@235, page@248, info@249
+// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, browser@12, page@12, signedState@17, vectors@18, vector@19, reportContext@22, reportPage@23, panel@30, event@34, report@36, field@37, info@47, page@47, request@47, page@63, signUp@63, alias@64, registered@70, response@71, page@82, unlock@82, value@82, loadExamples@89, page@89, page@101, browser@102, requests@104, request@105, alias@108, body@112, parsed@113, context@127, other@128, result@132, otherVault@134, firstVault@135, signedIn@143, response@144, page@153, destinations@155, r@156, marker@161, saves@173, r@174, d@180, download@183, file@185, text@186, page@192, docx@196, page@224, browser@225, downloaded@231, backup@233, manifest@244, state@248, context@249, second@250, observed@253, changed@254, page@267, info@268
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { zipSync, strToU8 } from 'fflate';
@@ -9,16 +9,20 @@ const password = 'synthetic-only-login-password-2026';
 const phrase = 'six random synthetic words keep documents private';
 const aliases = new Set<string>();
 
-test('browser reports match all 18 Python reference assessments', async ({ page }) => {
+test('browser reports match all 18 Python reference assessments', async ({ page, browser }) => {
+  test.setTimeout(120000); // Eighteen complete unlock/review/export workflows, not one interaction.
   await signUp(page);
   await unlock(page);
   await loadExamples(page);
+  const signedState = await page.context().storageState();
   const vectors = JSON.parse(readFileSync('tests/fixtures/parity.json', 'utf8'));
   for (const vector of vectors) {
     // One download per tab: do not disable Chromium's multiple-download protection
     // just to export 18 reports at machine speed. Still exercise every real UI export.
-    const reportPage = await page.context().newPage();
+    const reportContext = await browser.newContext({ storageState: signedState });
+    const reportPage = await reportContext.newPage();
     try {
+      expect(reportPage.viewportSize()).toEqual(page.viewportSize());
       await reportPage.goto(page.url(), { waitUntil: 'domcontentloaded' });
       await unlock(reportPage);
       await reportPage.getByLabel('Selected role').selectOption(vector.job.id);
@@ -35,8 +39,23 @@ test('browser reports match all 18 Python reference assessments', async ({ page 
           vector.assessment[field],
         );
     } finally {
-      await reportPage.close();
+      await reportContext.close();
     }
+  }
+});
+
+test.afterEach(async ({ page, request }, info) => {
+  if (info.status === info.expectedStatus) return;
+  // Only readiness/status metadata from this disposable service; never cookies or document bodies.
+  try {
+    console.log('Synthetic QA failure diagnostics', {
+      profile: info.project.name,
+      page: page.url(),
+      health_status: (await request.get('/health', { timeout: 3000 })).status(),
+      ui_status: (await request.get('/', { timeout: 3000 })).status(),
+    });
+  } catch {
+    console.log('Synthetic QA diagnostic request unavailable');
   }
 });
 

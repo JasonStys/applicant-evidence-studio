@@ -42,6 +42,17 @@ published [v0.2.0](https://github.com/JasonStys/applicant-evidence-studio/releas
 The downloaded Windows archive/executable hashes matched the release manifest;
 the actual downloaded executable also passed local disposable-account checks.
 These report-only documentation updates do not change the tagged application.
+One report-only rerun subsequently hit an intermittent Firefox navigation
+timeout despite that successful release validation. Golden comparisons now use
+fresh browser contexts (retaining only synthetic account cookies) rather than
+sharing service-worker lifetimes across 18 tabs. All workers, CSP, encryption and
+PWA checks remain enabled. The combined 18-workflow comparison has a two-minute
+budget; individual downloads still have a ten-second timeout. CI also repeats
+the six Firefox scenarios twice in a new disposable account service, and prints
+bounded HTTP metadata if a failure occurs without consuming artifact storage.
+Browser-process/service-worker interaction remains a hypothesis, not a proven
+application defect; the diagnostics distinguish service availability from a
+navigation stall. No retries are configured to conceal failing assertions.
 
 Public TLS/hosting, signing/notarization, team sharing, huge-scale load,
 independent penetration testing and legal/fairness certification are not claimed.

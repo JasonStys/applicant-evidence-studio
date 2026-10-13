@@ -58,6 +58,11 @@ jobs:
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:browser
       - run: npm run test:private
+      - name: Repeat Firefox private-account regression in a new disposable service
+        run: npm run test:private -- --project=firefox --repeat-each=2
+      - name: Print bounded synthetic failure context without artifact uploads
+        if: failure()
+        run: python scripts/browser_diagnostics.py
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always() && vars.AES_UPLOAD_CI_ARTIFACTS == 'true'
         with:

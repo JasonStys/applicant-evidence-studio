@@ -913,6 +913,23 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `main.median` | 38 |
 | `main.report` | 48 |
 
+## scripts/browser_diagnostics.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `json` | 4 |
+| `zipfile` | 5 |
+| `Path` | 6 |
+| `main` | 9 |
+| `main.path` | 11 |
+| `main.trace` | 13 |
+| `main.rows` | 14 |
+| `main.name` | 15 |
+| `main.source` | 18 |
+| `main.line` | 19 |
+| `main.record` | 20 |
+| `main.snapshot` | 23 |
+
 ## scripts/browser_server.py
 
 | Declaration / variable | Line |
