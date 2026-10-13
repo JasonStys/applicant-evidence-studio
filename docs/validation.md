@@ -53,6 +53,14 @@ bounded HTTP metadata if a failure occurs without consuming artifact storage.
 Browser-process/service-worker interaction remains a hypothesis, not a proven
 application defect; the diagnostics distinguish service availability from a
 navigation stall. No retries are configured to conceal failing assertions.
+Fresh contexts alone did not prevent that stall in run 38326319145. Its bounded
+trace showed document, script, health, account and workspace responses completing
+with HTTP 200 while Firefox's `DOMContentLoaded` wait remained pending. Golden
+report navigation now waits for the network commit (ten-second limit), then
+explicitly asserts the actual unlock UI before exercising decryption, review and
+every downloaded report field. This avoids relying on a missed browser lifecycle
+notification; it does not accept a network response as application readiness.
+The repeat regression remains enabled to check this hypothesis independently.
 
 Public TLS/hosting, signing/notarization, team sharing, huge-scale load,
 independent penetration testing and legal/fairness certification are not claimed.

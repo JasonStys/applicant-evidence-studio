@@ -1,5 +1,5 @@
 // Purpose: Jason Stys — end-to-end real accounts, encrypted sync, local parsing, exports and isolation.
-// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, browser@12, page@12, signedState@17, vectors@18, vector@19, reportContext@22, reportPage@23, panel@30, event@34, report@36, field@37, info@47, page@47, request@47, page@63, signUp@63, alias@64, registered@70, response@71, page@82, unlock@82, value@82, loadExamples@89, page@89, page@101, browser@102, requests@104, request@105, alias@108, body@112, parsed@113, context@127, other@128, result@132, otherVault@134, firstVault@135, signedIn@143, response@144, page@153, destinations@155, r@156, marker@161, saves@173, r@174, d@180, download@183, file@185, text@186, page@192, docx@196, page@224, browser@225, downloaded@231, backup@233, manifest@244, state@248, context@249, second@250, observed@253, changed@254, page@267, info@268
+// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, browser@12, page@12, signedState@17, vectors@18, vector@19, reportContext@22, reportPage@23, panel@36, event@40, report@42, field@43, info@53, page@53, request@53, page@69, signUp@69, alias@70, registered@76, response@77, page@88, unlock@88, value@88, loadExamples@95, page@95, page@107, browser@108, requests@110, request@111, alias@114, body@118, parsed@119, context@133, other@134, result@138, otherVault@140, firstVault@141, signedIn@149, response@150, page@159, destinations@161, r@162, marker@167, saves@179, r@180, d@186, download@189, file@191, text@192, page@198, docx@202, page@230, browser@231, downloaded@237, backup@239, manifest@250, state@254, context@255, second@256, observed@259, changed@260, page@273, info@274
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { zipSync, strToU8 } from 'fflate';
@@ -23,7 +23,13 @@ test('browser reports match all 18 Python reference assessments', async ({ page,
     const reportPage = await reportContext.newPage();
     try {
       expect(reportPage.viewportSize()).toEqual(page.viewportSize());
-      await reportPage.goto(page.url(), { waitUntil: 'domcontentloaded' });
+      // Firefox can miss a lifecycle notification although the document, scripts
+      // and account requests completed (200 in the retained synthetic trace).
+      // Assert application readiness instead of waiting on that browser event.
+      await reportPage.goto(page.url(), { waitUntil: 'commit', timeout: 10000 });
+      await expect(
+        reportPage.getByRole('heading', { name: 'Unlock your private workspace' }),
+      ).toBeVisible();
       await unlock(reportPage);
       await reportPage.getByLabel('Selected role').selectOption(vector.job.id);
       await reportPage.getByRole('button', { name: 'Review ' + vector.applicant.id, exact: true }).click();
