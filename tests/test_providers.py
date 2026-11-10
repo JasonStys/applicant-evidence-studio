@@ -1,11 +1,13 @@
 """Mocked provider contract tests; no live model charges or personal data transmission."""
 
-# Index: base64@4, json@5, httpx@7, pytest@8, samples@10, ai_review@11, bounded_json@11, github_source@11, provider_config@11, test_provider_protocol_and_privacy@15, test_provider_protocol_and_privacy.kind@15, test_provider_protocol_and_privacy.monkeypatch@15, test_provider_protocol_and_privacy.jobs@17, test_provider_protocol_and_privacy.people@17, test_provider_protocol_and_privacy.person@18, test_provider_protocol_and_privacy.respond@25, test_provider_protocol_and_privacy.respond.request@25, test_provider_protocol_and_privacy.respond.value@27, test_provider_protocol_and_privacy.respond.data@28, test_provider_protocol_and_privacy.respond.raw@31, test_provider_protocol_and_privacy.respond.result@32, test_provider_protocol_and_privacy.result@39, test_bad_provider_endpoints@53, test_bad_provider_endpoints.monkeypatch@53, test_bad_provider_endpoints.url@53, test_missing_model_and_consent@61, test_missing_model_and_consent.monkeypatch@61, test_missing_model_and_consent.jobs@66, test_missing_model_and_consent.people@66, test_github_only_selected_public_readme@71, test_github_only_selected_public_readme.content@73, test_github_only_selected_public_readme.respond@75, test_github_only_selected_public_readme.respond.request@75, test_github_only_selected_public_readme.result@88, test_profile_ssrf_urls@102, test_profile_ssrf_urls.url@102, test_remote_size_limit_and_redirect@108, test_remote_size_limit_and_redirect.request@110, test_remote_size_limit_and_redirect.transport@110, test_remote_size_limit_and_redirect.client@111, test_remote_size_limit_and_redirect.transport@113, test_remote_size_limit_and_redirect.request@114
+# Index: base64@4, json@5, httpx@7, pytest@8, given@9, settings@9, st@10, samples@12, ai_review@13, bounded_json@13, github_source@13, provider_config@13, test_provider_protocol_and_privacy@17, test_provider_protocol_and_privacy.kind@17, test_provider_protocol_and_privacy.monkeypatch@17, test_provider_protocol_and_privacy.jobs@19, test_provider_protocol_and_privacy.people@19, test_provider_protocol_and_privacy.person@20, test_provider_protocol_and_privacy.respond@27, test_provider_protocol_and_privacy.respond.request@27, test_provider_protocol_and_privacy.respond.value@29, test_provider_protocol_and_privacy.respond.data@30, test_provider_protocol_and_privacy.respond.raw@33, test_provider_protocol_and_privacy.respond.result@34, test_provider_protocol_and_privacy.result@41, test_bad_provider_endpoints@55, test_bad_provider_endpoints.monkeypatch@55, test_bad_provider_endpoints.url@55, test_missing_model_and_consent@63, test_missing_model_and_consent.monkeypatch@63, test_missing_model_and_consent.jobs@68, test_missing_model_and_consent.people@68, test_github_only_selected_public_readme@73, test_github_only_selected_public_readme.content@75, test_github_only_selected_public_readme.respond@77, test_github_only_selected_public_readme.respond.request@77, test_github_only_selected_public_readme.result@90, test_profile_ssrf_urls@104, test_profile_ssrf_urls.url@104, test_remote_size_limit_and_redirect@110, test_remote_size_limit_and_redirect.request@112, test_remote_size_limit_and_redirect.transport@112, test_remote_size_limit_and_redirect.client@113, test_remote_size_limit_and_redirect.transport@115, test_remote_size_limit_and_redirect.request@116, test_github_validated_segments_never_change_authority_or_readme_resource.value@128, test_github_validated_segments_never_change_authority_or_readme_resource@131, test_github_validated_segments_never_change_authority_or_readme_resource.owner@131, test_github_validated_segments_never_change_authority_or_readme_resource.repository@131, test_github_validated_segments_never_change_authority_or_readme_resource.requests@133, test_github_validated_segments_never_change_authority_or_readme_resource.respond@135, test_github_validated_segments_never_change_authority_or_readme_resource.respond.request@135, test_github_validated_segments_never_change_authority_or_readme_resource.result@148, test_github_delimiter_and_traversal_vectors_are_rejected_before_any_io@182, test_github_delimiter_and_traversal_vectors_are_rejected_before_any_io.url@182, test_github_delimiter_and_traversal_vectors_are_rejected_before_any_io.requests@184, test_github_delimiter_and_traversal_vectors_are_rejected_before_any_io.unexpected@186, test_github_delimiter_and_traversal_vectors_are_rejected_before_any_io.unexpected.request@186, test_github_redirect_targets_never_receive_a_second_request@204, test_github_redirect_targets_never_receive_a_second_request.target@204, test_github_redirect_targets_never_receive_a_second_request.requests@206, test_github_redirect_targets_never_receive_a_second_request.redirect@208, test_github_redirect_targets_never_receive_a_second_request.redirect.request@208
 import base64
 import json
 
 import httpx
 import pytest
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from app.demo import samples
 from app.providers import ai_review, bounded_json, github_source, provider_config
@@ -115,3 +117,99 @@ def test_remote_size_limit_and_redirect():
     )
     with pytest.raises(httpx.HTTPStatusError):
         github_source("https://github.com/example/project", True, transport)
+
+
+@given(
+    owner=st.text(
+        alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-", min_size=1, max_size=39
+    ),
+    repository=st.text(
+        alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.-", min_size=1, max_size=100
+    ).filter(lambda value: value not in {".", ".."}),
+)
+@settings(max_examples=60, derandomize=True, deadline=500)
+def test_github_validated_segments_never_change_authority_or_readme_resource(owner, repository):
+    """Exercise accepted path components against the actual HTTPX URL parser, never the network."""
+    requests = []
+
+    def respond(request):
+        """Reject any protocol, authority, query, credential or resource drift in the real request."""
+        requests.append(request)
+        assert request.method == "GET"
+        assert request.url.scheme == "https"
+        assert request.url.host == "api.github.com"
+        assert request.url.port in {None, 443}
+        assert request.url.username == "" and request.url.password == ""
+        assert request.url.query == b"" and request.url.fragment == ""
+        assert request.url.raw_path == f"/repos/{owner}/{repository}/readme".encode("ascii")
+        assert "authorization" not in request.headers
+        return httpx.Response(200, json={"encoding": "base64", "size": 9, "content": "U3ludGhldGlj"})
+
+    result = github_source(f"https://github.com/{owner}/{repository}", True, httpx.MockTransport(respond))
+    assert len(requests) == 1 and result["text"] == "Synthetic"
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "https://github.com@127.0.0.1/owner/repo",
+        "https://github.com:443/owner/repo",
+        "https://github.com/owner/..",
+        "https://github.com/owner/.",
+        "https://github.com/owner/repo/../../admin",
+        "https://github.com/owner/%2e%2e",
+        "https://github.com/owner/repo%2f..",
+        "https://github.com/owner/repo?next=http://127.0.0.1",
+        "https://github.com/owner/repo#http://169.254.169.254",
+        "https://github.com/owner/repo\\admin",
+        "https://github.com/owner/repo\r\nHost:127.0.0.1",
+        "https://github.com/owner/repo\n",
+        "https://github.com/owner/repo%00",
+        "https://github.com/owner/repo%3fquery",
+        "https://github.com./owner/repo",
+        "https://github.com.evil.test/owner/repo",
+        "https://127.0.0.1/owner/repo",
+        "http://169.254.169.254/latest/meta-data",
+        "file:///private",
+        "gopher://127.0.0.1/",
+        "https://github.com/ownér/repo",
+        "https://github.com/owner/repο",
+        "https://github.com//owner/repo",
+        "https://github.com/" + "x" * 40 + "/repo",
+        "https://github.com/owner/" + "r" * 101,
+    ],
+)
+def test_github_delimiter_and_traversal_vectors_are_rejected_before_any_io(url):
+    """Prove malicious URL forms cannot reach even the injected test transport."""
+    requests = []
+
+    def unexpected(request):
+        """Record accidental outbound work without contacting a real destination."""
+        requests.append(request)
+        raise AssertionError("Rejected URL reached HTTP transport")
+
+    with pytest.raises(ValueError):
+        github_source(url, True, httpx.MockTransport(unexpected))
+    assert requests == []
+
+
+@pytest.mark.parametrize(
+    "target",
+    [
+        "http://127.0.0.1/private",
+        "http://169.254.169.254/latest/meta-data",
+        "https://api.github.com.evil.test/admin",
+    ],
+)
+def test_github_redirect_targets_never_receive_a_second_request(target):
+    """A fixed-host README request does not become authority to follow an attacker-controlled redirect."""
+    requests = []
+
+    def redirect(request):
+        """Return an untrusted Location while retaining the count and fixed first authority."""
+        requests.append(str(request.url))
+        return httpx.Response(302, headers={"Location": target})
+
+    with pytest.raises(httpx.HTTPStatusError):
+        github_source("https://github.com/example/project", True, httpx.MockTransport(redirect))
+    assert requests == ["https://api.github.com/repos/example/project/readme"]

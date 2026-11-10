@@ -30,6 +30,18 @@ LinkedIn support is authorized professional text/export intake. There is no scra
 
 AI calls require the record's AI consent and an explicit operator request. They are not triggered by upload, editing or page refresh. Provider setup is server-only, remote endpoints require HTTPS, redirects/proxy inheritance are disabled and streamed responses are capped. Review provider terms, retention and data locality before configuration. No live paid model calls or real applicant data were used in validation.
 
+The [full-main CodeQL review](reports/codeql-findings-2026-11-10.md) distinguishes
+the browser-controlled GitHub path from operator-only AI configuration. The GitHub
+grammar and actual HTTPX authority/redirect behavior have dedicated positive and
+adversarial tests. These are bounded connector proofs, not arbitrary-URL safety
+or permission to fetch professional sources without consent.
+
+TXT/DOCX intake uses a private dedicated Worker channel, not Window messaging.
+Legitimate events have empty origin/null source; substituting a Window origin
+allowlist would reject real parsing. Actual-browser tests exercise the built
+worker and an unrelated Window-message injection. Private-account data remains
+local to the browser parser and encrypted workspace.
+
 ## Threat model and controls
 
 | Risk | Control / remaining boundary |

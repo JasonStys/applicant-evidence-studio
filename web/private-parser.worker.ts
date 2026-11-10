@@ -1,6 +1,10 @@
 // Purpose: Jason Stys — local PDF/DOCX/TXT extraction; no rendering, macros, links or network imports.
-// Index: unzipSync@3, value@6, xmlText@6, _@7, code@7, n@9, event@19, warnings@20, content@22, filename@22, bytes@23, c@23, extension@26, text@27, entries@31, expanded@32, files@33, file@34, xml@41, tokens@44, t@46
+// Index: unzipSync@4, self@7, value@10, xmlText@10, _@11, code@11, n@13, event@23, warnings@24, content@26, filename@26, bytes@27, c@27, extension@30, text@31, entries@35, expanded@36, files@37, file@38, xml@45, tokens@48, t@50
+/// <reference lib="webworker" />
 import { unzipSync } from 'fflate';
+
+// This module is instantiated only with new Worker(..., { type: 'module' }); it is not a Window handler.
+declare const self: DedicatedWorkerGlobalScope;
 
 /** Decode only fixed XML character entities; never evaluate text as markup or expressions. */
 function xmlText(value: string): string {

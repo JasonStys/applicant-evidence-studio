@@ -1,5 +1,16 @@
 # Test strategy and observed validation
 
+## Full-main CodeQL corrections and boundary regressions
+
+The [2026-11-10 finding report](reports/codeql-findings-2026-11-10.md) retains the
+actual three full-main findings rather than interpreting a green scan as zero
+alerts. It documents the descriptor-bound source-index reader, 43 provider
+cases, real compiled-worker messaging proof and remaining maintainer-review
+obligations. `npm run test:index-reader` runs eight actual filesystem tests;
+the existing private browser matrix also checks the dedicated parser's empty
+origin/private channel on all four profiles. No CodeQL exclusion or coverage
+floor was weakened.
+
 ## Version 0.2 private accounts
 
 See [the private-account validation snapshot](reports/private-accounts-validation.json)

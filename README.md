@@ -106,15 +106,16 @@ Python handles validated domain logic, safe document extraction, AI adapters and
 .\.venv\Scripts\python.exe scripts/code_index.py --check
 node scripts/ts_index.mjs --check
 npm run build
+npm run test:index-reader
 # Put the virtualenv Scripts directory on PATH for the browser-test server.
 npx playwright install chromium firefox webkit
 npm run test:browser
 .\.venv\Scripts\python.exe scripts/benchmark.py
 ```
 
-GitHub Actions runs Python 3.12/3.14 on Windows/macOS/Linux, the legacy and private-account Chromium/Firefox/WebKit/mobile-browser matrices, accessibility checks, dependency audits, ranking benchmarks and a non-root container build. Tests/logs remain enabled; report uploads are opt-in via repository variable `AES_UPLOAD_CI_ARTIFACTS=true` with three-day retention, because the account's storage meter is full. Native downloads are built/smoke-tested on three OS runners and sent directly to a QA-gated draft GitHub Release, not large Actions artifacts. No real resumes or provider credentials are required by CI. Storage must be checked before Actions work; cleanup requires fresh approval.
+GitHub Actions runs Python 3.12/3.14 on Windows/macOS/Linux, the legacy and private-account Chromium/Firefox/WebKit/mobile-browser matrices, accessibility checks, dependency audits, ranking benchmarks and a non-root container build. Tests/logs remain enabled; report uploads are opt-in via repository variable `AES_UPLOAD_CI_ARTIFACTS=true` with three-day retention to control artifact storage. Native downloads are built/smoke-tested on three OS runners and sent directly to a QA-gated draft GitHub Release, not large Actions artifacts. No real resumes or provider credentials are required by CI. Storage must be checked before Actions work; cleanup requires fresh approval.
 
-Private browser validation: `npm run test:private`. Its six workflows cover
+Private browser validation: `npm run test:private`. Its eight workflows per profile cover
 encrypted traffic, separate users, tamper/wrong-key failures, conflict protection,
 local TXT/DOCX/PDF intake, downloads, accessibility, installation metadata, account
 deletion and all 18 Python/browser reference assessments. `npm run schemas` regenerates
@@ -138,6 +139,7 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 | `web/validators.generated.js`, `.d.ts`, `scripts/compile_schemas.mjs` | Build-time schema functions: strict CSP without runtime eval. Generated file is deliberately not hand-edited. |
 | `tests/test_accounts.py`, `tests/private.spec.ts`, `tests/fixtures/*` | Synthetic auth/isolation/crypto/parser/backup/a11y regressions and Python/browser parity fixtures. |
 | `scripts/private_browser_server.py`, `private_fixtures.py` | Disposable test account server and fictional reference/PDF fixture generation. |
+| `scripts/index_reader.mjs`, `tests/index-reader.mjs` | Descriptor-bound, byte-limited strict UTF-8 source-index reads and actual path-replacement/growth/partial-read regressions. |
 | `scripts/build_desktop.py`, `smoke_desktop.py` | Native binary/archive/checksum creation and packaged-service verification with disposable data. |
 | `public/manifest.webmanifest`, `sw.js` | Installed-web-app metadata and network-only service worker; no private cache or offline sync claim. |
 | `playwright.private.config.ts` | Private-account browser/device matrix, independent of existing local developer tests. |
@@ -207,3 +209,7 @@ GitHub Actions `security-extended` analysis, review steps and unsupported scope.
 The [dated scan report](docs/reports/codeql-2026-11-09.md) distinguishes actual results
 from pending/missing evidence. Static scanning supplements the existing runtime,
 dependency, privacy and isolation checks; it does not certify every input or platform.
+The [subsequent full-main finding review](docs/reports/codeql-findings-2026-11-10.md)
+records the actual three findings, a corrected development-tool read race and
+tested GitHub-request/dedicated-worker trust boundaries. Context-specific false
+positives require review; a passing CodeQL job alone is not zero-alert clearance.

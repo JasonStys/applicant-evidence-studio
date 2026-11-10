@@ -1,9 +1,10 @@
 // Purpose: TypeScript compiler AST declaration and variable line maps; generated artifacts are deterministic.
-// Index: fs@3, path@4, fileURLToPath@5, ts@6, root@7, checking@8, bindings@11, entries@11, file@11, node@11, element@15, entries@20, file@20, node@20, symbols@20, child@34, directory@38, sourceFiles@38, entry@41, files@49, a@58, b@58, report@59, stale@65, filename@66, source@67, file@68, entries@69, sorted@71, a@72, b@72, updated@74, relative@75, entry@86, split@87, document@93, text@94
+// Index: fs@3, path@4, fileURLToPath@5, ts@6, readIndexText@7, root@8, checking@9, bindings@12, entries@12, file@12, node@12, element@16, entries@21, file@21, node@21, symbols@21, child@35, directory@39, sourceFiles@39, entry@42, files@50, a@60, b@60, report@61, stale@67, filename@68, source@69, file@70, entries@71, sorted@73, a@74, b@74, updated@76, relative@77, entry@88, split@89, document@95, text@96, previousDocument@97, error@100
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
+import { readIndexText } from './index_reader.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const checking = process.argv.includes('--check');
 
@@ -52,6 +53,7 @@ const files = [
   path.join(root, 'tests/browser.spec.ts'),
   path.join(root, 'tests/private.spec.ts'),
   path.join(root, 'tests/comparison-domain.mjs'),
+  path.join(root, 'tests/index-reader.mjs'),
   path.join(root, 'vite.config.ts'),
   path.join(root, 'playwright.config.ts'),
   path.join(root, 'playwright.private.config.ts'),
@@ -64,7 +66,7 @@ const report = [
 ];
 const stale = [];
 for (const filename of files) {
-  const source = fs.readFileSync(filename, 'utf8');
+  const source = await readIndexText(filename);
   const file = ts.createSourceFile(filename, source, ts.ScriptTarget.Latest, true);
   const entries = new Set();
   symbols(file, file, entries);
@@ -92,7 +94,14 @@ for (const filename of files) {
 }
 const document = path.join(root, 'docs/code-map-typescript.md');
 const text = report.join('\n');
-if (!fs.existsSync(document) || fs.readFileSync(document, 'utf8') !== text) {
+let previousDocument = null;
+try {
+  previousDocument = await readIndexText(document);
+} catch (error) {
+  // A missing generated report is stale; every other filesystem/encoding failure is an error.
+  if (error.code !== 'ENOENT') throw error;
+}
+if (previousDocument !== text) {
   stale.push('docs/code-map-typescript.md');
   if (!checking) fs.writeFileSync(document, text);
 }

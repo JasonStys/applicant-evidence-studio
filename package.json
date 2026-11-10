@@ -11,6 +11,7 @@
     "test:browser": "playwright test",
     "test:private": "playwright test --config=playwright.private.config.ts",
     "test:comparison": "node scripts/test_comparison.mjs",
+    "test:index-reader": "node --test tests/index-reader.mjs",
     "index": "python scripts/code_index.py && node scripts/ts_index.mjs",
     "index:check": "python scripts/code_index.py --check && node scripts/ts_index.mjs --check"
   },

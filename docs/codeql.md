@@ -14,6 +14,10 @@ The original baseline on 2026-11-09 had default setup `not-configured`, and the 
 API reported `no analysis found`. That is missing scan evidence, not a zero-vulnerability
 result. Genuine first hosted results, source-bound analysis IDs and any corrections are recorded in the
 [dated scan report](reports/codeql-2026-11-09.md).
+The subsequent [full-main finding review](reports/codeql-findings-2026-11-10.md)
+records three actual default-branch findings, the descriptor-read correction and
+the evidence required to review two proposed false positives. A green analysis
+job and a zero-result PR diff are not whole-source security clearance.
 
 ## Workflow and trust boundary
 

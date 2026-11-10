@@ -1,13 +1,88 @@
 // Purpose: Jason Stys — end-to-end real accounts, encrypted sync, local parsing, exports and isolation.
-// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, page@14, editor@23, edited@24, before@30, requests@31, request@32, panel@43, pending@47, report@49, vectors@50, record@51, expected@52, vector@53, row@60, row@67, browser@86, page@86, signedState@91, vectors@92, vector@93, reportContext@96, reportPage@97, panel@108, event@112, report@114, field@115, info@125, page@125, request@125, page@141, signUp@141, alias@142, registered@148, response@149, page@160, unlock@160, value@160, loadExamples@167, page@167, page@179, browser@180, requests@182, request@183, alias@186, body@190, parsed@191, context@205, other@206, result@210, otherVault@212, firstVault@213, signedIn@221, response@222, page@231, destinations@233, r@234, marker@239, saves@251, r@252, d@258, download@261, file@263, text@264, page@270, docx@274, page@302, browser@303, downloaded@309, backup@311, manifest@322, state@326, context@327, second@328, observed@331, changed@332, page@345, info@346
+// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, readdirSync@6, randomUUID@7, password@8, phrase@9, aliases@10, page@14, asset@16, name@17, worker@21, workerReady@21, url@23, worker@30, scope@36, event@37, observed@42, owned@43, marker@44, reject@48, resolve@48, parsed@49, metadata@50, timer@51, event@52, reply@52, event@65, windowAck@65, page@89, editor@98, edited@99, before@105, requests@106, request@107, panel@118, pending@122, report@124, vectors@125, record@126, expected@127, vector@128, row@135, row@142, browser@161, page@161, signedState@166, vectors@167, vector@168, reportContext@171, reportPage@172, panel@183, event@187, report@189, field@190, info@200, page@200, request@200, page@216, signUp@216, alias@217, registered@223, response@224, page@235, unlock@235, value@235, loadExamples@242, page@242, page@254, browser@255, requests@257, request@258, alias@261, body@265, parsed@266, context@280, other@281, result@285, otherVault@287, firstVault@288, signedIn@296, response@297, page@306, destinations@308, r@309, marker@314, saves@326, r@327, d@333, download@336, file@338, text@339, page@345, docx@349, page@377, browser@378, downloaded@384, backup@386, manifest@397, state@401, context@402, second@403, observed@406, changed@407, page@420, info@421
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { zipSync, strToU8 } from 'fflate';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 const password = 'synthetic-only-login-password-2026';
 const phrase = 'six random synthetic words keep documents private';
 const aliases = new Set<string>();
+
+/** Verify the actual built parser's dedicated channel, rather than treating it as Window.postMessage. */
+test('dedicated parser keeps empty-origin parent messages separate from window messages', async ({
+  page,
+}) => {
+  const asset = readdirSync('dist/assets').find(
+    (name) => name.startsWith('private-parser.worker-') && name.endsWith('.js'),
+  );
+  if (!asset) throw new Error('Built parser worker asset is missing');
+  await page.goto('/');
+  const workerReady = page.waitForEvent('worker', { predicate: (worker) => worker.url().includes(asset) });
+  await page.evaluate(
+    (url) => {
+      (window as unknown as { parserProofWorker: Worker }).parserProofWorker = new Worker(url, {
+        type: 'module',
+      });
+    },
+    new URL('/assets/' + asset, page.url()).href,
+  );
+  const worker = await workerReady;
+  try {
+    await expect
+      .poll(() => worker.evaluate(() => typeof self.onmessage), { timeout: 10000 })
+      .toBe('function');
+    await worker.evaluate(() => {
+      const scope = globalThis as unknown as DedicatedWorkerGlobalScope;
+      scope.addEventListener('message', (event) => {
+        // These are observed protocol facts for the test oracle, not an application origin allowlist.
+        scope.postMessage({ parserProof: true, origin: event.origin, sourceNull: event.source === null });
+      });
+    });
+    const observed = await page.evaluate(async () => {
+      const owned = (window as unknown as { parserProofWorker: Worker }).parserProofWorker;
+      const marker = crypto.randomUUID();
+      return await new Promise<{
+        parsed: { text: string };
+        metadata: { origin: string; sourceNull: boolean };
+      }>((resolve, reject) => {
+        let parsed: { text: string } | undefined;
+        let metadata: { origin: string; sourceNull: boolean } | undefined;
+        const timer = setTimeout(() => reject(new Error('Dedicated parser proof timed out')), 10000);
+        const reply = (event: MessageEvent) => {
+          if (event.data.parserProof) metadata = event.data;
+          else if (event.data.error) {
+            clearTimeout(timer);
+            reject(new Error('Actual parser rejected the synthetic text'));
+          } else parsed = event.data;
+          if (parsed && metadata) {
+            clearTimeout(timer);
+            owned.removeEventListener('message', reply);
+            resolve({ parsed, metadata });
+          }
+        };
+        owned.addEventListener('message', reply);
+        const windowAck = (event: MessageEvent) => {
+          if (event.origin !== location.origin || event.source !== window || event.data.marker !== marker)
+            return;
+          window.removeEventListener('message', windowAck);
+          owned.postMessage({ filename: 'synthetic.txt', content: btoa('Synthetic Python project') });
+        };
+        window.addEventListener('message', windowAck);
+        window.postMessage(
+          { marker, filename: 'injected.txt', content: btoa('Window injection must not parse') },
+          location.origin,
+        );
+      });
+    });
+    expect(observed.parsed.text).toBe('Synthetic Python project');
+    expect(observed.metadata).toMatchObject({ origin: '', sourceNull: true });
+  } finally {
+    await page.evaluate(() => {
+      (window as unknown as { parserProofWorker: Worker }).parserProofWorker.terminate();
+    });
+  }
+});
 
 /** Actual owner-only comparison/export stays browser-local and matches independent Python assessments. */
 test('private comparison exports citations and unknowns without plaintext requests or writes', async ({
