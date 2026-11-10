@@ -199,3 +199,11 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 This version does not automatically infer protected traits, degrees, personality, employment-equivalent years or code ownership. It does not scrape LinkedIn, run applicant repositories, interpret images/equations or perform OCR. Text intake deliberately requires human evidence review. AI output is constrained coaching, not autonomous resume interpretation or a hidden selection score. Taxonomy additions require source/schema/test review.
 
 Real organizational deployment requires authentication/authorization, encryption, retention policy, accessibility/user testing, relevant jurisdictional review, monitored bias/error evaluation, correction/appeal mechanisms and validated role-specific rubrics. Human involvement alone is not proof of fairness or legal compliance. See the documentation before using real applicant data.
+
+## CodeQL source security review
+
+The [CodeQL guide](docs/codeql.md) defines genuine Python, JavaScript/TypeScript and
+GitHub Actions `security-extended` analysis, review steps and unsupported scope.
+The [dated scan report](docs/reports/codeql-2026-11-09.md) distinguishes actual results
+from pending/missing evidence. Static scanning supplements the existing runtime,
+dependency, privacy and isolation checks; it does not certify every input or platform.

@@ -121,3 +121,11 @@ The initial published Actions run exposed a macOS extraction-worker failure: add
 ## Remaining validation gaps
 
 Live AI quality is not measured without an explicitly configured model; adapters are contract-tested with mocks. Arbitrary resume interpretation, OCR/images/equations, automatic code-portfolio execution/review and sensitive-trait inference are not implemented. Native mobile hardware, assistive technologies, long-term/high-concurrency production load, formal security review, bias/outcome studies, legal compliance and actual organizational access controls remain outside this prototype's validation. No real applicant data was used in published tests or CI.
+
+## CodeQL security analysis
+
+The [three-language scan guide](codeql.md) explains Python, JavaScript/TypeScript
+and GitHub Actions security-extended analysis. The [dated scan report](reports/codeql-2026-11-09.md)
+records actual scan/extraction state and exact-location alert triage separately from
+configuration checks. Existing runtime, privacy, performance and platform gates remain
+required; a passing static-analysis job alone is not a zero-alert or safety claim.
