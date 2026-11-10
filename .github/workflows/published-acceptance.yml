@@ -1,0 +1,36 @@
+# Jason Stys: read-only acceptance of immutable published portable bytes, not source-server substitutes.
+name: Published portable acceptance
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: published-portable-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  published:
+    name: Published 0.3.0 / ${{ matrix.os }} / actual encrypted UI
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: { persist-credentials: false }
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with: { python-version: '3.12' }
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with: { node-version: '24', package-manager-cache: false }
+      - run: python -m pip install --no-deps -r requirements.lock
+      - run: python -m pip install --no-build-isolation --no-deps -e .
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Verify pinned tag and byte identities, extract and use the actual downloaded app
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/portable_acceptance.py --published
