@@ -1,2 +1,4 @@
 * text=auto eol=lf
 *.png -text
+*.docx binary
+*.xlsx binary

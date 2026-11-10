@@ -172,6 +172,43 @@ rescan must verify the genuine defect's resolution and preserve the reviewed
 disposition of any remaining finding. PR diff-informed zero results cannot
 substitute for that check.
 
+## Final full main result and reviewed dispositions
+
+The exact merged source [`2742474af85014e849fe38796be1cdb8215e140e`](https://github.com/JasonStys/applicant-evidence-studio/tree/2742474af85014e849fe38796be1cdb8215e140e)
+passed [Validate](https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42776533593),
+[published portable acceptance](https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42776533592)
+and [CodeQL](https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42776533596).
+All nine validation jobs, three actual downloaded-app OS jobs and three language
+analysis jobs completed successfully. Reader/comparison tests, all 36 developer
+browser cases, all 32 private workflows, the repeated Firefox regression and the
+guarded browser setup were retained and completed. These are actual main-push
+results, not PR-diff clearance or a claim that the earlier cancelled run passed.
+
+| Category | Extracted tracked sources | Rules | Raw SARIF results | Analysis ID |
+| --- | ---: | ---: | ---: | --- |
+| Python | 35 | 50 | 1 | 2133255723 |
+| JavaScript/TypeScript | 27 | 103 | 1 | 2133257220 |
+| Actions | 4 | 23 | 0 | 2133255020 |
+
+All complete logs explicitly identify non-PR, non-diff-informed scans; extraction
+matches every supported committed source path. No analysis error or warning was
+reported. The genuine index-read race, alert 1, closed automatically as fixed.
+It was not dismissed. Raw SARIF still contains **two results**, not zero.
+
+At the same reviewed source, the maintainer independently examined the actual
+source/data flows, real filesystem and HTTPX tests, actual compiled-worker browser
+proof, and primary WHATWG/CodeQL documentation. Alerts 2 and 3 were narrowly
+classified through GitHub as false positives for this dedicated Worker channel
+and this already-constrained fixed-authority GitHub path. Each alert retains its
+own review rationale. No path/query exclusion, blanket suppression or fabricated
+SARIF was added. The default-branch inventory has **zero open alerts after those
+two reviewed dispositions**; that does not mean zero raw results or prove that
+every possible input, deployment or future source revision is secure.
+
+Published 0.3.0 binaries, installed accounts and runtime algorithms are unchanged.
+This later documentation edition records the accepted source and dispositions;
+its own integration PR/main workflows must pass separately.
+
 ## Primary references
 
 - [Node file descriptors and open/check/use guidance](https://nodejs.org/docs/latest-v24.x/api/fs.html#fsopenpath-flags-mode-callback).
