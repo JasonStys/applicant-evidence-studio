@@ -13,3 +13,11 @@ certification is claimed. Read [the threat model](docs/private-accounts.md) and
 unsigned; verify official checksums and publisher provenance. Report security
 issues privately to Jason through the contact path in the UI; do not attach
 resumes, credentials, encryption/recovery secrets or exploit data in public issues.
+
+## CodeQL source security review
+
+The [CodeQL guide](docs/codeql.md) defines genuine Python, JavaScript/TypeScript and
+GitHub Actions `security-extended` analysis, review steps and unsupported scope.
+The [dated scan report](docs/reports/codeql-2026-11-09.md) distinguishes actual results
+from pending/missing evidence. Static scanning supplements the existing runtime,
+dependency, privacy and isolation checks; it does not certify every input or platform.
