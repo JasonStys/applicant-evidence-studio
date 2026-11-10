@@ -1,5 +1,5 @@
 // Purpose: Jason Stys — local deterministic evidence review; no resume text leaves the device.
-// Index: validBatch@3, validJob@3, syntheticApplicants@4, syntheticJobs@5, Applicant@6, Assessment@6, Coaching@6, Job@6, Level@6, extractPrivate@7, accountRequest@8, seal@8, skills@10, notice@48, points@50, Workspace@51, workspace@57, key@58, salt@59, revision@60, pending@61, generation@62, unsaved@63, validateWorkspace@66, value@66, data@69, i@83, batch@84, a@87, a@89, s@91, sources@91, e@94, n@95, s@95, e@96, a@102, id@102, j@104, job@105, c@108, c@109, emptyWorkspace@117, demoWorkspace@122, applicants@123, a@128, bindWorkspace@133, value@134, secret@135, kdfSalt@136, observedRevision@137, lockWorkspace@148, isPrivateWorkspace@156, snapshot@159, encryptedBackup@165, change@171, copy@171, mutate@171, epoch@172, task@173, copy@175, result@176, checked@177, envelope@178, saved@181, digits@193, pythonRound@193, value@193, buffer@195, bits@197, exponent@198, numerator@199, denominator@200, rounded@203, remainder@204, applicant@210, assessPrivate@210, job@210, best@211, e@212, c@215, criteria@215, e@216, score@226, c@227, n@227, c@228, n@228, flags@231, e@232, e@234, e@236, s@238, c@240, gaps@240, fingerprint@259, job@259, value@260, c@264, b@279, description@286, recommend@286, aliases@287, text@295, chosen@296, s@296, term@297, skill@301, applicant@310, coach@310, job@310, gaps@311, c@313, c@314, skill@330, escape@345, value@345, c@348, a@351, job@351, resumePrivate@351, items@352, e@353, x@355, y@355, c@356, c@357, e@368, e@381, input@405, method@405, path@405, privateAPI@405, url@406, route@407, data@408, body@409, selectedJob@410, j@411, job@411, a@413, result@414, copy@425, job@426, j@427, hash@437, rows@438, a@439, a@440, b@440, last@441, position@442, i@443, row@443, q@451, skill@452, status@453, a@454, byId@454, filtered@455, r@455, a@456, e@459, offset@463, copy@471, batch@472, a@474, x@475, x@477, copy@485, x@488, copy@493, x@494
+// Index: validBatch@3, validJob@3, syntheticApplicants@4, syntheticJobs@5, Applicant@6, Assessment@6, Coaching@6, Job@6, Level@6, extractPrivate@7, accountRequest@8, seal@8, skills@10, notice@48, points@50, Workspace@51, workspace@57, key@58, salt@59, revision@60, pending@61, generation@62, unsaved@63, validateWorkspace@66, value@66, data@69, i@83, batch@84, a@87, a@89, s@91, sources@91, e@94, n@95, s@95, e@96, a@102, id@102, j@104, job@105, c@108, c@109, emptyWorkspace@117, demoWorkspace@122, applicants@123, a@128, bindWorkspace@133, value@134, secret@135, kdfSalt@136, observedRevision@137, lockWorkspace@148, isPrivateWorkspace@156, snapshot@159, encryptedBackup@165, change@171, copy@171, mutate@171, epoch@172, task@173, copy@175, result@176, checked@177, envelope@178, saved@181, digits@193, pythonRound@193, value@193, buffer@195, bits@197, exponent@198, numerator@199, denominator@200, rounded@203, remainder@204, applicant@210, assessPrivate@210, job@210, best@211, e@212, c@215, criteria@215, e@216, score@226, c@227, n@227, c@228, n@228, flags@231, e@232, e@234, e@236, s@238, c@240, gaps@240, fingerprint@259, job@259, value@260, c@264, b@279, description@286, recommend@286, aliases@287, text@295, chosen@296, s@296, term@297, skill@301, applicant@310, coach@310, job@310, gaps@311, c@313, c@314, skill@330, escape@345, value@345, c@348, a@351, job@351, resumePrivate@351, items@352, e@353, x@355, y@355, c@356, c@357, e@368, e@381, input@405, method@405, path@405, privateAPI@405, url@406, route@407, data@408, body@409, selectedJob@410, j@411, job@411, a@413, result@414, ids@416, id@419, people@419, person@419, person@420, person@421, person@425, copy@438, job@439, j@440, hash@450, rows@451, a@452, a@453, b@453, last@454, position@455, i@456, row@456, q@464, skill@465, status@466, a@467, byId@467, filtered@468, r@468, a@469, e@472, offset@476, copy@484, batch@485, a@487, x@488, x@490, copy@498, x@501, copy@506, x@507
 import { validBatch, validJob } from './validators.generated.js';
 import syntheticApplicants from '../examples/applicants.json';
 import syntheticJobs from '../examples/jobs.json';
@@ -256,7 +256,7 @@ export function assessPrivate(applicant: Applicant, job: Job): Assessment {
 }
 
 /** Hash the same canonical JSON as Python, so reports are reproducible across runtimes. */
-async function fingerprint(job: Job) {
+export async function fingerprint(job: Job) {
   const value =
     '[' +
     job.criteria
@@ -412,7 +412,20 @@ export async function privateAPI<T>(path: string, method = 'GET', input?: unknow
   if (selectedJob && !job) throw new Error('Select or create a valid job rubric.');
   const a = data.applicants.find((a) => a.id === route[1]);
   let result: unknown;
-  if (route[0] === 'config')
+  if (route[0] === 'comparison') {
+    const ids = [url.searchParams.get('left'), url.searchParams.get('right')];
+    if (!job || !ids[0] || !ids[1] || ids[0] === ids[1])
+      throw new Error('Choose two different records and a valid rubric.');
+    const people = ids.map((id) => data.applicants.find((person) => person.id === id));
+    if (people.some((person) => !person)) throw new Error('Comparison record not found.');
+    if (people.some((person) => !person?.consent_sources))
+      throw new Error('Confirm processing authorization for both records before comparison.');
+    result = {
+      job,
+      applicants: people.map((person) => ({ applicant: person, revision: data.revisions[person!.id] })),
+      captured_at: new Date().toISOString(),
+    };
+  } else if (route[0] === 'config')
     result = {
       skills,
       notice,

@@ -1,6 +1,6 @@
 """Jason Stys: exercise the real packaged binary with disposable accounts, never user data."""
 
-# Index: json@4, os@5, queue@6, re@7, subprocess@8, sys@9, tempfile@10, threading@11, Path@12, httpx@14, main@17, main.binary@19, main.folder@22, main.environment@23, main.process@24, main.output@32, main.collect@34, main.collect.line@36, main.origin@41, main._@42, main.line@44, main.match@49, main.origin@51, main.headers@55, main.client@56, main.credentials@59, main.envelope@62, main.killer@91
+# Index: json@4, os@5, queue@6, re@7, subprocess@8, sys@9, tempfile@10, threading@11, Path@12, httpx@14, VERSION@16, main@19, main.binary@21, main.folder@24, main.environment@25, main.process@26, main.output@34, main.collect@36, main.collect.line@38, main.origin@43, main._@44, main.line@46, main.match@51, main.origin@53, main.headers@57, main.client@58, main.script@62, main.credentials@65, main.envelope@68, main.killer@97
 import json
 import os
 import queue
@@ -12,6 +12,8 @@ import threading
 from pathlib import Path
 
 import httpx
+
+from app import VERSION
 
 
 def main():
@@ -55,7 +57,11 @@ def main():
             headers = {"Origin": origin, "X-AES-Request": "v1"}
             with httpx.Client(base_url=origin, headers=headers, trust_env=False, timeout=10) as client:
                 assert client.get("/health").json()["mode"] == "private-accounts"
+                assert client.get("/health").json()["version"] == VERSION
                 assert "Jason Stys" in client.get("/").text
+                script = re.search(r'src="(/assets/[A-Za-z0-9_.-]+\.js)"', client.get("/").text)
+                assert script, "Packaged UI script missing"
+                assert "Criterion evidence comparison" in client.get(script[1]).text
                 credentials = {"username": "packaged_qa", "password": "synthetic-only-packaged-password"}
                 assert client.post("/vault/register", json=credentials).status_code == 200
                 assert client.get("/vault/workspace").json()["revision"] == 0

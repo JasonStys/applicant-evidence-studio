@@ -1,5 +1,5 @@
 // Purpose: TypeScript compiler AST declaration and variable line maps; generated artifacts are deterministic.
-// Index: fs@3, path@4, fileURLToPath@5, ts@6, root@7, checking@8, bindings@11, entries@11, file@11, node@11, element@15, entries@20, file@20, node@20, symbols@20, child@34, directory@38, sourceFiles@38, entry@41, files@49, a@57, b@57, report@58, stale@64, filename@65, source@66, file@67, entries@68, sorted@70, a@71, b@71, updated@73, relative@74, entry@85, split@86, document@92, text@93
+// Index: fs@3, path@4, fileURLToPath@5, ts@6, root@7, checking@8, bindings@11, entries@11, file@11, node@11, element@15, entries@20, file@20, node@20, symbols@20, child@34, directory@38, sourceFiles@38, entry@41, files@49, a@58, b@58, report@59, stale@65, filename@66, source@67, file@68, entries@69, sorted@71, a@72, b@72, updated@74, relative@75, entry@86, split@87, document@93, text@94
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -51,6 +51,7 @@ const files = [
   ...sourceFiles(path.join(root, 'scripts')),
   path.join(root, 'tests/browser.spec.ts'),
   path.join(root, 'tests/private.spec.ts'),
+  path.join(root, 'tests/comparison-domain.mjs'),
   path.join(root, 'vite.config.ts'),
   path.join(root, 'playwright.config.ts'),
   path.join(root, 'playwright.private.config.ts'),

@@ -15,6 +15,8 @@ cached by a service worker. This is not an offline sync application.
 
 ## One-file local desktop application
 
+Version0.3.0 adds criterion/evidence comparison. The fresh0.3 release is separate from published0.2 assets. Upgrade by verifying/extracting the new OS-matching archive; account storage, vault encryption/workspace formats and user data paths stay unchanged, with no migration. Save an encrypted backup before any software upgrade. A source commit alone does not publish installers: exact-commit validation and all three packaged smoke gates must pass before the new release is published.
+
 Download the matching OS/architecture archive and `.sha256` from the official
 [releases](https://github.com/JasonStys/applicant-evidence-studio/releases).
 Verify its checksum **before launching**. Extract the archive, place it in a

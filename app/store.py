@@ -3,7 +3,7 @@
 Source content stays local. Audit metadata intentionally excludes resume text.
 """
 
-# Index: sqlite3@7, contextmanager@8, Path@9, Applicant@11, Job@11, Store@14, Store.__init__@17, Store.__init__.path@17, Store.__init__.self@17, Store.__init__.connection@21, Store.connect@25, Store.connect.self@25, Store.connect.connection@27, Store.applicants@34, Store.applicants.self@34, Store.applicants.connection@36, Store.applicants.row@39, Store.applicant@42, Store.applicant.identifier@42, Store.applicant.self@42, Store.applicant.connection@44, Store.applicant.row@45, Store.save_applicant@52, Store.save_applicant.applicant@52, Store.save_applicant.revision@52, Store.save_applicant.self@52, Store.save_applicant.connection@54, Store.save_applicant.cursor@55, Store.import_applicants@63, Store.import_applicants.applicants@63, Store.import_applicants.replace@63, Store.import_applicants.self@63, Store.import_applicants.applicant@65, Store.import_applicants.identifiers@65, Store.import_applicants.connection@68, Store.import_applicants.count@70, Store.import_applicants.existing@71, Store.import_applicants.row@71, Store.import_applicants.applicant@74, Store.delete@85, Store.delete.identifier@85, Store.delete.self@85, Store.delete.connection@87, Store.delete.cursor@88, Store.save_job@93, Store.save_job.job@93, Store.save_job.self@93, Store.save_job.connection@95, Store.jobs@102, Store.jobs.self@102, Store.jobs.connection@104, Store.jobs.row@107, Store.job@110, Store.job.identifier@110, Store.job.self@110, Store.job.job@112
+# Index: sqlite3@7, contextmanager@8, Path@9, Applicant@11, Job@11, Store@14, Store.__init__@17, Store.__init__.path@17, Store.__init__.self@17, Store.__init__.connection@21, Store.connect@25, Store.connect.self@25, Store.connect.connection@27, Store.applicants@34, Store.applicants.self@34, Store.applicants.connection@36, Store.applicants.row@39, Store.applicant@42, Store.applicant.identifier@42, Store.applicant.self@42, Store.applicant.connection@44, Store.applicant.row@45, Store.save_applicant@52, Store.save_applicant.applicant@52, Store.save_applicant.revision@52, Store.save_applicant.self@52, Store.save_applicant.connection@54, Store.save_applicant.cursor@55, Store.import_applicants@63, Store.import_applicants.applicants@63, Store.import_applicants.replace@63, Store.import_applicants.self@63, Store.import_applicants.applicant@65, Store.import_applicants.identifiers@65, Store.import_applicants.connection@68, Store.import_applicants.count@70, Store.import_applicants.existing@71, Store.import_applicants.row@71, Store.import_applicants.applicant@74, Store.delete@85, Store.delete.identifier@85, Store.delete.self@85, Store.delete.connection@87, Store.delete.cursor@88, Store.save_job@93, Store.save_job.job@93, Store.save_job.self@93, Store.save_job.connection@95, Store.jobs@102, Store.jobs.self@102, Store.jobs.connection@104, Store.jobs.row@107, Store.job@110, Store.job.identifier@110, Store.job.self@110, Store.job.job@112, Store.comparison_capture@117, Store.comparison_capture.job_id@117, Store.comparison_capture.left@117, Store.comparison_capture.right@117, Store.comparison_capture.self@117, Store.comparison_capture.connection@121, Store.comparison_capture.job_row@123, Store.comparison_capture.rows@124, Store.comparison_capture.records@129, Store.comparison_capture.row@130, Store.comparison_capture.value@132
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
@@ -113,3 +113,22 @@ class Store:
             if job.id == identifier:
                 return job
         raise KeyError(identifier)
+
+    def comparison_capture(self, job_id: str, left: str, right: str):
+        """Read exactly two records/revisions and one rubric in one immutable SQL snapshot."""
+        if left == right:
+            raise ValueError("Choose two different applicant records")
+        with self.connect() as connection:
+            connection.execute("BEGIN")
+            job_row = connection.execute("SELECT body FROM jobs WHERE id=?", (job_id,)).fetchone()
+            rows = connection.execute(
+                "SELECT id,body,revision FROM applicants WHERE id IN (?,?)", (left, right)
+            ).fetchall()
+        if not job_row or len(rows) != 2:
+            raise KeyError("comparison")
+        records = {
+            row[0]: {"applicant": Applicant.model_validate_json(row[1]), "revision": row[2]} for row in rows
+        }
+        if any(not value["applicant"].consent_sources for value in records.values()):
+            raise ValueError("Confirm processing authorization for both records before comparison")
+        return {"job": Job.model_validate_json(job_row[0]), "applicants": [records[left], records[right]]}

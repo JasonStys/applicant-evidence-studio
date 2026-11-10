@@ -1,11 +1,95 @@
 // Purpose: real-browser reviewer, applicant intake, job editing, source review and download regressions.
-// Index: expect@3, test@3, AxeBuilder@4, page@6, page@12, page@35, pending@39, result@41, info@49, page@49, info@71, page@71, page@85, stage@86, result@90, info@97, page@97, page@103
+// Index: expect@3, test@3, AxeBuilder@4, readFileSync@5, page@7, info@13, page@13, captured@20, response@21, input@24, row@25, panel@29, pending@34, report@36, row@37, row@41, region@48, node@51, node@53, page@68, release@71, observed@72, held@73, resolve@73, requested@74, resolve@74, first@75, route@76, response@77, page@96, page@119, pending@123, result@125, info@133, page@133, info@155, page@155, page@169, stage@170, result@174, info@181, page@181, page@187
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { readFileSync } from 'node:fs';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/#token=synthetic_browser_session_0123456789_abcdef');
   await expect(page.getByRole('heading', { name: 'Evidence-ranked queue' })).toBeVisible();
+});
+
+/** Compare an actual SQL capture, preserve user selection order, and discard stale rubric responses. */
+test('two-record comparison uses one rubric and keeps source review human led', async ({ page }, info) => {
+  await expect(page.locator('.sidebar small')).toContainText('v0.3.0');
+  expect((await (await page.request.get('/health')).json()).version).toBe('0.3.0');
+  await page.getByLabel('Compare A101', { exact: true }).check();
+  expect(page.getByRole('button', { name: 'Capture selected evidence' })).toBeDisabled();
+  await page.getByLabel('Compare A102', { exact: true }).check();
+  expect(page.getByLabel('Compare A103', { exact: true })).toBeDisabled();
+  const captured = page.waitForResponse(
+    (response) => response.url().includes('/api/comparison?') && response.status() === 200,
+  );
+  await page.getByRole('button', { name: 'Capture selected evidence' }).click();
+  const input = await (await captured).json();
+  expect(input.applicants.map((row: { applicant: { id: string } }) => row.applicant.id)).toEqual([
+    'A101',
+    'A102',
+  ]);
+  const panel = page.getByRole('region', { name: 'Criterion evidence comparison', exact: true });
+  await expect(panel.getByRole('button', { name: 'Download private comparison JSON' })).toBeVisible();
+  await panel
+    .getByLabel('Human review observations (optional, private export only)')
+    .fill('Verify source contribution; ask an accessible work sample if needed.');
+  const pending = page.waitForEvent('download');
+  await panel.getByRole('button', { name: 'Download private comparison JSON' }).click();
+  const report = JSON.parse(readFileSync((await (await pending).path())!, 'utf8'));
+  expect(report.records.map((row: { id: string }) => row.id)).toEqual(['A101', 'A102']);
+  expect(report.reviewer_observations).toContain('Verify source contribution');
+  expect(
+    report.records.every(
+      (row: object) => !('display_name' in row) && !('rank' in row) && !('sources' in row),
+    ),
+  ).toBe(true);
+  expect((await new AxeBuilder({ page }).include('.comparison-card').analyze()).violations).toEqual([]);
+  if (info.project.name === 'chromium')
+    await panel.screenshot({ path: 'artifacts/practical-20261109/comparison.png' });
+  await page.setViewportSize({ width: 320, height: 800 });
+  const region = page.getByRole('region', { name: 'Scrollable criterion comparison' });
+  await region.focus();
+  await expect(region).toBeFocused();
+  expect(await region.evaluate((node) => node.scrollWidth > node.clientWidth)).toBe(true);
+  await page.keyboard.press('ArrowRight');
+  await expect.poll(() => region.evaluate((node) => node.scrollLeft)).toBeGreaterThan(0);
+  await page.getByLabel('Selected role').selectOption('embedded');
+  await expect(panel.getByRole('button', { name: 'Download private comparison JSON' })).toHaveCount(0);
+  await panel.getByRole('button', { name: 'Capture selected evidence' }).click();
+  await expect(panel.getByRole('button', { name: 'Download private comparison JSON' })).toBeVisible();
+  await expect(panel.getByLabel('Human review observations (optional, private export only)')).toHaveValue('');
+  await page.getByRole('button', { name: 'Clear comparison selection' }).click();
+  await expect(panel).toHaveCount(0);
+});
+
+/** Delay a genuine backend response to model a user switching rubrics during hashing/fetch. */
+test.describe('controlled response delay', () => {
+  // Page routes cannot intercept requests owned by a service worker (Playwright network guide).
+  // Only this fault-injection context blocks SW; all ordinary/PWA/private-account tests keep it enabled.
+  test.use({ serviceWorkers: 'block' });
+  test('comparison ignores an old in-flight rubric capture', async ({ page }) => {
+    await page.getByLabel('Compare A101', { exact: true }).check();
+    await page.getByLabel('Compare A102', { exact: true }).check();
+    let release!: () => void;
+    let observed!: () => void;
+    const held = new Promise<void>((resolve) => (release = resolve)),
+      requested = new Promise<void>((resolve) => (observed = resolve));
+    let first = true;
+    await page.route('**/api/comparison**', async (route) => {
+      const response = await route.fetch();
+      if (first) {
+        first = false;
+        observed();
+        await held;
+      }
+      await route.fulfill({ response });
+    });
+    await page.getByRole('button', { name: 'Capture selected evidence' }).click();
+    await requested;
+    await page.getByLabel('Selected role').selectOption('embedded');
+    release();
+    await expect(page.getByRole('button', { name: 'Download private comparison JSON' })).toHaveCount(0);
+    await page.getByRole('button', { name: 'Capture selected evidence' }).click();
+    await expect(page.getByRole('button', { name: 'Download private comparison JSON' })).toBeVisible();
+  });
 });
 
 /** Verify anonymous queue, review context and original transfer evidence. */
