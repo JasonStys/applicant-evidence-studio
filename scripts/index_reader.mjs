@@ -1,5 +1,5 @@
 // Purpose: Jason Stys — descriptor-bound, byte-limited UTF-8 reads for source index generation.
-// Index: open@3, Buffer@4, INDEX_TEXT_LIMIT@6, limit@9, validateLimit@9, handle@17, limit@17, readIndexHandle@17, info@19, buffer@22, total@23, bytesRead@25, file@34, limit@34, readIndexText@34, handle@36
+// Index: open@3, Buffer@4, INDEX_TEXT_LIMIT@6, limit@9, validateLimit@9, handle@17, limit@17, readIndexHandle@17, info@19, buffer@22, total@23, bytesRead@25, file@35, limit@35, readIndexText@35, handle@37
 import { open } from 'node:fs/promises';
 import { Buffer } from 'node:buffer';
 
@@ -27,7 +27,8 @@ export async function readIndexHandle(handle, limit = INDEX_TEXT_LIMIT) {
     total += bytesRead;
   }
   if (total > limit) throw new RangeError('Index input exceeds the byte limit.');
-  return new TextDecoder('utf-8', { fatal: true }).decode(buffer.subarray(0, total));
+  // Preserve a source BOM just as fs.readFile(..., 'utf8') did; reject invalid encoding.
+  return new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(buffer.subarray(0, total));
 }
 
 /** Open once, inspect/read that descriptor and always close it; propagate every I/O error. */

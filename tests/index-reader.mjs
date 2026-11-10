@@ -1,5 +1,5 @@
 // Purpose: Jason Stys — real-filesystem identity, growth, encoding and byte-bound regressions.
-// Index: assert@3, mkdtemp@4, open@4, realpath@4, rename@4, rm@4, writeFile@4, os@5, path@6, test@7, INDEX_TEXT_LIMIT@8, readIndexHandle@8, readIndexText@8, fixture@11, run@11, directory@12, actual@16, parent@17, directory@25, empty@26, unicode@27, directory@36, exact@37, excess@38, unicode@39, directory@51, source@52, replacement@53, original@54, handle@58, directory@71, source@72, handle@74, observed@75, requested@76, interleaved@78, stat@79, info@80, buffer@85, length@85, offset@85, position@85, read@85, directory@101, source@102, handle@104, positions@105, chunked@107, buffer@109, length@109, offset@109, position@109, read@109, directory@123, interrupted@126, closedBeforeRead@129, stat@130, info@131, args@135, directory@145, source@146, invalid@153
+// Index: assert@3, mkdtemp@4, open@4, realpath@4, rename@4, rm@4, writeFile@4, os@5, path@6, test@7, INDEX_TEXT_LIMIT@8, readIndexHandle@8, readIndexText@8, fixture@11, run@11, directory@12, actual@16, parent@17, directory@25, empty@26, unicode@27, marked@28, directory@39, exact@40, excess@41, unicode@42, directory@54, source@55, replacement@56, original@57, handle@61, directory@74, source@75, handle@77, observed@78, requested@79, interleaved@81, stat@82, info@83, buffer@88, length@88, offset@88, position@88, read@88, directory@104, source@105, handle@107, positions@108, chunked@110, buffer@112, length@112, offset@112, position@112, read@112, directory@126, interrupted@129, closedBeforeRead@132, stat@133, info@134, args@138, directory@148, source@149, invalid@156
 import assert from 'node:assert/strict';
 import { mkdtemp, open, realpath, rename, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
@@ -21,14 +21,17 @@ async function fixture(run) {
   }
 }
 
-test('empty and multibyte sources round-trip without rewriting bytes', async () => {
+test('empty, multibyte and BOM-prefixed sources preserve their text', async () => {
   await fixture(async (directory) => {
     const empty = path.join(directory, 'empty.txt');
     const unicode = path.join(directory, 'unicode.txt');
+    const marked = path.join(directory, 'marked.txt');
     await writeFile(empty, '', { flag: 'wx' });
     await writeFile(unicode, 'source µV 温度\n', { flag: 'wx' });
+    await writeFile(marked, '\ufeffsource\n', { flag: 'wx' });
     assert.equal(await readIndexText(empty), '');
     assert.equal(await readIndexText(unicode), 'source µV 温度\n');
+    assert.equal(await readIndexText(marked), '\ufeffsource\n');
   });
 });
 

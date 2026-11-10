@@ -10,6 +10,9 @@ obligations. `npm run test:index-reader` runs eight actual filesystem tests;
 the existing private browser matrix also checks the dedicated parser's empty
 origin/private channel on all four profiles. No CodeQL exclusion or coverage
 floor was weakened.
+The report also records an actual hosted setup delay and the guarded official
+HTTPS mirror repair. Browser setup is bounded separately from the unchanged
+tests; cancellation is never recorded as a passing matrix.
 
 ## Version 0.2 private accounts
 

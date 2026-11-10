@@ -40,7 +40,7 @@ reads at explicit offsets, decodes UTF-8 strictly and always closes the handle.
 Only an actual `ENOENT` for the generated report is treated as stale/missing;
 permission, type, encoding and other I/O failures propagate. Source-file reads
 use the same helper. Eight real-filesystem regressions cover path replacement,
-growth after `fstat`, partial reads, exact/multibyte limits, malformed UTF-8,
+growth after `fstat`, partial reads, exact/multibyte limits, BOM preservation, malformed UTF-8,
 missing/nonregular/interrupted reads and invalid budgets. No path/query exclusion
 or error-to-empty fallback was introduced.
 
@@ -115,6 +115,35 @@ neither provider route and never sends account plaintext to it.
 
 ## Local verification and release boundary
 
+### Hosted browser setup correction
+
+The initial revised-source [Validate run 42773088851](https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42773088851)
+at `06b0d6ef58c02d4396cbafad9c6ce1fbc13ea509` reached its unchanged 15-minute
+deadline. Its actual completed log identifies Ubuntu 26.04.1 and repeated HTTP
+Azure package-download delays: 139 MB took 11 minutes 9 seconds. The locked
+browser binaries then downloaded in about 14 seconds. All 36 developer browser
+cases and the first 22 private workflows passed before cancellation; the rest
+and the Firefox repeat had not completed. This is an incomplete run, not a
+passing matrix and not an observed application assertion failure.
+
+The browser job now pins Ubuntu 24.04, verifies the expected disposable runner,
+active mirror-file source and Ubuntu signing key, then uses the official HTTPS
+archive/security mirrors with bounded APT acquire retries/timeouts. Source
+suites, components and signature verification remain enabled. Dependency setup
+and browser download have separate 10/5-minute caps inside the same 15-minute
+job; all browser cases, repeats and actual test deadlines remain unchanged.
+There is no retry-to-pass policy or fallback to a smaller browser matrix. The
+six-OS/Python jobs, audit, container and three-OS published acceptance remain
+separate requirements.
+
+A new actual-file BOM fixture also exposed a compatibility regression in the
+new descriptor reader: default TextDecoder behavior removes a leading UTF-8 BOM.
+The corrected decoder preserves it while retaining fatal encoding checks and
+the same byte cap. This prevents an unintended source rewrite; it does not
+change any application parser or private-file processing.
+
+### Completed local checks
+
 Observed on Windows, Python 3.14.6 and Node 24.18.1:
 
 - 158 Python tests pass; combined statement/branch coverage 88.70% exceeds the
@@ -153,3 +182,5 @@ substitute for that check.
 - [Exact shipped CodeQL DOM message model](https://github.com/github/codeql/blob/1be292a1e54696ca543b4ad0f9b4537b9687caa7/javascript/ql/lib/semmle/javascript/security/dataflow/DOM.qll#L179).
 - [CodeQL partial-SSRF threat description](https://codeql.github.com/codeql-query-help/python/py-partial-ssrf/).
 - [HTTPX clients and explicit request configuration](https://www.python-httpx.org/advanced/clients/).
+- [Official runner APT-source routing](https://github.com/actions/runner-images/blob/main/images/ubuntu/scripts/build/configure-apt-sources.sh)
+  and [bounded acquire settings](https://github.com/actions/runner-images/blob/main/images/ubuntu/scripts/build/configure-apt.sh).
