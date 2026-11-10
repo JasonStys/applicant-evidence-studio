@@ -39,6 +39,91 @@ Generated with the TypeScript compiler AST. Lexical bindings and named declarati
 | `header` | 23 |
 | `name` | 25 |
 
+## scripts/native_ui_smoke.mjs
+
+| Declaration / variable | Line |
+| --- | --- |
+| `assert` | 3 |
+| `createHash` | 4 |
+| `randomUUID` | 4 |
+| `execFile` | 5 |
+| `spawn` | 5 |
+| `lstat` | 6 |
+| `mkdtemp` | 6 |
+| `readFile` | 6 |
+| `rm` | 6 |
+| `tmpdir` | 7 |
+| `path` | 8 |
+| `fileURLToPath` | 9 |
+| `promisify` | 10 |
+| `chromium` | 11 |
+| `expect` | 11 |
+| `AxeBuilder` | 12 |
+| `root` | 14 |
+| `binary` | 15 |
+| `version` | 16 |
+| `runFile` | 17 |
+| `folder` | 20 |
+| `child` | 21 |
+| `browser` | 28 |
+| `stopping` | 29 |
+| `started` | 30 |
+| `canonical` | 33 |
+| `value` | 33 |
+| `key` | 40 |
+| `readiness` | 48 |
+| `reject` | 49 |
+| `resolve` | 49 |
+| `timer` | 50 |
+| `pending` | 54 |
+| `error` | 55 |
+| `bytes` | 64 |
+| `lines` | 71 |
+| `line` | 73 |
+| `match` | 74 |
+| `exercise` | 88 |
+| `origin` | 88 |
+| `healthResponse` | 89 |
+| `health` | 91 |
+| `context` | 95 |
+| `outside` | 96 |
+| `route` | 97 |
+| `page` | 104 |
+| `errors` | 107 |
+| `error` | 108 |
+| `password` | 109 |
+| `phrase` | 110 |
+| `registered` | 117 |
+| `r` | 118 |
+| `unlock` | 123 |
+| `editor` | 139 |
+| `edited` | 140 |
+| `before` | 146 |
+| `writes` | 151 |
+| `r` | 152 |
+| `panel` | 158 |
+| `download` | 161 |
+| `report` | 163 |
+| `vectors` | 164 |
+| `r` | 166 |
+| `record` | 169 |
+| `v` | 170 |
+| `vector` | 170 |
+| `r` | 175 |
+| `r` | 176 |
+| `input` | 178 |
+| `other` | 192 |
+| `origin` | 217 |
+| `deadline` | 218 |
+| `result` | 220 |
+| `_` | 222 |
+| `reject` | 222 |
+| `error` | 243 |
+| `resolve` | 248 |
+| `resolve` | 249 |
+| `error` | 254 |
+| `target` | 259 |
+
 ## scripts/test_comparison.mjs
 
 | Declaration / variable | Line |

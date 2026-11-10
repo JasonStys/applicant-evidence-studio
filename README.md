@@ -1,5 +1,10 @@
 # Applicant Evidence Studio
 
+Published portable downloads are checked through a real extracted native
+application and encrypted comparison/export journey. See the
+[portable acceptance guide](docs/published-acceptance.md) and
+[current validation report](docs/reports/portable-acceptance-2026-11-09.md).
+
 [![Validate](https://github.com/JasonStys/applicant-evidence-studio/actions/workflows/validate.yml/badge.svg)](https://github.com/JasonStys/applicant-evidence-studio/actions/workflows/validate.yml)
 
 A private-account, source-linked applicant review and career-coaching application, created by **Jason Stys**. Reviewers can prioritize an authorized applicant pool using a transparent professional-skills rubric, inspect original evidence, and make their own decisions. Applicants can identify evidence gaps and download a factual, role-tailored resume draft.

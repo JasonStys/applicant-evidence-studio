@@ -55,7 +55,7 @@ jobs:
       - run: npm run build
       - run: npm run test:comparison
       - run: node scripts/ts_index.mjs --check
-      - run: npx prettier --check web tests/browser.spec.ts tests/private.spec.ts tests/comparison-domain.mjs '*.ts' scripts/ts_index.mjs scripts/test_comparison.mjs index.html
+      - run: npx prettier --check web tests/browser.spec.ts tests/private.spec.ts tests/comparison-domain.mjs '*.ts' scripts/ts_index.mjs scripts/test_comparison.mjs scripts/native_ui_smoke.mjs index.html
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:browser
       - run: npm run test:private
