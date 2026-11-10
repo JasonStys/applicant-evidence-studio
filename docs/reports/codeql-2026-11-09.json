@@ -1,0 +1,62 @@
+{
+  "author": "Jason Stys",
+  "repository": "JasonStys/applicant-evidence-studio",
+  "scope": "First genuine observed PR merge-ref security-extended scan; a source-bound historical observation, not a security certification",
+  "pullRequest": "https://github.com/JasonStys/applicant-evidence-studio/pull/3",
+  "headCommit": "d625b43affef49dfd14abf235aad039bc214d893",
+  "analyzedMergeCommit": "f80fb92befc458371215635dc30309880e84b70c",
+  "ref": "refs/pull/3/merge",
+  "codeqlVersion": "2.27.4",
+  "actionCommit": "33d7b85da1a04171e211befe2c739303b9a4c066",
+  "querySuite": "security-extended",
+  "analyses": [
+    {
+      "language": "python",
+      "category": "/language:python",
+      "analysisId": 2132758031,
+      "analyzedCommit": "f80fb92befc458371215635dc30309880e84b70c",
+      "extractedRepositoryPaths": 35,
+      "rules": 50,
+      "results": 0,
+      "error": "",
+      "warning": "",
+      "jobUrl": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42763979325/job/129656014978",
+      "sarifProcessing": "complete"
+    },
+    {
+      "language": "javascript-typescript",
+      "category": "/language:javascript-typescript",
+      "analysisId": 2132758186,
+      "analyzedCommit": "f80fb92befc458371215635dc30309880e84b70c",
+      "extractedRepositoryPaths": 32,
+      "rules": 103,
+      "results": 0,
+      "error": "",
+      "warning": "",
+      "jobUrl": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42763979325/job/129656015214",
+      "sarifProcessing": "complete"
+    },
+    {
+      "language": "actions",
+      "category": "/language:actions",
+      "analysisId": 2132757677,
+      "analyzedCommit": "f80fb92befc458371215635dc30309880e84b70c",
+      "extractedRepositoryPaths": 4,
+      "rules": 23,
+      "results": 0,
+      "error": "",
+      "warning": "",
+      "jobUrl": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42763979325/job/129656015279",
+      "sarifProcessing": "complete"
+    }
+  ],
+  "openAlertsOnQueriedRef": 0,
+  "sourceOrQueryExclusionsAdded": false,
+  "suppressionsOrDismissalsAdded": false,
+  "sarifResultsFabricated": false,
+  "limitations": [
+    "Language-specific extracted paths are not line/branch coverage or universal support for dynamic source.",
+    "Zero results/open alerts at this exact ref does not prove absence of vulnerabilities.",
+    "Existing runtime/browser/native/ML/isolation gates remain separate requirements."
+  ]
+}
