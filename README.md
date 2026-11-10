@@ -211,5 +211,12 @@ from pending/missing evidence. Static scanning supplements the existing runtime,
 dependency, privacy and isolation checks; it does not certify every input or platform.
 The [subsequent full-main finding review](docs/reports/codeql-findings-2026-11-10.md)
 records the actual three findings, a corrected development-tool read race and
-tested GitHub-request/dedicated-worker trust boundaries. Context-specific false
-positives require review; a passing CodeQL job alone is not zero-alert clearance.
+tested GitHub-request/dedicated-worker trust boundaries. The genuine read race auto-fixed on full main; two context-specific false positives
+received individual review. Zero open alerts is distinct from the two retained raw
+SARIF results. A passing CodeQL job alone is not security clearance.
+
+## Documentation editions
+
+Start with the [organized handbook](docs/handbook.md) for current usage, design, security and test guidance. Reviewed downloadable editions: [project-guide.docx](docs/reports/project-guide.docx) · [validation-review.docx](docs/reports/validation-review.docx) · [validation-evidence.xlsx](docs/reports/validation-evidence.xlsx).
+
+[Publication identities and source scope](docs/reports/publications.json) · [Documentation validation record](docs/reports/documentation-refresh-2026-11-09.md). Historical results retain their own tested revision and date.

@@ -8,7 +8,9 @@ CodeQL builds a source database and executes GitHub's `security-extended` querie
 **Python**, **JavaScript/TypeScript** and **GitHub Actions workflows**. These are the supported
 languages present in this repository. `security-extended` includes the default security
 queries and additional lower-precision checks; every result requires context and review.
-There are no repository-defined path exclusions, query exclusions or dismissed alerts.
+There are no repository-defined path exclusions, query exclusions or blanket suppressions.
+Two individual full-main findings were reviewed as false positives after the actual
+file-read race auto-fixed; their raw SARIF results and rationales remain recorded.
 
 The original baseline on 2026-11-09 had default setup `not-configured`, and the code-scanning
 API reported `no analysis found`. That is missing scan evidence, not a zero-vulnerability

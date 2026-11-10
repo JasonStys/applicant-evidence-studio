@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "project": "applicant-evidence-studio",
+  "author": "Jason Stys",
+  "editionDate": "2026-11-09",
+  "sourceBaseline": "2742474af85014e849fe38796be1cdb8215e140e",
+  "sourceUrl": "https://github.com/JasonStys/applicant-evidence-studio/tree/2742474af85014e849fe38796be1cdb8215e140e",
+  "functionalEvidenceBaseline": "2742474af85014e849fe38796be1cdb8215e140e",
+  "evidenceObservedAt": "2026-11-10T07:44:17.263414+00:00",
+  "workflowEvidence": [
+    {
+      "name": "Validate",
+      "databaseId": 42776533593,
+      "url": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42776533593",
+      "headSha": "2742474af85014e849fe38796be1cdb8215e140e",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Published portable acceptance",
+      "databaseId": 42776533592,
+      "url": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42776533592",
+      "headSha": "2742474af85014e849fe38796be1cdb8215e140e",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "CodeQL",
+      "databaseId": 42776533596,
+      "url": "https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42776533596",
+      "headSha": "2742474af85014e849fe38796be1cdb8215e140e",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "summary": "Compare authorized evidence against one rubric with exact citations, unknowns and private exports. Actual published 0.3.0 archives now undergo encrypted UI, record-hash, assessment-parity, locking and access-isolation acceptance on three operating systems.",
+  "rationale": "Checks the downloadable application's real privacy and review workflow, rather than inferring its behavior from source tests or bundled text.",
+  "limitations": [
+    "Evidence coverage is advisory, not applicant suitability, a hiring decision, fairness certification or legal-compliance assurance; original applications require human review.",
+    "Comparison captures are unencrypted identifying files. Observations are transient and prior downloads cannot be revoked.",
+    "The accepted public application remains 0.3.0 at its original release source; newer source adds acceptance and release guards without replacing those bytes.",
+    "Unsigned portable applications trust the local OS and retained recovery material; extraction/UI tests do not certify signed installation, a clean-machine lifecycle or public hosting."
+  ],
+  "documents": [
+    {
+      "filename": "project-guide.docx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "bytes": 154843,
+      "sha256": "c50699ff90bb425b89b53f8647ead97dff779d6d5f03935cc623de2f4d04cb5f",
+      "sourceBaseline": "2742474af85014e849fe38796be1cdb8215e140e",
+      "visualReview": {
+        "approved": true,
+        "method": "Every rendered page individually viewed at readable original resolution",
+        "pageCount": 7,
+        "renderedPageSha256": {
+          "page-1.png": "7221ba2835c6fec9ff7cc217b88305d4fcedc6d58125054ca05c58a9fc25eb06",
+          "page-2.png": "7ee0005c10755c285bd557895035a233cb925825bac6758b2739c1758f9df568",
+          "page-3.png": "d6760dd9759c72730eaadf0324d09deaed932002a37c88fc98a66cb8585ac876",
+          "page-4.png": "dd4e17f41e275c383247c3d8faa37b56e7b90298a8f00934cb5e394b261642fb",
+          "page-5.png": "a8d3422f50d507c01cc7fd5e0904ed036d24e5be5a65a1fb0e5b818af5ca301d",
+          "page-6.png": "428742aeb0cdeadc93cfa90e2c8fffaebe5a5c1f537efe2d5e3c1389ab931357",
+          "page-7.png": "b8dfaf53700e58f8c9798b14341268963aae7d4de0790ebcb711928080934c4d"
+        }
+      }
+    },
+    {
+      "filename": "validation-review.docx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "bytes": 46802,
+      "sha256": "6059864d06a4c95eec4f3394637317a385c0e361225dae8f6413d09c7484eb5e",
+      "sourceBaseline": "2742474af85014e849fe38796be1cdb8215e140e",
+      "visualReview": {
+        "approved": true,
+        "method": "Every rendered page individually viewed at readable original resolution",
+        "pageCount": 6,
+        "renderedPageSha256": {
+          "page-1.png": "305f394eaaac7eb28c34ffa2584de15ecf855b3d571ec62ada96ba75a66f60f8",
+          "page-2.png": "ca7ac5a5e222de0f583516f1c22e545d3f09a486ea30850bc3d60df08ebae331",
+          "page-3.png": "55c07eec21c144a60537d39ed87319c17c07ef1eed094c94e9ad94efe9281e8b",
+          "page-4.png": "58b47d7dcd7b366116791202db8dba041e936aec6184a15ec233abca6f2ed53f",
+          "page-5.png": "11cc3fee031417ba996400a9703152e8fe16838facec4e8b5ade6104a9f3f34d",
+          "page-6.png": "13f444e7c8edb5bd25a7ce6b0332a2f73b3015b60a6f1fd42815c896c5dbf23f"
+        }
+      }
+    },
+    {
+      "filename": "validation-evidence.xlsx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "bytes": 7523,
+      "sha256": "3329055813782726342abc966c077dbae42071a83f31c7a4197959a6436d9693",
+      "sourceBaseline": "2742474af85014e849fe38796be1cdb8215e140e",
+      "visualReview": {
+        "approved": true,
+        "tabsReviewed": [
+          "Test sources",
+          "Workflow evidence"
+        ],
+        "previewSha256": {
+          "Workflow evidence": "120a44dba061a1bdbf437a5675f8bf51fc55860cfcad2e8f20747e63c75be6d7",
+          "Test sources": "933509d1bb421356b2bc8f1521b44abb2306b5d0e2887e52b768b8ff78988de8"
+        },
+        "tables": [
+          {
+            "path": "xl/tables/table1.xml",
+            "name": "WorkflowEvidence",
+            "range": "A7:D10",
+            "columns": 4,
+            "autoFilter": true,
+            "filterButtonsEnabled": true
+          },
+          {
+            "path": "xl/tables/table2.xml",
+            "name": "TestSources",
+            "range": "A7:C22",
+            "columns": 3,
+            "autoFilter": true,
+            "filterButtonsEnabled": true
+          }
+        ],
+        "formulaCount": 4,
+        "failureSensitivityReceiptPassed": true,
+        "formulaErrors": []
+      }
+    }
+  ],
+  "scope": "Reviewed documentation editions of the cited source. Checksums identify bytes, not authorship. Historical measurements retain their own dates; integration CI must be checked separately."
+}
