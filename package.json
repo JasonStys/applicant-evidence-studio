@@ -1,6 +1,6 @@
 {
   "name": "applicant-evidence-studio",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -10,6 +10,7 @@
     "dev": "vite --host 127.0.0.1",
     "test:browser": "playwright test",
     "test:private": "playwright test --config=playwright.private.config.ts",
+    "test:comparison": "node scripts/test_comparison.mjs",
     "index": "python scripts/code_index.py && node scripts/ts_index.mjs",
     "index:check": "python scripts/code_index.py --check && node scripts/ts_index.mjs --check"
   },
@@ -22,13 +23,16 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
-    "@playwright/test": "1.63.0",
+    "@playwright/test": "1.64.1",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "6.1.1",
     "prettier": "3.9.9",
     "typescript": "5.9.3",
-    "vite": "8.3.1"
+    "vite": "8.3.7"
+  },
+  "overrides": {
+    "fast-uri@>=3 <4": "3.1.9"
   }
 }

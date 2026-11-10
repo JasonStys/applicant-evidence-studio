@@ -4,7 +4,7 @@
 
 A private-account, source-linked applicant review and career-coaching application, created by **Jason Stys**. Reviewers can prioritize an authorized applicant pool using a transparent professional-skills rubric, inspect original evidence, and make their own decisions. Applicants can identify evidence gaps and download a factual, role-tailored resume draft.
 
-Version **0.2** adds real registration/login, encrypted private workspaces, local browser document processing, encrypted backup/restore, account recovery/deletion, help and portable desktop downloads. The host stores **ciphertext**, not readable resumes. Account aliases and operational metadata remain visible to the host. Encryption cannot protect against a malicious future host or compromised device; see [the privacy model](docs/private-accounts.md).
+Version **0.3.0** adds captured two-record criterion/evidence comparison, clarification prompts and private report export. Version0.2 introduced real registration/login, encrypted private workspaces, local browser document processing, encrypted backup/restore, account recovery/deletion, help and portable desktop downloads. The host stores **ciphertext**, not readable resumes. Account aliases and operational metadata remain visible to the host. Encryption cannot protect against a malicious future host or compromised device; see [the privacy model](docs/private-accounts.md).
 
 Use [official downloads](https://github.com/JasonStys/applicant-evidence-studio/releases) and [installation/help](docs/install.md). Contact [Jason on LinkedIn](https://www.linkedin.com/in/jason-stys-31b30b351/) or visit [his GitHub profile](https://github.com/JasonStys). Never send private documents or credentials in an issue. Public account hosting requires a separate approved HTTPS provider/domain; no public backend URL is provisioned by committing this repo.
 
@@ -63,8 +63,8 @@ Requires Python 3.12+ and Node.js 24. No Docker or external AI service is needed
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --upgrade pip==26.2
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m pip install --no-deps -r requirements.lock
+.\.venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
 npm ci
 npm run build
 .\.venv\Scripts\python.exe -m app.cli seed --data runtime/demo
@@ -76,6 +76,8 @@ On Linux/macOS use `.venv/bin/python` instead. Open the session link printed by 
 `seed` is explicit and refuses duplicate IDs; it never silently replaces an existing database. For a clean private workspace, use a different `--data` directory, create a job in **Job criteria**, then import authorized records. The responsive UI is usable in a browser; it is not a signed native installer or a public mobile/cloud deployment.
 
 ## Typical review
+
+For a closer review, tick **Compare ID** beside exactly two queue records, then **Capture selected evidence**. The new [criterion comparison](docs/evidence-comparison.md) uses one captured rubric and record revisions, shows strongest reviewed citations, excluded unreviewed/duplicate claims, unknown evidence and factual clarification prompts. It preserves selection order and never chooses a winner. Human observations can accompany a private JSON export; they do not change scores, records or hiring outcomes. Private accounts build this report entirely in the browser, with no plaintext request or workspace write.
 
 1. Read the job description and approve a relevant skill rubric. Avoid unnecessary requirements and unjustified weights.
 2. Import authorized resumes or a normalized JSON batch. Inspect parser warnings and original documents.
@@ -137,8 +139,12 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 | `Dockerfile`, `.dockerignore` | Non-root deployment build excluding runtime credentials/data. TLS/persistence/ingress remain host responsibilities. |
 | `.github/workflows/desktop-release.yml` | Exact-commit CI gate, per-OS builds/smoke checks and publication only after all succeed. |
 | `docs/private-accounts.md`, `hosting.md`, `install.md`, `releases/v0.2.0.md` | Privacy/threat model, deployment gates, user installation/help and honest release limitations. |
+| `docs/evidence-comparison.md`, `releases/v0.3.0.md` | Capture/citation/unknown/privacy semantics and fresh version0.3 release notes; published0.2 assets stay unchanged. |
 | `app/models.py` | Closed professional-skill taxonomy, schema validation, source references, explicit education status, jobs, consent and bounded imports. |
 | `app/review.py` | `assess` weighted coverage/uncertainty, `rank` shared ties, `recommend` draft criteria, `coach` gap plans, `resume_html` factual escaped downloads. |
+| `web/comparison.ts`, `EvidenceComparison.tsx` | Browser-local immutable two-record report, source/unknown matrix, clarification prompts, stale-context protection and explicit private export. |
+| `tests/test_comparison.py`, `tests/comparison-domain.mjs`, `scripts/test_comparison.mjs` | Real SQL snapshot/auth/concurrent-writer checks and independent compiled-domain arithmetic/privacy oracles. |
+| `requirements.lock` | Exact runtime/development versions for validation; version pins without wheel hashes. |
 | `app/ingest.py` | `extract_bytes` format-specific reading, `extract_isolated` timed worker, `proposed_claims` conservative unreviewed skill mentions. |
 | `app/extract.py` | Trusted parser subprocess JSON entrypoint and Linux CPU/memory caps. Never runs uploaded code. |
 | `app/providers.py` | `payload` strict privacy boundary, `validate_plan` citation/action checks, `ai_review` consented provider request, `github_source` fixed-destination README import. |

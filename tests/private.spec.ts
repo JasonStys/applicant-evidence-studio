@@ -1,5 +1,5 @@
 // Purpose: Jason Stys — end-to-end real accounts, encrypted sync, local parsing, exports and isolation.
-// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, browser@12, page@12, signedState@17, vectors@18, vector@19, reportContext@22, reportPage@23, panel@36, event@40, report@42, field@43, info@53, page@53, request@53, page@69, signUp@69, alias@70, registered@76, response@77, page@88, unlock@88, value@88, loadExamples@95, page@95, page@107, browser@108, requests@110, request@111, alias@114, body@118, parsed@119, context@133, other@134, result@138, otherVault@140, firstVault@141, signedIn@149, response@150, page@159, destinations@161, r@162, marker@167, saves@179, r@180, d@186, download@189, file@191, text@192, page@198, docx@202, page@230, browser@231, downloaded@237, backup@239, manifest@250, state@254, context@255, second@256, observed@259, changed@260, page@273, info@274
+// Index: Page@3, expect@3, test@3, AxeBuilder@4, strToU8@5, zipSync@5, readFileSync@6, randomUUID@7, password@8, phrase@9, aliases@10, page@14, editor@23, edited@24, before@30, requests@31, request@32, panel@43, pending@47, report@49, vectors@50, record@51, expected@52, vector@53, row@60, row@67, browser@86, page@86, signedState@91, vectors@92, vector@93, reportContext@96, reportPage@97, panel@108, event@112, report@114, field@115, info@125, page@125, request@125, page@141, signUp@141, alias@142, registered@148, response@149, page@160, unlock@160, value@160, loadExamples@167, page@167, page@179, browser@180, requests@182, request@183, alias@186, body@190, parsed@191, context@205, other@206, result@210, otherVault@212, firstVault@213, signedIn@221, response@222, page@231, destinations@233, r@234, marker@239, saves@251, r@252, d@258, download@261, file@263, text@264, page@270, docx@274, page@302, browser@303, downloaded@309, backup@311, manifest@322, state@326, context@327, second@328, observed@331, changed@332, page@345, info@346
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { zipSync, strToU8 } from 'fflate';
@@ -8,6 +8,80 @@ import { randomUUID } from 'node:crypto';
 const password = 'synthetic-only-login-password-2026';
 const phrase = 'six random synthetic words keep documents private';
 const aliases = new Set<string>();
+
+/** Actual owner-only comparison/export stays browser-local and matches independent Python assessments. */
+test('private comparison exports citations and unknowns without plaintext requests or writes', async ({
+  page,
+}) => {
+  await signUp(page);
+  await unlock(page);
+  await loadExamples(page);
+  await expect(page.locator('.sidebar small')).toContainText('v0.3.0');
+  expect((await (await page.request.get('/health')).json()).version).toBe('0.3.0');
+  await page.getByRole('button', { name: 'Review A101', exact: true }).click();
+  await page.getByText('Edit normalized record / consent', { exact: true }).click();
+  const editor = page.getByLabel('Normalized applicant JSON');
+  const edited = JSON.parse(await editor.inputValue());
+  edited.evidence[0].summary = '<img src="https://unexpected.example/pixel"> synthetic evidence';
+  edited.sources[0].label = 'Source <script>not executable</script>';
+  await editor.fill(JSON.stringify(edited));
+  await page.getByRole('button', { name: 'Validate & save record', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText('Record saved');
+  const before = await (await page.request.get('/vault/workspace')).json();
+  const requests: string[] = [];
+  page.on('request', (request) => {
+    if (
+      request.url().includes('/api/') ||
+      request.method() === 'PUT' ||
+      new URL(request.url()).origin !== new URL(page.url()).origin
+    )
+      requests.push(request.url());
+  });
+  await page.getByLabel('Compare A101', { exact: true }).check();
+  await page.getByLabel('Compare A102', { exact: true }).check();
+  await page.getByRole('button', { name: 'Capture selected evidence' }).click();
+  const panel = page.getByRole('region', { name: 'Criterion evidence comparison', exact: true });
+  await expect(panel.getByRole('button', { name: 'Download private comparison JSON' })).toBeVisible();
+  await expect(panel).toContainText('<img src="https://unexpected.example/pixel"> synthetic evidence');
+  await expect(panel.locator('img, script, iframe')).toHaveCount(0);
+  const pending = page.waitForEvent('download');
+  await panel.getByRole('button', { name: 'Download private comparison JSON' }).click();
+  const report = JSON.parse(readFileSync((await (await pending).path())!, 'utf8'));
+  const vectors = JSON.parse(readFileSync('tests/fixtures/parity.json', 'utf8'));
+  for (const record of report.records) {
+    const expected = vectors.find(
+      (vector: { job: { id: string }; applicant: { id: string } }) =>
+        vector.job.id === 'software' && vector.applicant.id === record.id,
+    ).assessment;
+    expect(record.score).toBe(expected.score);
+    expect(report.rubric.hash).toBe(expected.rubric_hash);
+    expect(
+      record.criteria.map(
+        (row: { skill: string; attainment: number; best_support: { evidence_id: string } | null }) => ({
+          skill: row.skill,
+          attainment: row.attainment,
+          evidence_id: row.best_support?.evidence_id ?? null,
+        }),
+      ),
+    ).toEqual(
+      expected.criteria.map((row: { skill: string; attainment: number; evidence_id: string | null }) => ({
+        skill: row.skill,
+        attainment: row.attainment,
+        evidence_id: row.evidence_id,
+      })),
+    );
+    expect(record.record_sha256).toMatch(/^[0-9a-f]{64}$/);
+    expect(record).not.toHaveProperty('rank');
+    expect(record).not.toHaveProperty('display_name');
+    expect(record).not.toHaveProperty('sources');
+  }
+  expect((await new AxeBuilder({ page }).include('.comparison-card').analyze()).violations).toEqual([]);
+  expect(requests).toEqual([]);
+  expect((await (await page.request.get('/vault/workspace')).json()).revision).toBe(before.revision);
+  await page.getByRole('button', { name: 'Lock workspace' }).click();
+  await expect(page.getByRole('button', { name: 'Download private comparison JSON' })).toHaveCount(0);
+  await expect(page.getByLabel('Compare A101', { exact: true })).toHaveCount(0);
+});
 
 test('browser reports match all 18 Python reference assessments', async ({ page, browser }) => {
   test.setTimeout(120000); // Eighteen complete unlock/review/export workflows, not one interaction.
@@ -27,9 +101,7 @@ test('browser reports match all 18 Python reference assessments', async ({ page,
       // and account requests completed (200 in the retained synthetic trace).
       // Assert application readiness instead of waiting on that browser event.
       await reportPage.goto(page.url(), { waitUntil: 'commit', timeout: 10000 });
-      await expect(
-        reportPage.getByRole('heading', { name: 'Unlock your private workspace' }),
-      ).toBeVisible();
+      await expect(reportPage.getByRole('heading', { name: 'Unlock your private workspace' })).toBeVisible();
       await unlock(reportPage);
       await reportPage.getByLabel('Selected role').selectOption(vector.job.id);
       await reportPage.getByRole('button', { name: 'Review ' + vector.applicant.id, exact: true }).click();

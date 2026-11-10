@@ -1,2 +1,4 @@
 """Applicant Evidence Studio: local-first advisory review, never automatic hiring."""
-# Index: (no lexical bindings)
+
+# Index: VERSION@4
+VERSION = "0.3.0"

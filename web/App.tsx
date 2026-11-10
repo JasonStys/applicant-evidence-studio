@@ -1,9 +1,11 @@
 // Purpose: reviewer queue, source-linked records, rubric editor, private intake and applicant coaching.
-// Variables hold explicit user state; rankings remain server-calculated and no hiring actions are offered.
-// Index: useEffect@4, useState@4, api@5, authorize@5, download@5, encode@5, EducationEditor@6, isPrivateWorkspace@7, AIResult@9, Applicant@10, Assessment@11, Coaching@12, Config@13, Criterion@14, Evidence@15, Job@16, Level@17, Queue@18, Source@19, levels@22, explanations@23, emptyApplicant@29, viewNames@41, View@48, LevelSelect@51, value@52, onChange@53, label@54, value@57, event@63, level@64, App@75, config@76, setConfig@76, jobs@77, setJobs@77, jobId@78, setJobId@78, setView@79, view@79, queue@80, setQueue@80, search@81, setSearch@81, setSkill@82, skill@82, setStatus@83, status@83, offset@84, setOffset@84, record@85, setRecord@85, revision@86, setRevision@86, selected@87, setSelected@87, error@88, setError@88, message@89, setMessage@89, busy@90, setBusy@90, access@91, setAccess@91, editJob@92, setEditJob@92, coaching@93, setCoaching@93, general@94, setGeneral@94, ai@95, setAI@95, draft@96, setDraft@96, raw@97, setRaw@97, replace@98, setReplace@98, recordJSON@99, setRecordJSON@99, setSourceText@100, sourceText@100, setSourceKind@101, sourceKind@101, repoURL@102, setRepoURL@102, newSkill@103, setNewSkill@103, newSummary@104, setNewSummary@104, newSource@105, setNewSource@105, newKind@106, setNewKind@106, current@107, job@107, item@108, selectedAssessment@108, run@111, task@111, problem@117, initialize@124, settings@125, roles@126, job@129, loadQueue@132, identifier@141, select@141, data@142, active@157, value@162, problem@165, active@177, value@180, problem@183, saveRecord@193, value@193, file@200, intake@200, result@202, attachSource@228, source@228, event@240, index@254, key@254, label@254, event@297, job@303, event@337, event@387, event@398, key@404, label@404, event@415, item@438, flag@524, criterion@535, education@560, index@560, evidence@600, index@600, value@613, item@616, position@616, event@627, item@630, position@630, source@643, warning@648, event@662, key@663, label@663, event@672, source@673, event@684, kind@687, event@701, event@737, event@749, event@761, event@785, result@794, education@815, event@824, event@849, event@885, file@886, event@898, event@906, event@913, warning@917, event@955, event@966, file@967, event@980, value@988, result@989, event@1036, event@1043, event@1052, result@1060, criterion@1073, index@1073, event@1079, item@1082, position@1082, key@1088, label@1088, event@1102, item@1105, position@1105, target@1115, item@1118, position@1118, event@1128, item@1131, position@1131, _@1145, position@1145, next@1158, criterion@1159, key@1159, level@1190, event@1217, advice@1245, advice@1251, project@1259, step@1263, event@1289, index@1318, suggestion@1318
+// Variables hold explicit user state; advisory scores use reviewed professional evidence, with no hiring actions.
+// Index: useEffect@4, useState@4, api@5, authorize@5, download@5, encode@5, EducationEditor@6, EvidenceComparison@7, version@8, isPrivateWorkspace@9, AIResult@11, Applicant@12, Assessment@13, Coaching@14, Config@15, Criterion@16, Evidence@17, Job@18, Level@19, Queue@20, Source@21, levels@24, explanations@25, emptyApplicant@31, viewNames@43, View@50, LevelSelect@53, value@54, onChange@55, label@56, value@59, event@65, level@66, App@77, config@78, setConfig@78, jobs@79, setJobs@79, jobId@80, setJobId@80, setView@81, view@81, queue@82, setQueue@82, search@83, setSearch@83, setSkill@84, skill@84, setStatus@85, status@85, offset@86, setOffset@86, record@87, setRecord@87, revision@88, setRevision@88, selected@89, setSelected@89, error@90, setError@90, message@91, setMessage@91, busy@92, setBusy@92, access@93, setAccess@93, editJob@94, setEditJob@94, coaching@95, setCoaching@95, general@96, setGeneral@96, ai@97, setAI@97, draft@98, setDraft@98, raw@99, setRaw@99, replace@100, setReplace@100, recordJSON@101, setRecordJSON@101, setSourceText@102, sourceText@102, setSourceKind@103, sourceKind@103, repoURL@104, setRepoURL@104, newSkill@105, setNewSkill@105, newSummary@106, setNewSummary@106, newSource@107, setNewSource@107, newKind@108, setNewKind@108, current@109, job@109, comparisonIds@110, setComparisonIds@110, item@111, selectedAssessment@111, run@114, task@114, problem@120, initialize@127, settings@128, roles@129, job@132, loadQueue@135, identifier@144, select@144, data@145, active@160, value@165, problem@168, active@180, value@183, problem@186, saveRecord@196, value@196, file@203, intake@203, result@205, attachSource@231, source@231, event@243, index@257, key@257, label@257, event@300, job@306, event@340, event@390, event@401, key@407, label@407, event@418, item@441, event@476, ids@477, id@480, flag@545, criterion@556, education@581, index@581, evidence@621, index@621, value@634, item@637, position@637, event@648, item@651, position@651, source@664, warning@669, event@683, key@684, label@684, event@693, source@694, event@705, kind@708, event@722, event@758, event@770, event@782, event@806, result@815, education@836, event@845, event@870, id@902, event@919, file@920, event@932, event@940, event@947, warning@951, event@989, event@1000, file@1001, event@1014, value@1022, result@1023, event@1070, event@1077, event@1086, result@1094, criterion@1107, index@1107, event@1113, item@1116, position@1116, key@1122, label@1122, event@1136, item@1139, position@1139, target@1149, item@1152, position@1152, event@1162, item@1165, position@1165, _@1179, position@1179, next@1192, criterion@1193, key@1193, level@1224, event@1251, advice@1279, advice@1285, project@1293, step@1297, event@1323, index@1352, suggestion@1352
 import { useEffect, useState } from 'react';
 import { api, authorize, download, encode } from './api';
 import EducationEditor from './EducationEditor';
+import EvidenceComparison from './EvidenceComparison';
+import { version } from '../package.json';
 import { isPrivateWorkspace } from './private-domain';
 import type {
   AIResult,
@@ -105,6 +107,7 @@ export default function App() {
     [newSource, setNewSource] = useState(''),
     [newKind, setNewKind] = useState<Evidence['kind']>('project');
   const current = jobs.find((job) => job.id === jobId);
+  const [comparisonIds, setComparisonIds] = useState<string[]>([]);
   const selectedAssessment = queue?.items.find((item) => item.applicant_id === selected);
 
   /** Wrap explicit user actions; do not call external providers in background effects. */
@@ -274,7 +277,7 @@ export default function App() {
           </p>
         </div>
         <small>
-          v0.2 · Created by{' '}
+          v{version} · Created by{' '}
           <a href="https://github.com/JasonStys" rel="noreferrer">
             Jason Stys
           </a>
@@ -462,6 +465,24 @@ export default function App() {
                             >
                               Review →
                             </button>
+                            <label className="comparison-choice">
+                              <input
+                                type="checkbox"
+                                checked={comparisonIds.includes(item.applicant_id)}
+                                disabled={
+                                  busy ||
+                                  (!comparisonIds.includes(item.applicant_id) && comparisonIds.length >= 2)
+                                }
+                                onChange={(event) =>
+                                  setComparisonIds((ids) =>
+                                    event.target.checked
+                                      ? [...ids, item.applicant_id]
+                                      : ids.filter((id) => id !== item.applicant_id),
+                                  )
+                                }
+                              />
+                              Compare {item.applicant_id}
+                            </label>
                           </td>
                         </tr>
                       ))}
@@ -867,6 +888,19 @@ export default function App() {
                 </details>
               </section>
             )}
+          </>
+        )}
+        {config && view === 'queue' && comparisonIds.length > 0 && (
+          <>
+            <button className="secondary" onClick={() => setComparisonIds([])}>
+              Clear comparison selection
+            </button>
+            <EvidenceComparison
+              ids={comparisonIds}
+              job={current}
+              busy={busy}
+              onOpen={(id) => void run(() => select(id))}
+            />
           </>
         )}
         {config && view === 'intake' && (
