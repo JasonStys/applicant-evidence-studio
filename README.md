@@ -198,7 +198,7 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 | `scripts/native_ui_smoke.mjs`, `scripts/smoke_desktop.py` | Real frozen encrypted-UI and HTTP/account journeys; current versions require normal owned exit and listener shutdown. |
 | `scripts/portable_acceptance.py` | Immutable0.3.0 published-byte regression and current five-member archive extraction/source/embedded-identity acceptance. |
 | `scripts/desktop_release_guard.py` | Exact-main source/security gates, immutable draft upload verification and complete draft check; no publish operation. |
-| `tests/test_native_*.py`, `tests/native_notice_cases.py` | Real owner-window/HTTP-drain/profile/identity tests and thirteen mandatory isolated notice cases. |
+| `tests/test_native_*.py`, `tests/native_owner_cases.py`, `tests/native_notice_cases.py` | Real owner-window/HTTP-drain/profile/identity tests and thirteen mandatory isolated notice cases. |
 | `tests/test_desktop_release_guard.py`, `tests/test_portable_acceptance.py` | Failed/foreign/stale security and native reports, changed provider hashes and unsafe/incomplete ZIP/tar archive regression controls. |
 | `requirements-native.in`, `requirements-native.lock` | Exact hash-locked PyInstaller build graph; no build tooling required by app users. |
 | `scripts/export_examples.py` | Export only built-in synthetic batches, jobs, schemas and advisory report. |
@@ -255,3 +255,11 @@ Added documentation:
 - [docs/reports/windows-application-guide-0.3.1.docx](docs/reports/windows-application-guide-0.3.1.docx): installed application use, screenshots, source and measured validation.
 - [docs/reports/windows-application-guide-0.3.1.json](docs/reports/windows-application-guide-0.3.1.json): exact Word, screenshot, immutable code and reviewed-page hashes.
 - [docs/reports/installed-windows-0.3.1-2026-11-11.md](docs/reports/installed-windows-0.3.1-2026-11-11.md): observed installed workflows, distribution identity, data preservation and practical limits.
+
+### Actual owner-window source fixtures
+
+The five real owner-window cases run in separate fresh interpreters with exact-case
+JUnit/exit checks and genuine child app coverage merged into the unchanged 85%
+coverage gate. This isolates Tcl interpreter lifetimes while preserving every
+original GUI assertion; no runtime or published application was changed. See the
+[fixture repair evidence](docs/reports/native-owner-fixtures-2026-11-11.md).

@@ -1525,6 +1525,47 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `main.file` | 241 |
 | `main.stream` | 242 |
 
+## scripts/owner_contract.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `annotations` | 5 |
+| `hashlib` | 7 |
+| `json` | 8 |
+| `os` | 9 |
+| `subprocess` | 10 |
+| `sys` | 11 |
+| `Path` | 12 |
+| `ET` | 14 |
+| `ROOT` | 16 |
+| `CASES` | 17 |
+| `EXPECTED` | 18 |
+| `verified_case` | 27 |
+| `verified_case.exit_code` | 27 |
+| `verified_case.expected` | 27 |
+| `verified_case.raw` | 27 |
+| `verified_case.document` | 31 |
+| `verified_case.records` | 32 |
+| `verified_case.row` | 40 |
+| `verified_case.name` | 41 |
+| `run_case` | 48 |
+| `run_case.case` | 48 |
+| `run_case.coverage_branch` | 48 |
+| `run_case.output` | 48 |
+| `run_case.result_path` | 53 |
+| `run_case.arguments` | 54 |
+| `run_case.arguments` | 56 |
+| `run_case.arguments` | 58 |
+| `run_case.arguments` | 59 |
+| `run_case.arguments` | 60 |
+| `run_case.environment` | 73 |
+| `run_case.name` | 73 |
+| `run_case.value` | 73 |
+| `run_case.result` | 74 |
+| `run_case.stream` | 81 |
+| `run_case.raw` | 82 |
+| `run_case.receipt` | 83 |
+
 ## scripts/portable_acceptance.py
 
 | Declaration / variable | Line |
@@ -1799,6 +1840,77 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `test_mac_pre905_changed_notice_is_rejected.tmp_path` | 134 |
 | `test_mac_pre905_changed_notice_is_rejected.path` | 138 |
 | `test_mac_pre905_changed_notice_is_rejected.library` | 140 |
+
+## tests/native_owner_cases.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `annotations` | 10 |
+| `asyncio` | 12 |
+| `io` | 13 |
+| `threading` | 14 |
+| `time` | 15 |
+| `tk` | 16 |
+| `contextmanager` | 17 |
+| `Path` | 18 |
+| `httpx` | 20 |
+| `pytest` | 21 |
+| `FastAPI` | 22 |
+| `LocalService` | 24 |
+| `OwnerWindow` | 24 |
+| `DesktopOwnership` | 25 |
+| `native_owner` | 29 |
+| `native_owner.assets` | 29 |
+| `native_owner.data` | 29 |
+| `native_owner.factory` | 29 |
+| `native_owner.root` | 31 |
+| `native_owner.service` | 32 |
+| `native_owner.service` | 34 |
+| `native_owner.window` | 35 |
+| `pump` | 46 |
+| `pump.predicate` | 46 |
+| `pump.root` | 46 |
+| `pump.seconds` | 46 |
+| `pump.until` | 48 |
+| `test_real_owner_help_and_all_normal_close_controls` | 57 |
+| `test_real_owner_help_and_all_normal_close_controls.close_control` | 57 |
+| `test_real_owner_help_and_all_normal_close_controls.monkeypatch` | 57 |
+| `test_real_owner_help_and_all_normal_close_controls.tmp_path` | 57 |
+| `test_real_owner_help_and_all_normal_close_controls._args` | 59 |
+| `test_real_owner_help_and_all_normal_close_controls.root` | 59 |
+| `test_real_owner_help_and_all_normal_close_controls.service` | 59 |
+| `test_real_owner_help_and_all_normal_close_controls.window` | 59 |
+| `test_real_owner_help_and_all_normal_close_controls._url` | 65 |
+| `test_real_owner_help_and_all_normal_close_controls.first_help` | 70 |
+| `test_real_owner_help_and_all_normal_close_controls.texts` | 74 |
+| `test_real_owner_help_and_all_normal_close_controls.frame` | 76 |
+| `test_real_owner_help_and_all_normal_close_controls.child` | 77 |
+| `test_real_owner_help_and_all_normal_close_controls.nonce` | 89 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits` | 99 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.tmp_path` | 99 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits._` | 101 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.entered` | 101 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.release` | 101 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.returned` | 101 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.results` | 102 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.factory` | 104 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.factory._args` | 104 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.factory.app` | 105 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.factory.pending` | 108 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.owner` | 117 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.root` | 118 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.service` | 118 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.window` | 118 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.request` | 121 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.request.client` | 122 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.request.result` | 123 |
+| `test_actual_quit_retains_window_and_profile_until_request_commits.worker` | 127 |
+| `test_invalid_acceptance_nonce_does_not_close_real_window` | 154 |
+| `test_invalid_acceptance_nonce_does_not_close_real_window.tmp_path` | 154 |
+| `test_invalid_acceptance_nonce_does_not_close_real_window._args` | 156 |
+| `test_invalid_acceptance_nonce_does_not_close_real_window.root` | 156 |
+| `test_invalid_acceptance_nonce_does_not_close_real_window.service` | 156 |
+| `test_invalid_acceptance_nonce_does_not_close_real_window.window` | 156 |
 
 ## tests/test_accounts.py
 
@@ -2391,63 +2503,20 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 
 | Declaration / variable | Line |
 | --- | --- |
-| `annotations` | 10 |
-| `asyncio` | 12 |
-| `io` | 13 |
-| `threading` | 14 |
-| `time` | 15 |
-| `tk` | 16 |
-| `Path` | 17 |
-| `httpx` | 19 |
-| `pytest` | 20 |
-| `FastAPI` | 21 |
-| `LocalService` | 23 |
-| `OwnerWindow` | 23 |
-| `DesktopOwnership` | 24 |
-| `pump` | 27 |
-| `pump.predicate` | 27 |
-| `pump.root` | 27 |
-| `pump.seconds` | 27 |
-| `pump.until` | 29 |
-| `test_real_owner_help_and_all_normal_close_controls` | 38 |
-| `test_real_owner_help_and_all_normal_close_controls.close_control` | 38 |
-| `test_real_owner_help_and_all_normal_close_controls.monkeypatch` | 38 |
-| `test_real_owner_help_and_all_normal_close_controls.tmp_path` | 38 |
-| `test_real_owner_help_and_all_normal_close_controls._args` | 40 |
-| `test_real_owner_help_and_all_normal_close_controls.service` | 40 |
-| `test_real_owner_help_and_all_normal_close_controls.root` | 41 |
-| `test_real_owner_help_and_all_normal_close_controls.window` | 42 |
-| `test_real_owner_help_and_all_normal_close_controls._url` | 49 |
-| `test_real_owner_help_and_all_normal_close_controls.first_help` | 54 |
-| `test_real_owner_help_and_all_normal_close_controls.texts` | 58 |
-| `test_real_owner_help_and_all_normal_close_controls.frame` | 60 |
-| `test_real_owner_help_and_all_normal_close_controls.child` | 61 |
-| `test_real_owner_help_and_all_normal_close_controls.nonce` | 73 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits` | 89 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.tmp_path` | 89 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits._` | 91 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.entered` | 91 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.release` | 91 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.returned` | 91 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.results` | 92 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.factory` | 94 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.factory._args` | 94 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.factory.app` | 95 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.factory.pending` | 98 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.owner` | 107 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.service` | 108 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.root` | 109 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.window` | 110 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.request` | 113 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.request.client` | 114 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.request.result` | 115 |
-| `test_actual_quit_retains_window_and_profile_until_request_commits.worker` | 119 |
-| `test_invalid_acceptance_nonce_does_not_close_real_window` | 150 |
-| `test_invalid_acceptance_nonce_does_not_close_real_window.tmp_path` | 150 |
-| `test_invalid_acceptance_nonce_does_not_close_real_window._args` | 152 |
-| `test_invalid_acceptance_nonce_does_not_close_real_window.service` | 152 |
-| `test_invalid_acceptance_nonce_does_not_close_real_window.root` | 153 |
-| `test_invalid_acceptance_nonce_does_not_close_real_window.window` | 154 |
+| `Path` | 5 |
+| `coverage` | 7 |
+| `pytest` | 8 |
+| `EXPECTED` | 10 |
+| `run_case` | 10 |
+| `test_actual_native_owner_case_in_fresh_interpreter` | 14 |
+| `test_actual_native_owner_case_in_fresh_interpreter.case` | 14 |
+| `test_actual_native_owner_case_in_fresh_interpreter.tmp_path` | 14 |
+| `test_actual_native_owner_case_in_fresh_interpreter.active` | 16 |
+| `test_actual_native_owner_case_in_fresh_interpreter.output` | 17 |
+| `test_actual_native_owner_case_in_fresh_interpreter.receipt` | 18 |
+| `test_actual_native_owner_case_in_fresh_interpreter.child` | 21 |
+| `test_actual_native_owner_case_in_fresh_interpreter.data` | 23 |
+| `test_actual_native_owner_case_in_fresh_interpreter.name` | 25 |
 
 ## tests/test_native_profile.py
 
@@ -2550,6 +2619,39 @@ Generated from Python AST. Names are lexical bindings; attributes/dynamic values
 | `test_audit_contains_no_resume_content.store` | 66 |
 | `test_audit_contains_no_resume_content.connection` | 68 |
 | `test_audit_contains_no_resume_content.rows` | 69 |
+
+## tests/test_owner_contract_guard.py
+
+| Declaration / variable | Line |
+| --- | --- |
+| `runpy` | 5 |
+| `Path` | 6 |
+| `pytest` | 8 |
+| `CASES` | 10 |
+| `EXPECTED` | 10 |
+| `run_case` | 10 |
+| `verified_case` | 10 |
+| `report` | 13 |
+| `report.child` | 13 |
+| `report.name` | 13 |
+| `report.suite` | 13 |
+| `report.attributes` | 15 |
+| `report.key` | 15 |
+| `report.value` | 15 |
+| `test_exact_success_requires_one_real_named_case` | 22 |
+| `test_failure_skip_missing_wrong_extra_and_oversized_records_cannot_pass` | 56 |
+| `test_failure_skip_missing_wrong_extra_and_oversized_records_cannot_pass.exit_code` | 56 |
+| `test_failure_skip_missing_wrong_extra_and_oversized_records_cannot_pass.raw` | 56 |
+| `test_unknown_case_never_starts_an_interpreter_or_creates_output` | 61 |
+| `test_unknown_case_never_starts_an_interpreter_or_creates_output.tmp_path` | 61 |
+| `test_unknown_case_never_starts_an_interpreter_or_creates_output.output` | 62 |
+| `test_tcl_constructor_failure_precedes_any_socket_or_service_binding` | 68 |
+| `test_tcl_constructor_failure_precedes_any_socket_or_service_binding.monkeypatch` | 68 |
+| `test_tcl_constructor_failure_precedes_any_socket_or_service_binding.tmp_path` | 68 |
+| `test_tcl_constructor_failure_precedes_any_socket_or_service_binding.source` | 69 |
+| `test_tcl_constructor_failure_precedes_any_socket_or_service_binding.calls` | 70 |
+| `test_tcl_constructor_failure_precedes_any_socket_or_service_binding.unavailable` | 72 |
+| `test_tcl_constructor_failure_precedes_any_socket_or_service_binding._args` | 77 |
 
 ## tests/test_platform.py
 
