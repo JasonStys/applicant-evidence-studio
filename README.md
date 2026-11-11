@@ -245,3 +245,13 @@ SARIF results. A passing CodeQL job alone is not security clearance.
 Start with the [organized handbook](docs/handbook.md) for current usage, design, security and test guidance. Reviewed downloadable editions: [project-guide.docx](docs/reports/project-guide.docx) · [validation-review.docx](docs/reports/validation-review.docx) · [validation-evidence.xlsx](docs/reports/validation-evidence.xlsx).
 
 [Publication identities and source scope](docs/reports/publications.json) · [Documentation validation record](docs/reports/documentation-refresh-2026-11-09.md). Historical results retain their own tested revision and date.
+
+## Current Windows application guide
+
+The published **0.3.1** app has a [four-page illustrated guide](docs/reports/windows-application-guide-0.3.1.docx) with actual installed screenshots, a worked user journey, important source excerpts and operating limits. Read the [installed validation report](docs/reports/installed-windows-0.3.1-2026-11-11.md) and [byte/page review manifest](docs/reports/windows-application-guide-0.3.1.json) for exact scope. Historical Office editions remain unchanged.
+
+Added documentation:
+
+- [docs/reports/windows-application-guide-0.3.1.docx](docs/reports/windows-application-guide-0.3.1.docx): installed application use, screenshots, source and measured validation.
+- [docs/reports/windows-application-guide-0.3.1.json](docs/reports/windows-application-guide-0.3.1.json): exact Word, screenshot, immutable code and reviewed-page hashes.
+- [docs/reports/installed-windows-0.3.1-2026-11-11.md](docs/reports/installed-windows-0.3.1-2026-11-11.md): observed installed workflows, distribution identity, data preservation and practical limits.

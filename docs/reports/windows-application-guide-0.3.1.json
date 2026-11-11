@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "repository": "applicant-evidence-studio",
+  "runtimeVersion": "0.3.1",
+  "runtimeSource": "c3d44882ee39209b3a9fbbe884e1177cc78359e5",
+  "createdAt": "2026-11-11T11:13:27.907Z",
+  "author": "Jason Stys",
+  "document": "windows-application-guide-0.3.1.docx",
+  "sha256": "c2035d7765092a939209331542755aa493e6860b7352f2fd415808cb9a66648f",
+  "screenshots": [
+    {
+      "file": "native-workspace.png",
+      "sha256": "50ed0eaff975de5971c50969ed6159ecd4393ff90009846e4d03b69a5326e934",
+      "width": 1280,
+      "height": 720,
+      "caption": "The installed app reopened a synthetic encrypted workspace after locking; its evidence queue is available again and the previous comparison selection is cleared."
+    },
+    {
+      "file": "native-comparison-viewport.png",
+      "sha256": "6582c04e76003b17bcbcb11932ccb508a02c09a2607fd2167a32d4b3ceb05c6f",
+      "width": 1280,
+      "height": 720,
+      "caption": "The visible comparison criteria retain literal synthetic evidence and source warnings. HTML-like record content is displayed as inert text; the complete private JSON is available separately."
+    }
+  ],
+  "snippets": [
+    {
+      "file": "app/native_host.py",
+      "first": 170,
+      "last": 176,
+      "sha256": "9cfbfb5c332dd91f3d8e64e0a9e6c99afe09fc56e15c5d3fdb5ca50033ffc206",
+      "url": "https://github.com/JasonStys/applicant-evidence-studio/blob/c3d44882ee39209b3a9fbbe884e1177cc78359e5/app/native_host.py#L170"
+    }
+  ],
+  "observedTests": [
+    {
+      "name": "Installed encrypted UI",
+      "observed": "Real WebCrypto, exact record hashes, Python parity, read-only comparison, accessibility, lock/reopen and unauthenticated refusal passed; zero outside requests and normal exit 0.",
+      "result": "Passed"
+    },
+    {
+      "name": "Old-to-new vault",
+      "observed": "An immutable 0.3.0 compatibility binary created and edited a synthetic encrypted vault. Installed 0.3.1 used the same login and phrase and retained its exact edited record hash.",
+      "result": "Passed"
+    },
+    {
+      "name": "Source and packages",
+      "observed": "Exact-main CI and processed three-language CodeQL passed. All three real native builds and final draft verification passed; all six independent asset downloads matched provider SHA-256.",
+      "result": "Passed"
+    },
+    {
+      "name": "Installation and icons",
+      "observed": "A fresh per-version Windows folder and individual Desktop/Start-menu targets were verified. Normal accounts and Docker were unchanged; default-profile shortcut activation remains separately untested.",
+      "result": "Passed"
+    }
+  ],
+  "visualReview": {
+    "approved": true,
+    "reviewer": "audit_apps",
+    "ooxmlSchema": "passed",
+    "pages": [
+      {
+        "page": 1,
+        "sha256": "b406135b5b044b911ce5363bc9831e19a68f9574acfb17e6a20cfbef27ef0c45"
+      },
+      {
+        "page": 2,
+        "sha256": "17149733874747043859cafd24bfb28132c999741db9a1fba854d92201fdceb8"
+      },
+      {
+        "page": 3,
+        "sha256": "0532320e1259bf135fc085ac75619d97c081a396946940987d58437e67f867a9"
+      },
+      {
+        "page": 4,
+        "sha256": "db8adc7c1c27cb8d3981b074feedaad443ba7dc2d1efce17ca009528ef89e69f"
+      }
+    ],
+    "scope": "Every final page content individually viewed; only exact identical pixels carry prior inspection. Screenshots are actual installed synthetic workflows.",
+    "checkedUtc": "2026-11-11T11:28:54.709086+00:00"
+  }
+}
