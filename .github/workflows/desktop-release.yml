@@ -109,7 +109,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      # GitHub requires push access to see unpublished drafts; this job only reads.
+      contents: write
       actions: read
       security-events: read
     steps:

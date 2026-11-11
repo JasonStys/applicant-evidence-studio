@@ -19,7 +19,10 @@ draft/stable state, exact version and source before every operation. It creates 
 missing draft with structured JSON and uploads only fixed accepted filenames to
 GitHub's fixed official upload host using that verified ID. It does not use a
 published-tag lookup for an unpublished draft, overwrite assets, retarget an
-existing release or publish automatically.
+existing release or publish automatically. The final read-only verifier also
+receives the push-level release visibility GitHub requires to list unpublished
+drafts; it has no publication operation. The broader workflow's default remains
+read-only, and checkout never persists credentials.
 
 Regression controls cover the real-shaped unpublished draft, malformed or
 incomplete lists, duplicate versions, invalid numeric IDs, identity changes,
