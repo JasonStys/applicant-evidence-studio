@@ -22,13 +22,13 @@ HEADERS = {"Authorization": "Bearer " + TOKEN}
 def test_release_version_is_coherent_without_changing_vault_formats(tmp_path):
     """Current software metadata and real health responses agree; prior release assets stay separate."""
     root = Path(__file__).resolve().parents[1]
-    assert VERSION == "0.3.0"
+    assert VERSION == "0.3.1"
     assert json.loads((root / "package.json").read_text(encoding="utf-8"))["version"] == VERSION
     assert (
         tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))["project"]["version"] == VERSION
     )
     workflow = (root / ".github/workflows/desktop-release.yml").read_text(encoding="utf-8")
-    assert "gh release create v0.3.0 --draft" in workflow and "v0.2.0" not in workflow
+    assert "gh release create v0.3.1 --draft" in workflow and "v0.2.0" not in workflow
     with TestClient(create_app(tmp_path / "developer", TOKEN, "http://testserver")) as client:
         assert client.get("/health").json()["version"] == VERSION
     with TestClient(

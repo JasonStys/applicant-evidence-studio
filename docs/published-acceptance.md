@@ -49,8 +49,11 @@ rechecks the draft's source and version. Existing equal bytes can be resumed;
 different bytes are rejected, with no clobber operation. Publication requires all
 six platform assets and provider digests. A published version is never reused.
 
-The current release recipe and published acceptance pins intentionally describe
-0.3.0. A future product release needs coherent product/version/notes updates and
+The published acceptance pins intentionally continue to describe immutable
+0.3.0. The current0.3.1 build uses a five-member archive, a native owner window,
+actual embedded source/runtime checks and normal-exit acceptance, described in
+[native-application.md](native-application.md). Its release workflow produces a
+verified draft and does not publish automatically. A future product release needs coherent product/version/notes updates and
 a reviewed acceptance contract for its published UI and reference fixtures; do
 not weaken an old contract to accommodate changed behavior. Preserve older
 published assets. Hashes identify bytes, not a publisher signature or proof that

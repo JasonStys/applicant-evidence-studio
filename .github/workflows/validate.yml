@@ -25,11 +25,21 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install --no-deps -r requirements.lock
+      - run: python -m pip install --require-hashes -r requirements-native.lock
       - run: python -m pip install --no-build-isolation --no-deps -e .
       - run: ruff check app tests scripts
       - run: ruff format --check app tests scripts
       - run: python scripts/code_index.py --check
-      - run: python -m pytest --cov=app --cov-branch --cov-fail-under=85 --cov-report=xml:artifacts/coverage.xml --junitxml=artifacts/pytest.xml -W error::ResourceWarning
+      - name: Run all source tests, including actual native owner windows
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$RUNNER_OS" = "Linux" ]; then
+            command -v xvfb-run
+            xvfb-run -a python -m pytest --cov=app --cov-branch --cov-fail-under=85 --cov-report=xml:artifacts/coverage.xml --junitxml=artifacts/pytest.xml -W error::ResourceWarning
+          else
+            python -m pytest --cov=app --cov-branch --cov-fail-under=85 --cov-report=xml:artifacts/coverage.xml --junitxml=artifacts/pytest.xml -W error::ResourceWarning
+          fi
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always() && vars.AES_UPLOAD_CI_ARTIFACTS == 'true'
         with:

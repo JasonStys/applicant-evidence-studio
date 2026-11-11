@@ -91,8 +91,8 @@ test('private comparison exports citations and unknowns without plaintext reques
   await signUp(page);
   await unlock(page);
   await loadExamples(page);
-  await expect(page.locator('.sidebar small')).toContainText('v0.3.0');
-  expect((await (await page.request.get('/health')).json()).version).toBe('0.3.0');
+  await expect(page.locator('.sidebar small')).toContainText('v0.3.1');
+  expect((await (await page.request.get('/health')).json()).version).toBe('0.3.1');
   await page.getByRole('button', { name: 'Review A101', exact: true }).click();
   await page.getByText('Edit normalized record / consent', { exact: true }).click();
   const editor = page.getByLabel('Normalized applicant JSON');

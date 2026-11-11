@@ -1,0 +1,2 @@
+# Jason Stys: build tooling only; not application runtime dependencies.
+pyinstaller==6.22.3

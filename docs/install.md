@@ -15,7 +15,7 @@ cached by a service worker. This is not an offline sync application.
 
 ## One-file local desktop application
 
-Version0.3.0 adds criterion/evidence comparison. The fresh0.3 release is separate from published0.2 assets. Upgrade by verifying/extracting the new OS-matching archive; account storage, vault encryption/workspace formats and user data paths stay unchanged, with no migration. Save an encrypted backup before any software upgrade. A source commit alone does not publish installers: exact-commit validation and all three packaged smoke gates must pass before the new release is published.
+Version0.3.1 adds a native owner window, patched Python3.14.10 and verified source/runtime resources. Criterion/evidence comparison from0.3.0 remains available. Verify/extract the new OS-matching archive; account storage, vault encryption/workspace formats and user data paths stay unchanged, with no migration. Save an encrypted export and a stopped-service account-directory backup before upgrading. Source, processed CodeQL and all three real packaged-app gates must pass; independent download and installed-app checks precede publication. Older published assets are preserved.
 
 Download the matching OS/architecture archive and `.sha256` from the official
 [releases](https://github.com/JasonStys/applicant-evidence-studio/releases).
@@ -32,8 +32,12 @@ Linux: `sha256sum download.tar.gz`. macOS: `shasum -a 256 download.tar.gz`.
 Compare the complete value with the official release's manifest.
 
 The application launches your default browser and listens only on `127.0.0.1`
-at an OS-assigned port. A small server/console process remains running; closing
-it stops the local service. No telemetry, automatic updates, browser extensions,
+at an OS-assigned port. Keep the small native owner window open while using the
+workspace. Open workspace reopens the browser, Help and Runtime notices explain
+operation, and Quit application waits for active requests to complete before
+closing the listener and releasing the account-store lock. Closing the native
+window invokes that same Quit handler. Closing a browser tab does not stop the
+service. A second owner of the same profile is refused. No telemetry, automatic updates, browser extensions,
 ads, source lookups or external AI calls are installed. A restart may choose a
 different port; sign in again and unlock with your original vault phrase.
 

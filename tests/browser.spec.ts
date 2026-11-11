@@ -11,8 +11,8 @@ test.beforeEach(async ({ page }) => {
 
 /** Compare an actual SQL capture, preserve user selection order, and discard stale rubric responses. */
 test('two-record comparison uses one rubric and keeps source review human led', async ({ page }, info) => {
-  await expect(page.locator('.sidebar small')).toContainText('v0.3.0');
-  expect((await (await page.request.get('/health')).json()).version).toBe('0.3.0');
+  await expect(page.locator('.sidebar small')).toContainText('v0.3.1');
+  expect((await (await page.request.get('/health')).json()).version).toBe('0.3.1');
   await page.getByLabel('Compare A101', { exact: true }).check();
   expect(page.getByRole('button', { name: 'Capture selected evidence' })).toBeDisabled();
   await page.getByLabel('Compare A102', { exact: true }).check();
