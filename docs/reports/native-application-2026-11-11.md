@@ -6,7 +6,7 @@ completes. No existing user account was opened or migrated for these tests.
 
 ## Local evidence
 
-The current full Windows CPython3.14.10 source run passed **207 tests**, including
+The initial full Windows CPython3.14.10 source run passed **207 tests**, including
 the isolated parent that requires all **13 actual Tcl/Tk notice cases** to pass
 with no retries or skips. Combined line/branch coverage was **93.04%**, above the
 unchanged85% floor. Real Tk tests exercised Help and every normal-close control,
@@ -47,6 +47,27 @@ exited0 and its local listener was unavailable. The UI journey took8,919ms on
 this PC; that diagnostic is not a product latency guarantee.
 
 ## Gates retained and added
+
+The first hosted draft at`3879be3e076242b085adfa69e56902b1c2712ad2` passed
+all six Python lanes, all browser/privacy/audit/container checks, processed
+CodeQL, immutable0.3.0 acceptance on three OSes, and current native Windows/Linux.
+The [macOS native job](https://github.com/JasonStys/applicant-evidence-studio/actions/runs/42992812670)
+built successfully but the EXE exited before readiness. Its log is retained as a
+failed run. Startup now emits a fixed nonprivate phase/class code; no private
+exception message or path is logged. The synthetic acceptance paths are resolved
+to their actual owned temporary directory, preserving production ancestor-alias
+refusal. On an OS that supplies a temp alias, the real EXE must first refuse that
+alias at profile admission with no files created, then pass the canonical-path
+account journey. The original60-second readiness/20-second normal-exit limits,
+runtime hashes and all platforms remain required. Fresh hosted proof is pending;
+the first failure's precise phase was not captured, so its cause is not assumed.
+
+After diagnostic and canonical-temp regression additions, local source testing
+passed209 tests at93.31% with the original85% floor. The separate fresh-service
+Firefox repeat passed all16 scenarios. Python/npm dependency audits reported no
+known findings in their audited installed/locked graphs. The original10,000-row
+synthetic benchmark ran with a274.39ms median; this is a local diagnostic, not a
+capacity or response-time guarantee.
 
 The existing source, four-profile browser, privacy, schema, independent comparison,
 audit/performance, container and immutable0.3.0 published-download checks remain.

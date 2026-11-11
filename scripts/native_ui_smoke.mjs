@@ -1,9 +1,9 @@
 // Purpose: Jason Stys — actual extracted native app, WebCrypto comparison/export and lock acceptance.
-// Index: assert@3, createHash@4, randomBytes@4, randomUUID@4, execFile@5, spawn@5, lstat@6, mkdir@6, mkdtemp@6, readFile@6, rm@6, tmpdir@7, path@8, fileURLToPath@9, promisify@10, chromium@11, expect@11, AxeBuilder@12, root@14, binary@15, version@16, runFile@17, folder@20, modernOwner@21, expectedIdentity@22, nonce@34, proofDirectory@35, child@41, browser@53, stopping@54, started@55, canonical@58, value@58, key@65, readiness@73, reject@74, resolve@74, timer@75, pending@79, error@80, bytes@89, lines@96, line@98, match@99, exercise@113, origin@113, healthResponse@114, health@116, context@132, outside@133, route@134, page@141, errors@144, error@145, password@146, phrase@147, registered@154, r@155, unlock@160, editor@176, edited@177, before@183, writes@188, r@189, panel@195, download@198, report@200, vectors@201, r@203, record@206, v@207, vector@207, r@212, r@213, input@215, other@232, origin@263, deadline@264, result@266, _@268, reject@268, exited@278, reject@278, resolve@278, limit@279, code@283, signal@283, exit@289, error@321, resolve@326, resolve@327, error@332, target@337
+// Index: assert@3, createHash@4, randomBytes@4, randomUUID@4, execFile@5, spawn@5, lstat@6, mkdir@6, mkdtemp@6, readFile@6, realpath@6, rm@6, tmpdir@7, path@8, fileURLToPath@9, promisify@10, chromium@11, expect@11, AxeBuilder@12, root@14, binary@15, version@16, runFile@17, ownedTempRoot@22, folder@23, modernOwner@24, expectedIdentity@25, nonce@37, proofDirectory@38, child@44, browser@56, stopping@57, started@58, canonical@61, value@61, key@68, readiness@76, reject@77, resolve@77, timer@78, pending@82, error@83, bytes@92, lines@99, line@101, match@102, exercise@116, origin@116, healthResponse@117, health@119, context@135, outside@136, route@137, page@144, errors@147, error@148, password@149, phrase@150, registered@157, r@158, unlock@163, editor@179, edited@180, before@186, writes@191, r@192, panel@198, download@201, report@203, vectors@204, r@206, record@209, v@210, vector@210, r@215, r@216, input@218, other@235, origin@266, deadline@267, result@269, _@271, reject@271, exited@281, reject@281, resolve@281, limit@282, code@286, signal@286, exit@292, error@324, resolve@329, resolve@330, error@335, target@340
 import assert from 'node:assert/strict';
 import { createHash, randomUUID, randomBytes } from 'node:crypto';
 import { spawn, execFile } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, rm, lstat } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, lstat, realpath } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,7 +17,10 @@ const version = process.argv[3];
 const runFile = promisify(execFile);
 if (!/^\d+\.\d+\.\d+$/.test(version || '') || !(await lstat(binary)).isFile())
   throw new Error('Select a verified native binary and exact product version.');
-const folder = await mkdtemp(path.join(tmpdir(), 'aes-native-ui-'));
+// Use the real newly-owned temp root, including macOS's /var system alias;
+// never relax the app's refusal of linked profile ancestors.
+const ownedTempRoot = await realpath(tmpdir());
+const folder = await mkdtemp(path.join(ownedTempRoot, 'aes-native-ui-'));
 const modernOwner = version !== '0.3.0'; // The immutable historical binary lacks the native owner protocol.
 const expectedIdentity = modernOwner
   ? JSON.parse(
@@ -335,8 +338,6 @@ try {
     }
   }
   const target = path.resolve(folder);
-  assert.ok(
-    path.dirname(target) === path.resolve(tmpdir()) && path.basename(target).startsWith('aes-native-ui-'),
-  );
+  assert.ok(path.dirname(target) === ownedTempRoot && path.basename(target).startsWith('aes-native-ui-'));
   await rm(target, { recursive: true, force: true });
 }

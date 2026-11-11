@@ -1,6 +1,6 @@
 """Jason Stys: exercise the real packaged binary with disposable accounts, never user data."""
 
-# Index: json@4, os@5, queue@6, re@7, secrets@8, subprocess@9, sys@10, tempfile@11, threading@12, Path@13, httpx@15, VERSION@17, main@20, main.binary@22, main.folder@25, main.nonce@26, main.environment@27, main.process@33, main.output@42, main.collect@44, main.collect.line@46, main.collector@49, main.origin@52, main._@53, main.line@55, main.match@60, main.origin@62, main.headers@66, main.client@67, main.script@71, main.credentials@74, main.envelope@77, main.client@100, main.killer@125
+# Index: json@4, os@5, queue@6, re@7, secrets@8, subprocess@9, sys@10, tempfile@11, threading@12, Path@13, httpx@15, VERSION@17, main@20, main.binary@22, main.folder@25, main.nonce@26, main.environment@27, main.original_folder@36, main.canonical_folder@37, main.alias_checked@38, main.refused@43, main.process@55, main.output@64, main.startup@65, main.collect@67, main.collect.line@69, main.collector@74, main.origin@77, main._@78, main.line@80, main.match@87, main.origin@89, main.headers@93, main.client@94, main.script@98, main.credentials@101, main.envelope@104, main.client@127, main.killer@153
 import json
 import os
 import queue
@@ -27,9 +27,31 @@ def main():
         environment = {
             **os.environ,
             "AES_NO_BROWSER": "1",
-            "AES_DESKTOP_DATA": folder,
+            # macOS's system temporary root may use the /var -> /private/var
+            # alias. Pass the actual newly-owned directory, preserving the
+            # application's intentional ancestor-alias refusal.
+            "AES_DESKTOP_DATA": str(Path(folder).resolve()),
             "AES_ACCEPTANCE_NONCE": nonce,
         }
+        original_folder = Path(folder)
+        canonical_folder = original_folder.resolve()
+        alias_checked = original_folder != canonical_folder
+        if alias_checked:
+            # Real compiled negative control for an actual OS temp alias. It
+            # must fail at admission, before creating a marker/account/lock;
+            # the positive journey then uses the same directory's real path.
+            refused = subprocess.run(  # noqa: S603 -- exact owned candidate; synthetic directory only
+                [str(binary)],
+                stdin=subprocess.DEVNULL,
+                capture_output=True,
+                text=True,
+                timeout=60,
+                env={**environment, "AES_DESKTOP_DATA": str(original_folder)},
+            )
+            assert refused.returncode == 2 and len(refused.stdout) + len(refused.stderr) < 65536
+            assert "AES_STARTUP_REFUSED phase=profile-admission type=ValueError" in refused.stderr
+            assert not list(canonical_folder.iterdir()), "Refused alias mutated the synthetic profile"
+        print(f"Synthetic system-temp alias control: exercised={alias_checked}", flush=True)
         process = subprocess.Popen(  # noqa: S603 -- explicitly selected locally built binary only
             [str(binary)],
             stdin=subprocess.PIPE,
@@ -40,10 +62,13 @@ def main():
             creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0,
         )  # noqa: S603 -- explicitly selected locally built binary only
         output = queue.Queue()
+        startup = []
 
         def collect():
             """Read startup messages without a blocking UI or unbounded wait."""
             for line in process.stdout:
+                if len(startup) < 20:
+                    startup.append(line[:512])
                 output.put(line)
 
         collector = threading.Thread(target=collect, daemon=True)
@@ -55,7 +80,9 @@ def main():
                     line = output.get(timeout=1)
                 except queue.Empty:
                     if process.poll() is not None:
-                        raise RuntimeError("Packaged application exited before readiness") from None
+                        raise RuntimeError(
+                            "Packaged application exited before readiness: " + "".join(startup)
+                        ) from None
                     continue
                 match = re.search(r"running at (http://127\.0\.0\.1:\d+)", line)
                 if match:
@@ -113,6 +140,7 @@ def main():
                         "real_user_data": False,
                         "normal_owned_exit": True,
                         "normal_exit_code": 0,
+                        "actual_system_temp_alias_refusal": alias_checked,
                     },
                     indent=2,
                 )
