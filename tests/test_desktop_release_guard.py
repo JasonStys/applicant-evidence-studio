@@ -1,10 +1,13 @@
 """Jason Stys: independent exact-source, draft and portable-asset publication boundaries."""
 
-# Index: copy@4, pytest@6, accepted_build@9, assets_ready@10, draft_ready@11, security_ready@12, successful_source_run@13, names_for@15, SOURCE@17, run_fixture@20, test_source_run_requires_exact_completed_main_identity@39, test_source_run_rejects_unrelated_or_unfinished_metadata@59, test_source_run_rejects_unrelated_or_unfinished_metadata.field@59, test_source_run_rejects_unrelated_or_unfinished_metadata.value@59, test_source_run_rejects_unrelated_or_unfinished_metadata.data@61, test_empty_duplicate_and_incomplete_run_pages_fail_closed@67, test_empty_duplicate_and_incomplete_run_pages_fail_closed.data@69, test_draft_never_accepts_published_or_different_source@88, test_draft_never_accepts_published_or_different_source.change@88, test_draft_never_accepts_published_or_different_source.data@90, assets_fixture@96, assets_fixture.names@98, assets_fixture.machine@100, assets_fixture.system@100, assets_fixture.name@101, assets_fixture.name@103, test_publication_requires_all_six_platform_assets@106, test_publication_requires_all_six_platform_assets.data@108, test_publication_requires_all_six_platform_assets.partial@110, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@119, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@120, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@121, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@122, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@123, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes@126, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.mutation@126, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.data@128, analyses_fixture@134, analyses_fixture.language@147, test_actual_processed_security_records_are_required@151, test_actual_processed_security_records_are_required.rows@153, test_actual_processed_security_records_are_required.changed@155, test_actual_processed_security_records_are_required.row@155, test_partial_foreign_and_failed_security_results_fail_closed@174, test_partial_foreign_and_failed_security_results_fail_closed.changed@174, test_partial_foreign_and_failed_security_results_fail_closed.rows@176, test_latest_failed_same_source_analysis_cannot_be_hidden_by_an_older_success@182, test_latest_failed_same_source_analysis_cannot_be_hidden_by_an_older_success.rows@184, test_latest_failed_same_source_analysis_cannot_be_hidden_by_an_older_success.failed@185, built_fixture@190, test_upload_rejects_old_dirty_or_source_server_acceptance@206, test_upload_rejects_old_dirty_or_source_server_acceptance.change@209, test_upload_rejects_old_dirty_or_source_server_acceptance.change@218, test_upload_rejects_old_dirty_or_source_server_acceptance.report@224
+# Index: copy@4, json@5, Path@6, pytest@8, guard@10, accepted_build@12, assets_ready@13, draft_ready@14, security_ready@15, successful_source_run@16, names_for@18, SOURCE@20, run_fixture@23, test_source_run_requires_exact_completed_main_identity@42, test_source_run_rejects_unrelated_or_unfinished_metadata@62, test_source_run_rejects_unrelated_or_unfinished_metadata.field@62, test_source_run_rejects_unrelated_or_unfinished_metadata.value@62, test_source_run_rejects_unrelated_or_unfinished_metadata.data@64, test_empty_duplicate_and_incomplete_run_pages_fail_closed@70, test_empty_duplicate_and_incomplete_run_pages_fail_closed.data@72, test_draft_never_accepts_published_or_different_source@91, test_draft_never_accepts_published_or_different_source.change@91, test_draft_never_accepts_published_or_different_source.data@93, assets_fixture@99, assets_fixture.names@101, assets_fixture.machine@103, assets_fixture.system@103, assets_fixture.name@104, assets_fixture.name@106, test_publication_requires_all_six_platform_assets@109, test_publication_requires_all_six_platform_assets.data@111, test_publication_requires_all_six_platform_assets.partial@113, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@122, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@123, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@124, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@125, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.r@126, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes@129, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.mutation@129, test_portable_metadata_rejects_duplicates_foreign_and_missing_hashes.data@131, analyses_fixture@137, analyses_fixture.language@150, test_actual_processed_security_records_are_required@154, test_actual_processed_security_records_are_required.rows@156, test_actual_processed_security_records_are_required.changed@158, test_actual_processed_security_records_are_required.row@158, test_partial_foreign_and_failed_security_results_fail_closed@177, test_partial_foreign_and_failed_security_results_fail_closed.changed@177, test_partial_foreign_and_failed_security_results_fail_closed.rows@179, test_latest_failed_same_source_analysis_cannot_be_hidden_by_an_older_success@185, test_latest_failed_same_source_analysis_cannot_be_hidden_by_an_older_success.rows@187, test_latest_failed_same_source_analysis_cannot_be_hidden_by_an_older_success.failed@188, built_fixture@193, test_upload_rejects_old_dirty_or_source_server_acceptance@209, test_upload_rejects_old_dirty_or_source_server_acceptance.change@212, test_upload_rejects_old_dirty_or_source_server_acceptance.change@221, test_upload_rejects_old_dirty_or_source_server_acceptance.report@227, unpublished_release@233, test_unpublished_draft_uses_listing_and_verified_id_without_published_tag@245, test_unpublished_draft_uses_listing_and_verified_id_without_published_tag.monkeypatch@245, test_unpublished_draft_uses_listing_and_verified_id_without_published_tag.release@247, test_unpublished_draft_uses_listing_and_verified_id_without_published_tag.calls@248, test_unpublished_draft_uses_listing_and_verified_id_without_published_tag.provider@250, test_unpublished_draft_uses_listing_and_verified_id_without_published_tag.provider.endpoint@250, test_ambiguous_incomplete_or_malformed_release_pages_fail_closed@271, test_ambiguous_incomplete_or_malformed_release_pages_fail_closed.rows@271, test_id_resolution_rejects_changed_published_or_different_source@288, test_id_resolution_rejects_changed_published_or_different_source.change@288, test_id_resolution_rejects_changed_published_or_different_source.monkeypatch@288, test_id_resolution_rejects_changed_published_or_different_source.endpoint@293, test_prepare_resumes_equal_draft_without_writes_or_retarget@299, test_prepare_resumes_equal_draft_without_writes_or_retarget.monkeypatch@299, test_prepare_resumes_equal_draft_without_writes_or_retarget.source@301, test_prepare_resumes_equal_draft_without_writes_or_retarget.endpoint@303, test_prepare_resumes_equal_draft_without_writes_or_retarget._args@305, test_prepare_creates_only_missing_draft_with_literal_structured_notes@309, test_prepare_creates_only_missing_draft_with_literal_structured_notes.monkeypatch@309, test_prepare_creates_only_missing_draft_with_literal_structured_notes.tmp_path@309, test_prepare_creates_only_missing_draft_with_literal_structured_notes.notes@311, test_prepare_creates_only_missing_draft_with_literal_structured_notes.content@313, test_prepare_creates_only_missing_draft_with_literal_structured_notes._source@316, test_prepare_creates_only_missing_draft_with_literal_structured_notes.created@317, test_prepare_creates_only_missing_draft_with_literal_structured_notes.provider@319, test_prepare_creates_only_missing_draft_with_literal_structured_notes.provider.endpoint@319, test_prepare_creates_only_missing_draft_with_literal_structured_notes.command@322, test_prepare_creates_only_missing_draft_with_literal_structured_notes.command.arguments@322, test_prepare_creates_only_missing_draft_with_literal_structured_notes.command.payload@330
 import copy
+import json
+from pathlib import Path
 
 import pytest
 
+from scripts import desktop_release_guard as guard
 from scripts.desktop_release_guard import (
     accepted_build,
     assets_ready,
@@ -225,3 +228,118 @@ def test_upload_rejects_old_dirty_or_source_server_acceptance():
         report["native_ui"].update(change)
         with pytest.raises(ValueError):
             accepted_build(report, SOURCE, "0.3.1")
+
+
+def unpublished_release():
+    """A real-shaped draft with a version but no published Git-tag endpoint."""
+    return {
+        "id": 123,
+        "tag_name": "v0.3.1",
+        "target_commitish": SOURCE,
+        "draft": True,
+        "prerelease": False,
+        "assets": [],
+    }
+
+
+def test_unpublished_draft_uses_listing_and_verified_id_without_published_tag(monkeypatch):
+    """Regression for actual GitHub404 after successful draft creation."""
+    release = unpublished_release()
+    calls = []
+
+    def provider(endpoint):
+        calls.append(endpoint)
+        assert "/tags/" not in endpoint
+        return [release] if endpoint == "releases?per_page=100" else release
+
+    monkeypatch.setattr(guard, "api", provider)
+    assert guard.load_draft(SOURCE, "0.3.1") == release
+    assert calls == ["releases?per_page=100", "releases/123"]
+
+
+@pytest.mark.parametrize(
+    "rows",
+    [
+        [unpublished_release(), unpublished_release()],
+        [unpublished_release()] * 100,
+        [{**unpublished_release(), "id": True}],
+        [{**unpublished_release(), "id": -1}],
+        {"releases": []},
+        [None],
+    ],
+)
+def test_ambiguous_incomplete_or_malformed_release_pages_fail_closed(rows):
+    """Do not guess a draft from an ambiguous page or invalid identity."""
+    with pytest.raises(ValueError):
+        guard.release_for_version(rows, "0.3.1")
+
+
+@pytest.mark.parametrize(
+    "change",
+    [
+        {"id": 124},
+        {"id": True},
+        {"draft": False},
+        {"prerelease": True},
+        {"tag_name": "v0.3.0"},
+        {"target_commitish": "b" * 40},
+    ],
+)
+def test_id_resolution_rejects_changed_published_or_different_source(monkeypatch, change):
+    """Both the authenticated listing and fresh ID response must describe the same unpublished source."""
+    monkeypatch.setattr(
+        guard,
+        "api",
+        lambda endpoint: [unpublished_release()] if "?" in endpoint else {**unpublished_release(), **change},
+    )
+    with pytest.raises(ValueError):
+        guard.load_draft(SOURCE, "0.3.1")
+
+
+def test_prepare_resumes_equal_draft_without_writes_or_retarget(monkeypatch):
+    """An existing reviewed version is a read-only resume, never a force/clobber operation."""
+    monkeypatch.setattr(guard, "source_ready", lambda source: source == SOURCE or pytest.fail("wrong source"))
+    monkeypatch.setattr(
+        guard, "api", lambda endpoint: [unpublished_release()] if "?" in endpoint else unpublished_release()
+    )
+    monkeypatch.setattr(guard, "command", lambda _args: pytest.fail("Existing release must not be rewritten"))
+    guard.prepare_draft(SOURCE, "0.3.1")
+
+
+def test_prepare_creates_only_missing_draft_with_literal_structured_notes(tmp_path, monkeypatch):
+    """Notes containing quotes/newlines/shell-like text stay JSON data rather than shell commands."""
+    notes = tmp_path / "docs/releases/v0.3.1.md"
+    notes.parent.mkdir(parents=True)
+    content = 'Authored notes\n"quoted" and $(literal) `text`\n'
+    notes.write_text(content)
+    monkeypatch.setattr(guard, "ROOT", tmp_path)
+    monkeypatch.setattr(guard, "source_ready", lambda _source: None)
+    created = []
+
+    def provider(endpoint):
+        return ([unpublished_release()] if created else []) if "?" in endpoint else unpublished_release()
+
+    def command(arguments):
+        assert arguments[:5] == [
+            "gh",
+            "api",
+            "repos/JasonStys/applicant-evidence-studio/releases",
+            "--method",
+            "POST",
+        ]
+        payload = json.loads(Path(arguments[-1]).read_text())
+        assert payload == {
+            "tag_name": "v0.3.1",
+            "target_commitish": SOURCE,
+            "name": "Applicant Evidence Studio 0.3.1",
+            "body": content,
+            "draft": True,
+            "prerelease": False,
+        }
+        created.append(payload)
+        return json.dumps(unpublished_release())
+
+    monkeypatch.setattr(guard, "api", provider)
+    monkeypatch.setattr(guard, "command", command)
+    guard.prepare_draft(SOURCE, "0.3.1")
+    assert len(created) == 1

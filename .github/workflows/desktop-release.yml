@@ -26,13 +26,7 @@ jobs:
       - name: Create or resume an unpublished release for this exact commit
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          if gh release view v0.3.1 --json isDraft,targetCommitish > /tmp/release.json 2>/dev/null; then
-            python scripts/desktop_release_guard.py draft
-          else
-            gh release create v0.3.1 --draft --target "$GITHUB_SHA" --title "Applicant Evidence Studio 0.3.1 - verified native app ownership" --notes-file docs/releases/v0.3.1.md
-            python scripts/desktop_release_guard.py draft
-          fi
+        run: python scripts/desktop_release_guard.py prepare
   build:
     needs: prepare
     name: Current native app / ${{ matrix.os }}

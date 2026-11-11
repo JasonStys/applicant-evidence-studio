@@ -85,6 +85,11 @@ packages must pass actual embedded identity and normal-exit acceptance. Uploads
 are draft-only, reject different existing bytes and require provider digests.
 The workflow verifies the complete six-asset draft and leaves it unpublished for
 independent download and installed-app testing. It has no publish operation.
+Unpublished drafts are selected from the authenticated release listing and
+reread by verified numeric ID, including for fixed-host asset uploads; a
+published-tag endpoint is not used as proof that a draft exists. The
+[draft lookup correction report](reports/draft-release-identity-2026-11-11.md)
+retains the observed404 and the exact failed/empty-draft identities.
 
 Acceptance uses only synthetic applicants and disposable account stores. The
 stdin quit command is available only with an explicit temporary data directory,
