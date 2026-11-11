@@ -1,11 +1,12 @@
 """Jason Stys: exercise the real packaged binary with disposable accounts, never user data."""
 
-# Index: json@4, os@5, queue@6, re@7, secrets@8, subprocess@9, sys@10, tempfile@11, threading@12, Path@13, httpx@15, VERSION@17, main@20, main.binary@22, main.folder@25, main.nonce@26, main.environment@27, main.original_folder@36, main.canonical_folder@37, main.alias_checked@38, main.refused@43, main.process@55, main.output@64, main.startup@65, main.collect@67, main.collect.line@69, main.collector@74, main.origin@77, main._@78, main.line@80, main.match@87, main.origin@89, main.headers@93, main.client@94, main.script@98, main.credentials@101, main.envelope@104, main.client@127, main.killer@153
+# Index: json@4, os@5, queue@6, re@7, secrets@8, stat@9, subprocess@10, sys@11, tempfile@12, threading@13, Path@14, httpx@16, VERSION@18, main@21, main.binary@23, main.folder@26, main.nonce@27, main.environment@28, main.original_folder@37, main.canonical_folder@38, main.alias_checked@39, main.path@44, main.refused@50, main.process@62, main.output@71, main.startup@72, main.collect@74, main.collect.line@76, main.collector@81, main.origin@84, main._@85, main.line@87, main.match@94, main.origin@96, main.headers@100, main.client@101, main.script@105, main.credentials@108, main.envelope@111, main.client@134, main.killer@160
 import json
 import os
 import queue
 import re
 import secrets
+import stat
 import subprocess
 import sys
 import tempfile
@@ -35,14 +36,20 @@ def main():
         }
         original_folder = Path(folder)
         canonical_folder = original_folder.resolve()
-        alias_checked = original_folder != canonical_folder
+        alias_checked = any(
+            path.is_symlink()
+            or path.is_junction()
+            or getattr(path.lstat(), "st_file_attributes", 0)
+            & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+            for path in (original_folder, *original_folder.parents)
+        )
         if alias_checked:
             # Real compiled negative control for an actual OS temp alias. It
             # must fail at admission, before creating a marker/account/lock;
             # the positive journey then uses the same directory's real path.
             refused = subprocess.run(  # noqa: S603 -- exact owned candidate; synthetic directory only
                 [str(binary)],
-                stdin=subprocess.DEVNULL,
+                input=f"quit {nonce}\n",
                 capture_output=True,
                 text=True,
                 timeout=60,

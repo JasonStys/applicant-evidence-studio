@@ -84,6 +84,17 @@ workflow verifies all six immutable draft assets and does not publish them.
 
 ## Limits and pending delivery evidence
 
+The diagnostic follow-up at`fd7af04fcf6c7b522129f45a0f21c62ce280f71f` passed
+the actual macOS and Linux frozen application journeys. Its new Windows fixture
+incorrectly assumed that every canonical-path spelling change meant a symlink;
+both Windows source lanes correctly failed that assertion. The fixture now uses
+actual symlink/junction/reparse metadata, and separately requires ordinary path
+spellings to identify the same directory. The real compiled negative control
+uses that same OS metadata and supplies the normal nonce Quit command if an
+unexpected acceptance occurs, preventing a failed negative test from leaving
+its owned service running. Production path admission was not relaxed. Fresh
+complete checks remain required before release.
+
 Local development proof does not establish clean hosted three-OS success,
 independently downloaded installation, old-to-new account preservation or normal
 desktop-shortcut activation. Those stages are required before delivery and will
