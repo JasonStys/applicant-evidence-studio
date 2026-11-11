@@ -4,13 +4,15 @@ Called only by the trusted main-branch release workflow. Never overwrites an
 existing asset, accepts a published release, or logs token/environment values.
 """
 
-# Index: argparse@8, json@9, os@10, platform@11, re@12, tomllib@13, MAX_DOWNLOAD@17, REPO@18, ROOT@19, command@20, digest@21, names_for@22, read_manifest@23, require@24, MAX_DOWNLOAD@28, REPO@29, ROOT@30, command@31, digest@32, names_for@33, read_manifest@34, require@35, version@39, version.value@41, api@46, api.endpoint@46, successful_source_run@51, successful_source_run.data@51, successful_source_run.source@51, successful_source_run.workflow@51, successful_source_run.rows@57, successful_source_run.run@59, source_ready@78, source_ready.source@78, source_ready.workflow@81, source_ready.data@82, security_ready@91, security_ready.alerts@91, security_ready.analyses@91, security_ready.source@91, security_ready.expected@95, security_ready.current@96, security_ready.row@97, security_ready.category@105, security_ready.name@108, security_ready.row@127, accepted_build@133, accepted_build.product_version@133, accepted_build.report@133, accepted_build.source@133, draft_ready@148, draft_ready.product_version@148, draft_ready.release@148, draft_ready.source@148, assets_ready@160, assets_ready.complete@160, assets_ready.product_version@160, assets_ready.release@160, assets_ready.expected@162, assets_ready.machine@163, assets_ready.system@163, assets_ready.assets@165, assets_ready.result@167, assets_ready.asset@168, assets_ready.name@169, main@186, main.parser@188, main.args@190, main.source@191, main.product_version@199, main.tag@200, main.release@204, main.attached@206, main.machine@208, main.system@208, main.names@209, main.report@210, main.files@214, main.name@214, main.file@215, main.binary@225, main.manifest@226, main.file@232, main.fresh@236, main.actual@238
+# Index: argparse@8, json@9, os@10, platform@11, re@12, tempfile@13, tomllib@14, Path@15, MAX_DOWNLOAD@19, REPO@20, ROOT@21, command@22, digest@23, names_for@24, read_manifest@25, require@26, MAX_DOWNLOAD@30, REPO@31, ROOT@32, command@33, digest@34, names_for@35, read_manifest@36, require@37, version@41, version.value@43, api@48, api.endpoint@48, successful_source_run@53, successful_source_run.data@53, successful_source_run.source@53, successful_source_run.workflow@53, successful_source_run.rows@59, successful_source_run.run@61, source_ready@80, source_ready.source@80, source_ready.workflow@83, source_ready.data@84, security_ready@93, security_ready.alerts@93, security_ready.analyses@93, security_ready.source@93, security_ready.expected@97, security_ready.current@98, security_ready.row@99, security_ready.category@107, security_ready.name@110, security_ready.row@129, accepted_build@135, accepted_build.product_version@135, accepted_build.report@135, accepted_build.source@135, draft_ready@150, draft_ready.product_version@150, draft_ready.release@150, draft_ready.source@150, release_for_version@162, release_for_version.product_version@162, release_for_version.rows@162, release_for_version.row@165, release_for_version.matches@166, release_for_version.row@166, release_for_version.row@170, load_draft@175, load_draft.product_version@175, load_draft.source@175, load_draft.listed@177, load_draft.release@179, prepare_draft@185, prepare_draft.product_version@185, prepare_draft.source@185, prepare_draft.listed@188, prepare_draft.notes@190, prepare_draft.payload@192, prepare_draft.temporary@200, prepare_draft.path@201, assets_ready@207, assets_ready.complete@207, assets_ready.product_version@207, assets_ready.release@207, assets_ready.expected@209, assets_ready.machine@210, assets_ready.system@210, assets_ready.assets@212, assets_ready.result@214, assets_ready.asset@215, assets_ready.name@216, main@233, main.parser@235, main.args@237, main.source@238, main.product_version@246, main.release@253, main.attached@254, main.machine@256, main.system@256, main.names@257, main.report@258, main.files@262, main.name@262, main.file@263, main.binary@273, main.manifest@274, main.file@280, main.fresh@298, main.actual@300
 import argparse
 import json
 import os
 import platform
 import re
+import tempfile
 import tomllib
+from pathlib import Path
 
 if __package__:
     from .portable_acceptance import (
@@ -157,6 +159,51 @@ def draft_ready(release, source, product_version):
     )
 
 
+def release_for_version(rows, product_version):
+    """Find one version in the bounded authenticated release listing, including an unpublished draft."""
+    require(isinstance(rows, list) and len(rows) < 100, "Release listing is malformed or incomplete")
+    require(all(isinstance(row, dict) for row in rows), "Malformed release entry")
+    matches = [row for row in rows if row.get("tag_name") == "v" + product_version]
+    require(len(matches) <= 1, "Ambiguous release version; no release changed")
+    if not matches:
+        return None
+    row = matches[0]
+    require(type(row.get("id")) is int and 0 < row["id"] < 2**63, "Invalid release identity")
+    return row
+
+
+def load_draft(source, product_version):
+    """Use the actual release ID; a draft need not have a published tag-name endpoint."""
+    listed = release_for_version(api("releases?per_page=100"), product_version)
+    require(listed is not None, "Create the exact-source unpublished draft first")
+    release = api("releases/" + str(listed["id"]))
+    require(type(release.get("id")) is int and release["id"] == listed["id"], "Release identity changed")
+    draft_ready(release, source, product_version)
+    return release
+
+
+def prepare_draft(source, product_version):
+    """Create only a missing draft with structured JSON; never retarget or replace an existing release."""
+    source_ready(source)
+    listed = release_for_version(api("releases?per_page=100"), product_version)
+    if listed is None:
+        notes = ROOT / "docs/releases" / ("v" + product_version + ".md")
+        require(notes.is_file() and notes.stat().st_size <= 128 * 1024, "Reviewed release notes required")
+        payload = {
+            "tag_name": "v" + product_version,
+            "target_commitish": source,
+            "name": "Applicant Evidence Studio " + product_version,
+            "body": notes.read_text(encoding="utf-8"),
+            "draft": True,
+            "prerelease": False,
+        }
+        with tempfile.TemporaryDirectory(prefix="aes-release-request-") as temporary:
+            path = Path(temporary) / "release.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            command(["gh", "api", f"repos/{REPO}/releases", "--method", "POST", "--input", str(path)])
+    load_draft(source, product_version)
+
+
 def assets_ready(release, product_version, *, complete):
     """Only the documented six platform artifacts may be attached to this draft."""
     expected = set()
@@ -186,7 +233,7 @@ def assets_ready(release, product_version, *, complete):
 def main():
     """Perform one explicitly named release operation; there is no force/clobber path."""
     parser = argparse.ArgumentParser()
-    parser.add_argument("operation", choices=("source", "draft", "upload", "verify"))
+    parser.add_argument("operation", choices=("source", "prepare", "draft", "upload", "verify"))
     args = parser.parse_args()
     source = os.environ.get("GITHUB_SHA", "")
     require(
@@ -197,12 +244,13 @@ def main():
     )
     require(bool(re.fullmatch(r"[0-9a-f]{40}", source)), "Exact workflow source SHA required")
     product_version = version()
-    tag = "v" + product_version
     if args.operation == "source":
         source_ready(source)
         return
-    release = api("releases/tags/" + tag)
-    draft_ready(release, source, product_version)
+    if args.operation == "prepare":
+        prepare_draft(source, product_version)
+        return
+    release = load_draft(source, product_version)
     attached = assets_ready(release, product_version, complete=args.operation == "verify")
     if args.operation == "upload":
         system, machine = platform.system().lower(), platform.machine().lower()
@@ -231,9 +279,23 @@ def main():
         )
         for file in files:
             if file.name not in attached:
-                draft_ready(api("releases/tags/" + tag), source, product_version)
-                command(["gh", "release", "upload", tag, str(file), "--repo", REPO])
-            fresh = api("releases/tags/" + tag)
+                draft_ready(api("releases/" + str(release["id"])), source, product_version)
+                # Fixed official upload host and verified numeric release ID;
+                # no tag-name lookup, clobber flag or caller-selected endpoint.
+                command(
+                    [
+                        "gh",
+                        "api",
+                        f"https://uploads.github.com/repos/{REPO}/releases/{release['id']}/assets?name={file.name}",
+                        "--method",
+                        "POST",
+                        "-H",
+                        "Content-Type: application/octet-stream",
+                        "--input",
+                        str(file),
+                    ]
+                )
+            fresh = api("releases/" + str(release["id"]))
             draft_ready(fresh, source, product_version)
             actual = assets_ready(fresh, product_version, complete=False)[file.name]
             require(
