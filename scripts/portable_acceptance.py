@@ -5,7 +5,7 @@ Built mode tests the current platform's archive before release upload. Neither
 mode changes releases, tags, user profiles or the selected archive directory.
 """
 
-# Index: argparse@9, hashlib@10, json@11, platform@12, re@13, stat@14, subprocess@15, sys@16, tarfile@17, tempfile@18, zipfile@19, Path@20, REPO@22, PUBLISHED_VERSION@23, PUBLISHED_SOURCE@24, ROOT@25, MAX_DOWNLOAD@26, MAX_EXPANDED@27, PUBLISHED_ASSETS@28, require@56, require.condition@56, require.message@56, command@62, command.arguments@62, command.timeout@62, command.completed@64, command.detail@75, api@82, api.suffix@82, names_for@87, names_for.machine@87, names_for.system@87, names_for.version@87, names_for.stem@94, digest@98, digest.path@98, digest.stream@100, checked_asset@104, checked_asset.filename@104, checked_asset.release@104, checked_asset.asset@112, checked_asset.matches@112, checked_asset.asset@114, checked_asset.known_digest@116, checked_asset.known_size@116, verify_file@134, verify_file.asset@134, verify_file.path@134, read_manifest@143, read_manifest.archive_name@143, read_manifest.binary_name@143, read_manifest.path@143, read_manifest.result@146, read_manifest.line@147, read_manifest.match@148, extract_archive@157, extract_archive.archive@157, extract_archive.binary_name@157, extract_archive.destination@157, extract_archive.expected@163, extract_archive.total@165, extract_archive.seen@166, extract_archive.write@168, extract_archive.write.mode@168, extract_archive.write.name@168, extract_archive.write.size@168, extract_archive.write.stream@168, extract_archive.write.target@177, extract_archive.write.copied@179, extract_archive.write.output@180, extract_archive.write.chunk@181, extract_archive.write.copied@182, extract_archive.write.total@188, extract_archive.bundle@192, extract_archive.member@194, extract_archive.mode@195, extract_archive.stream@200, extract_archive.bundle@203, extract_archive.member@204, extract_archive.stream@207, published_files@215, published_files.archive_name@215, published_files.downloads@215, published_files.sidecar_name@215, published_files.ref@217, published_files._@218, published_files.ref@223, published_files.release@225, published_files.filename@226, published_files.asset@227, main@247, main.parser@249, main.choice@250, main.args@253, main.VERSION@254, main.version@256, main.machine@257, main.system@257, main.archive_name@258, main.sidecar_name@258, main.binary_name@259, main.folder@260, main.temporary@261, main.downloads@262, main.source@264, main.source@266, main.downloads@268, main.archive@269, main.sidecar@269, main.manifest@270, main.extracted@272, main.binary@274, main.native@277, main.report@280, main.output@293
+# Index: argparse@9, hashlib@10, json@11, platform@12, re@13, stat@14, subprocess@15, sys@16, tarfile@17, tempfile@18, zipfile@19, Path@20, REPO@22, PUBLISHED_VERSION@23, PUBLISHED_SOURCE@24, ROOT@25, MAX_DOWNLOAD@26, MAX_EXPANDED@27, PUBLISHED_ASSETS@28, require@56, require.condition@56, require.message@56, command@62, command.arguments@62, command.timeout@62, command.completed@64, command.detail@75, api@82, api.suffix@82, names_for@87, names_for.machine@87, names_for.system@87, names_for.version@87, names_for.stem@94, digest@98, digest.path@98, digest.stream@100, checked_asset@104, checked_asset.filename@104, checked_asset.release@104, checked_asset.asset@112, checked_asset.matches@112, checked_asset.asset@114, checked_asset.known_digest@116, checked_asset.known_size@116, verify_file@134, verify_file.asset@134, verify_file.path@134, read_manifest@143, read_manifest.archive_name@143, read_manifest.binary_name@143, read_manifest.path@143, read_manifest.result@146, read_manifest.line@147, read_manifest.match@148, extract_archive@157, extract_archive.archive@157, extract_archive.binary_name@157, extract_archive.destination@157, extract_archive.native_metadata@157, extract_archive.expected@163, extract_archive.total@167, extract_archive.seen@168, extract_archive.write@170, extract_archive.write.mode@170, extract_archive.write.name@170, extract_archive.write.size@170, extract_archive.write.stream@170, extract_archive.write.target@179, extract_archive.write.copied@181, extract_archive.write.output@182, extract_archive.write.chunk@183, extract_archive.write.copied@184, extract_archive.write.total@190, extract_archive.bundle@194, extract_archive.member@196, extract_archive.mode@197, extract_archive.stream@202, extract_archive.bundle@205, extract_archive.member@206, extract_archive.stream@209, published_files@217, published_files.archive_name@217, published_files.downloads@217, published_files.sidecar_name@217, published_files.ref@219, published_files._@220, published_files.ref@225, published_files.release@227, published_files.filename@228, published_files.asset@229, main@249, main.parser@251, main.choice@252, main.args@260, main.os@262, main.VERSION@268, main.version@270, main.machine@271, main.system@271, main.archive_name@272, main.sidecar_name@272, main.binary_name@273, main.folder@274, main.temporary@275, main.downloads@276, main.source@278, main.source@280, main.downloads@282, main.archive@283, main.sidecar@283, main.manifest@284, main.extracted@286, main.binary@288, main.identity_file@290, main.identity@291, main.identity@294, main.native@315, main.report@334, main.output@349
 import argparse
 import hashlib
 import json
@@ -154,13 +154,15 @@ def read_manifest(path, archive_name, binary_name):
     return result
 
 
-def extract_archive(archive, destination, binary_name):
-    """Extract only the published three regular files into a newly owned empty directory.
+def extract_archive(archive, destination, binary_name, *, native_metadata=False):
+    """Extract only exact historical/current regular members into a newly owned empty directory.
 
     AES is one-file PyInstaller, so no archive links are necessary. POSIX binary
     executable bits must already exist; tests never repair missing archive modes.
     """
     expected = {binary_name, "LICENSE", "INSTALL.md"}
+    if native_metadata:
+        expected.update({"NATIVE_SOURCE.json", "NATIVE_NOTICES.txt"})
     require(destination.is_dir() and not any(destination.iterdir()), "Extraction directory must be empty")
     total = 0
     seen = set()
@@ -190,7 +192,7 @@ def extract_archive(archive, destination, binary_name):
 
     if archive.name.endswith(".zip"):
         with zipfile.ZipFile(archive) as bundle:
-            require(len(bundle.infolist()) == 3, "Unexpected ZIP member count")
+            require(len(bundle.infolist()) == len(expected), "Unexpected ZIP member count")
             for member in bundle.infolist():
                 mode = member.external_attr >> 16
                 require(
@@ -202,7 +204,7 @@ def extract_archive(archive, destination, binary_name):
     else:
         with tarfile.open(archive, "r:gz") as bundle:
             for member in bundle:
-                require(len(seen) < 3, "Unexpected tar member count")
+                require(len(seen) < len(expected), "Unexpected tar member count")
                 require(member.isfile(), "Tar links or special files are forbidden")
                 stream = bundle.extractfile(member)
                 require(stream is not None, "Missing tar member bytes")
@@ -250,7 +252,19 @@ def main():
     choice = parser.add_mutually_exclusive_group(required=True)
     choice.add_argument("--published", action="store_true")
     choice.add_argument("--built-directory", type=Path)
+    parser.add_argument(
+        "--allow-dirty-source",
+        action="store_true",
+        help="Explicit local development acceptance only; never CI or published mode",
+    )
     args = parser.parse_args()
+    if args.allow_dirty_source:
+        import os
+
+        require(
+            not args.published and os.environ.get("CI", "").lower() not in {"1", "true"},
+            "Dirty acceptance is only for an explicitly labeled local development candidate",
+        )
     from app import VERSION
 
     version = PUBLISHED_VERSION if args.published else VERSION
@@ -271,18 +285,60 @@ def main():
         require(digest(archive) == manifest[archive_name], "Portable archive checksum mismatch")
         extracted = temporary / "extracted"
         extracted.mkdir()
-        binary = extract_archive(archive, extracted, binary_name)
+        binary = extract_archive(archive, extracted, binary_name, native_metadata=not args.published)
         require(digest(binary) == manifest[binary_name], "Extracted native binary checksum mismatch")
+        identity_file = extracted / "NATIVE_SOURCE.json"
+        identity = None
+        if not args.published:
+            require(identity_file.stat().st_size <= 256 * 1024, "Source identity exceeds its bound")
+            identity = json.loads(identity_file.read_bytes())
+            require(
+                identity["schema"] == 1
+                and identity["product"] == "applicant-evidence-studio"
+                and identity["version"] == version,
+                "Wrong packaged product/version",
+            )
+            require(
+                identity["source"] == command(["git", "rev-parse", "HEAD"]).strip(),
+                "Package source differs from this checked source",
+            )
+            require(
+                identity["source_dirty"] is False
+                or (args.allow_dirty_source and identity["source_dirty"] is True),
+                "Dirty source cannot become a release acceptance",
+            )
+            require(
+                (extracted / "NATIVE_NOTICES.txt").stat().st_size <= 4 * 1024 * 1024,
+                "Runtime notices exceed their bound",
+            )
         command([sys.executable, "scripts/private_fixtures.py"])
         native = json.loads(
-            command(["node", "scripts/native_ui_smoke.mjs", str(binary), version], timeout=150)
+            command(
+                [
+                    "node",
+                    "scripts/native_ui_smoke.mjs",
+                    str(binary),
+                    version,
+                    *([str(identity_file)] if identity is not None else []),
+                ],
+                timeout=150,
+            )
         )
+        if identity is not None:
+            require(
+                native["normal_owned_exit"] is True
+                and native["normal_exit_code"] == 0
+                and native["embedded_identity_matches_archive"] is True,
+                "Current app must pass normal native exit and actual embedded identity",
+            )
         report = {
             "mode": "published" if args.published else "built",
             "platform": system,
             "architecture": machine,
             "version": version,
             "published_source": PUBLISHED_SOURCE if args.published else None,
+            "built_source": identity["source"] if identity is not None else None,
+            "source_dirty": identity["source_dirty"] if identity is not None else None,
             "release_url": source,
             "archive": archive_name,
             "archive_sha256": manifest[archive_name],

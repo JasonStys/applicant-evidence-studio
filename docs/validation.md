@@ -1,5 +1,14 @@
 # Test strategy and observed validation
 
+## Current native application update
+
+The [11 November native report](reports/native-application-2026-11-11.md) records
+the0.3.1 local test baseline, real owner-window/request-drain proofs, strict
+archive and embedded-source acceptance, and stages still pending delivery.
+The [native guide](native-application.md) explains unchanged account paths and
+formats, profile ownership, current three-OS builds and draft-only release gates.
+Historical results below retain their original source/version scope.
+
 ## Full-main CodeQL corrections and boundary regressions
 
 The [2026-11-10 finding report](reports/codeql-findings-2026-11-10.md) retains the

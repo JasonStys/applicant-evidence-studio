@@ -20,6 +20,11 @@ The editable Markdown remains the maintenance source. The Word files are readabl
 
 ## Current usage and help
 
+The [0.3.1 native guide](native-application.md) documents owner-window controls,
+unchanged accounts, embedded source/runtime identity and draft-only delivery.
+The [11 November validation report](reports/native-application-2026-11-11.md)
+distinguishes local development candidates from clean hosted/installed evidence.
+
 [README quick start](../README.md) is the entry point. Use the project-specific guides below before changing inputs, operating modes or deployment assumptions.
 
 ### Usage and operations

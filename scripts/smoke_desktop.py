@@ -1,10 +1,11 @@
 """Jason Stys: exercise the real packaged binary with disposable accounts, never user data."""
 
-# Index: json@4, os@5, queue@6, re@7, subprocess@8, sys@9, tempfile@10, threading@11, Path@12, httpx@14, VERSION@16, main@19, main.binary@21, main.folder@24, main.environment@25, main.process@26, main.output@34, main.collect@36, main.collect.line@38, main.origin@43, main._@44, main.line@46, main.match@51, main.origin@53, main.headers@57, main.client@58, main.script@62, main.credentials@65, main.envelope@68, main.killer@97
+# Index: json@4, os@5, queue@6, re@7, secrets@8, subprocess@9, sys@10, tempfile@11, threading@12, Path@13, httpx@15, VERSION@17, main@20, main.binary@22, main.folder@25, main.nonce@26, main.environment@27, main.process@33, main.output@42, main.collect@44, main.collect.line@46, main.collector@49, main.origin@52, main._@53, main.line@55, main.match@60, main.origin@62, main.headers@66, main.client@67, main.script@71, main.credentials@74, main.envelope@77, main.client@100, main.killer@125
 import json
 import os
 import queue
 import re
+import secrets
 import subprocess
 import sys
 import tempfile
@@ -17,14 +18,21 @@ from app import VERSION
 
 
 def main():
-    """Launch hidden for QA, test real HTTP/login/ciphertext flow, then stop that process tree."""
+    """Test the real HTTP/login/ciphertext flow, then close through the normal owned native handler."""
     binary = Path(sys.argv[1]).resolve()
     if not binary.is_file():
         raise SystemExit("Packaged binary missing")
     with tempfile.TemporaryDirectory(prefix="aes-packaged-qa-") as folder:
-        environment = {**os.environ, "AES_NO_BROWSER": "1", "AES_DESKTOP_DATA": folder}
+        nonce = secrets.token_hex(32)
+        environment = {
+            **os.environ,
+            "AES_NO_BROWSER": "1",
+            "AES_DESKTOP_DATA": folder,
+            "AES_ACCEPTANCE_NONCE": nonce,
+        }
         process = subprocess.Popen(  # noqa: S603 -- explicitly selected locally built binary only
             [str(binary)],
+            stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
@@ -38,7 +46,8 @@ def main():
             for line in process.stdout:
                 output.put(line)
 
-        threading.Thread(target=collect, daemon=True).start()
+        collector = threading.Thread(target=collect, daemon=True)
+        collector.start()
         try:
             origin = None
             for _ in range(60):
@@ -82,10 +91,29 @@ def main():
                 }
                 assert client.post("/vault/logout", json={}).status_code == 200
                 assert client.get("/vault/workspace").status_code == 401
+            process.stdin.write(f"quit {nonce}\n")
+            process.stdin.flush()
+            process.stdin.close()
+            assert process.wait(timeout=20) == 0
+            collector.join(timeout=2)
+            try:
+                with httpx.Client(trust_env=False, timeout=2) as client:
+                    client.get(origin + "/health")
+            except httpx.TransportError:
+                pass
+            else:
+                raise AssertionError("Owned listener survived normal native shutdown")
             Path("artifacts").mkdir(exist_ok=True)
             Path("artifacts/packaged-smoke.json").write_text(
                 json.dumps(
-                    {"platform": sys.platform, "result": "passed", "checks": 8, "real_user_data": False},
+                    {
+                        "platform": sys.platform,
+                        "result": "passed",
+                        "checks": 8,
+                        "real_user_data": False,
+                        "normal_owned_exit": True,
+                        "normal_exit_code": 0,
+                    },
                     indent=2,
                 )
                 + "\n",
@@ -104,6 +132,9 @@ def main():
             elif process.poll() is None:
                 process.terminate()
             process.wait(timeout=15)
+            if process.stdin is not None and not process.stdin.closed:
+                process.stdin.close()
+            collector.join(timeout=2)
             process.stdout.close()
 
 

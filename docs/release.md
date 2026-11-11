@@ -1,4 +1,16 @@
-# Release checklist — v0.1
+# Release checklists and historical baselines
+
+## Current0.3.1 native release
+
+Follow [native-application.md](native-application.md) and the
+[dated native report](reports/native-application-2026-11-11.md). Exact-main source,
+original published0.3.0 acceptance, current three-OS native acceptance and processed
+CodeQL results must pass. The release workflow uploads immutable assets to an
+unpublished draft, verifies all six platform assets and leaves publication for
+independent download, installation and account-preservation testing. No published
+asset is replaced and no user data is reset during validation.
+
+## Historical v0.1 checklist
 
 This is a local portfolio demonstration release, not a production hiring deployment.
 

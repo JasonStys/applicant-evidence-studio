@@ -1,9 +1,9 @@
 // Purpose: Jason Stys — actual extracted native app, WebCrypto comparison/export and lock acceptance.
-// Index: assert@3, createHash@4, randomUUID@4, execFile@5, spawn@5, lstat@6, mkdtemp@6, readFile@6, rm@6, tmpdir@7, path@8, fileURLToPath@9, promisify@10, chromium@11, expect@11, AxeBuilder@12, root@14, binary@15, version@16, runFile@17, folder@20, child@21, browser@28, stopping@29, started@30, canonical@33, value@33, key@40, readiness@48, reject@49, resolve@49, timer@50, pending@54, error@55, bytes@64, lines@71, line@73, match@74, exercise@88, origin@88, healthResponse@89, health@91, context@95, outside@96, route@97, page@104, errors@107, error@108, password@109, phrase@110, registered@117, r@118, unlock@123, editor@139, edited@140, before@146, writes@151, r@152, panel@158, download@161, report@163, vectors@164, r@166, record@169, v@170, vector@170, r@175, r@176, input@178, other@192, origin@217, deadline@218, result@220, _@222, reject@222, error@243, resolve@248, resolve@249, error@254, target@259
+// Index: assert@3, createHash@4, randomBytes@4, randomUUID@4, execFile@5, spawn@5, lstat@6, mkdir@6, mkdtemp@6, readFile@6, rm@6, tmpdir@7, path@8, fileURLToPath@9, promisify@10, chromium@11, expect@11, AxeBuilder@12, root@14, binary@15, version@16, runFile@17, folder@20, modernOwner@21, expectedIdentity@22, nonce@34, proofDirectory@35, child@41, browser@53, stopping@54, started@55, canonical@58, value@58, key@65, readiness@73, reject@74, resolve@74, timer@75, pending@79, error@80, bytes@89, lines@96, line@98, match@99, exercise@113, origin@113, healthResponse@114, health@116, context@132, outside@133, route@134, page@141, errors@144, error@145, password@146, phrase@147, registered@154, r@155, unlock@160, editor@176, edited@177, before@183, writes@188, r@189, panel@195, download@198, report@200, vectors@201, r@203, record@206, v@207, vector@207, r@212, r@213, input@215, other@232, origin@263, deadline@264, result@266, _@268, reject@268, exited@278, reject@278, resolve@278, limit@279, code@283, signal@283, exit@289, error@321, resolve@326, resolve@327, error@332, target@337
 import assert from 'node:assert/strict';
-import { createHash, randomUUID } from 'node:crypto';
+import { createHash, randomUUID, randomBytes } from 'node:crypto';
 import { spawn, execFile } from 'node:child_process';
-import { mkdtemp, readFile, rm, lstat } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, lstat } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,12 +18,37 @@ const runFile = promisify(execFile);
 if (!/^\d+\.\d+\.\d+$/.test(version || '') || !(await lstat(binary)).isFile())
   throw new Error('Select a verified native binary and exact product version.');
 const folder = await mkdtemp(path.join(tmpdir(), 'aes-native-ui-'));
+const modernOwner = version !== '0.3.0'; // The immutable historical binary lacks the native owner protocol.
+const expectedIdentity = modernOwner
+  ? JSON.parse(
+      await readFile(process.argv[4] || path.join(path.dirname(binary), 'NATIVE_SOURCE.json'), 'utf8'),
+    )
+  : null;
+if (modernOwner) {
+  assert.equal(expectedIdentity.schema, 1);
+  assert.equal(expectedIdentity.product, 'applicant-evidence-studio');
+  assert.equal(expectedIdentity.version, version);
+  assert.match(expectedIdentity.source, /^[a-f0-9]{40}$/);
+  assert.equal(typeof expectedIdentity.source_dirty, 'boolean');
+}
+const nonce = randomBytes(32).toString('hex');
+const proofDirectory = path.resolve(
+  process.env.AES_NATIVE_PROOF_DIR ||
+    path.join(root, 'artifacts', `native-ui-${version}-${process.platform}-${Date.now()}`),
+);
+await mkdir(path.dirname(proofDirectory), { recursive: true });
+await mkdir(proofDirectory);
 const child = spawn(binary, [], {
   cwd: folder,
   windowsHide: true,
   detached: process.platform !== 'win32',
-  env: { ...process.env, AES_NO_BROWSER: '1', AES_DESKTOP_DATA: path.join(folder, 'accounts') },
-  stdio: ['ignore', 'pipe', 'pipe'],
+  env: {
+    ...process.env,
+    AES_NO_BROWSER: '1',
+    AES_DESKTOP_DATA: path.join(folder, 'accounts'),
+    ...(modernOwner ? { AES_ACCEPTANCE_NONCE: nonce } : {}),
+  },
+  stdio: [modernOwner ? 'pipe' : 'ignore', 'pipe', 'pipe'],
 });
 let browser;
 let stopping = false;
@@ -91,6 +116,18 @@ async function exercise(origin) {
   const health = await healthResponse.json();
   assert.equal(health.version, version);
   assert.equal(health.mode, 'private-accounts');
+  if (modernOwner) {
+    assert.deepEqual(health.native, {
+      product: expectedIdentity.product,
+      version,
+      source: expectedIdentity.source,
+      source_dirty: expectedIdentity.source_dirty,
+      python: expectedIdentity.python,
+      tcl_version: expectedIdentity.tcl_version,
+      tk_version: expectedIdentity.tk_version,
+      runtime_library_sha256: expectedIdentity.runtime_library.sha256,
+    });
+  }
   browser = await chromium.launch();
   const context = await browser.newContext({ baseURL: origin, acceptDownloads: true });
   const outside = [];
@@ -184,6 +221,9 @@ async function exercise(origin) {
   assert.deepEqual(outside, []);
   assert.deepEqual(errors, []);
   assert.deepEqual((await new AxeBuilder({ page }).include('.comparison-card').analyze()).violations, []);
+  await page
+    .locator('.comparison-card')
+    .screenshot({ path: path.join(proofDirectory, 'native-comparison.png') });
   await page.getByRole('button', { name: 'Lock workspace' }).click();
   await expect(page.getByRole('button', { name: 'Download private comparison JSON' })).toHaveCount(0);
   await unlock();
@@ -197,9 +237,13 @@ async function exercise(origin) {
   }
   assert.equal(child.exitCode, null, 'The owned native service must remain alive throughout acceptance.');
   assert.equal(child.signalCode, null);
+  await page.screenshot({ path: path.join(proofDirectory, 'native-workspace.png') });
   return {
     version,
     compiled_native: true,
+    source: expectedIdentity?.source ?? null,
+    source_dirty: expectedIdentity?.source_dirty ?? null,
+    embedded_identity_matches_archive: modernOwner,
     real_webcrypto: true,
     record_ids: ['A101', 'A102'],
     exact_record_hashes: true,
@@ -210,6 +254,8 @@ async function exercise(origin) {
     unauthenticated_denied: true,
     outside_requests: outside.length,
     accessibility_violations: 0,
+    proof_directory: proofDirectory,
+    screenshots: ['native-comparison.png', 'native-workspace.png'],
   };
 }
 
@@ -223,7 +269,39 @@ try {
         deadline = setTimeout(() => reject(new Error('Native UI journey exceeded 60 seconds.')), 60_000);
       }),
     ]);
-    console.log(JSON.stringify({ ...result, elapsed_ms: Math.round(performance.now() - started) }));
+    if (modernOwner) {
+      if (browser) {
+        await browser.close();
+        browser = undefined;
+      }
+      stopping = true;
+      const exited = new Promise((resolve, reject) => {
+        const limit = setTimeout(
+          () => reject(new Error('Native owner did not finish normal shutdown within 20 seconds.')),
+          20_000,
+        );
+        child.once('close', (code, signal) => {
+          clearTimeout(limit);
+          resolve({ code, signal });
+        });
+      });
+      child.stdin.end(`quit ${nonce}\n`);
+      const exit = await exited;
+      assert.deepEqual(exit, { code: 0, signal: null });
+      await assert.rejects(
+        () => fetch(origin + '/health', { signal: AbortSignal.timeout(2_000) }),
+        'The owned listener must be closed after normal exit.',
+      );
+    }
+    console.log(
+      JSON.stringify({
+        ...result,
+        normal_owned_exit: modernOwner,
+        normal_exit_code: modernOwner ? 0 : null,
+        legacy_cleanup_only: !modernOwner,
+        elapsed_ms: Math.round(performance.now() - started),
+      }),
+    );
   } finally {
     clearTimeout(deadline);
   }

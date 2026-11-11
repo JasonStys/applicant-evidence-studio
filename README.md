@@ -1,5 +1,15 @@
 # Applicant Evidence Studio
 
+The **0.3.1 source update** adds a native owner window with Open workspace,
+Help, Runtime notices and Quit controls, patched CPython 3.14.10, verified
+embedded source/runtime resources, and exclusive profile ownership. Quit waits
+for active requests to finish before closing the listener and releasing the
+account-store lock. The existing account directory, account schema and encrypted
+workspace format are preserved. See the [native application guide](docs/native-application.md)
+and [current native validation report](docs/reports/native-application-2026-11-11.md).
+Release availability is shown on the official downloads page; a passing source
+build alone does not publish an application.
+
 Published portable downloads are checked through a real extracted native
 application and encrypted comparison/export journey. See the
 [portable acceptance guide](docs/published-acceptance.md) and
@@ -9,7 +19,7 @@ application and encrypted comparison/export journey. See the
 
 A private-account, source-linked applicant review and career-coaching application, created by **Jason Stys**. Reviewers can prioritize an authorized applicant pool using a transparent professional-skills rubric, inspect original evidence, and make their own decisions. Applicants can identify evidence gaps and download a factual, role-tailored resume draft.
 
-Version **0.3.0** adds captured two-record criterion/evidence comparison, clarification prompts and private report export. Version0.2 introduced real registration/login, encrypted private workspaces, local browser document processing, encrypted backup/restore, account recovery/deletion, help and portable desktop downloads. The host stores **ciphertext**, not readable resumes. Account aliases and operational metadata remain visible to the host. Encryption cannot protect against a malicious future host or compromised device; see [the privacy model](docs/private-accounts.md).
+Version **0.3.0** introduced captured two-record criterion/evidence comparison, clarification prompts and private report export; those features remain in 0.3.1. Version0.2 introduced real registration/login, encrypted private workspaces, local browser document processing, encrypted backup/restore, account recovery/deletion, help and portable desktop downloads. The host stores **ciphertext**, not readable resumes. Account aliases and operational metadata remain visible to the host. Encryption cannot protect against a malicious future host or compromised device; see [the privacy model](docs/private-accounts.md).
 
 Use [official downloads](https://github.com/JasonStys/applicant-evidence-studio/releases) and [installation/help](docs/install.md). Contact [Jason on LinkedIn](https://www.linkedin.com/in/jason-stys-31b30b351/) or visit [his GitHub profile](https://github.com/JasonStys). Never send private documents or credentials in an issue. Public account hosting requires a separate approved HTTPS provider/domain; no public backend URL is provisioned by committing this repo.
 
@@ -161,6 +171,10 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 | `app/cli.py` | Explicit synthetic seed and loopback launcher; private data directory/session configuration. |
 | `app/demo.py` | Six fictional professional records and three role rubrics; transfers, ambiguous education and career-change cases. |
 | `app/__init__.py` | Domain package description. |
+| `app/desktop.py`, `app/native_desktop.py` | Stable frozen entry and native startup ordering: verify bundle, admit profile, acquire ownership, launch service/window, drain and release. |
+| `app/native_host.py` | Owned loopback server and real Tk Open/Help/notices/Quit controls; active requests finish before the native owner closes. |
+| `app/native_profile.py` | External ordinary profile paths, fixed SQLite sidecar checks and nonblocking exclusive OS file lock. |
+| `app/native_identity.py` | Bounded descriptor-bound resource reads, strict embedded source/runtime manifest, UI/license hashes and actual Python/Tcl/Tk coherence. |
 | `web/App.tsx` | Reviewer queue, source/evidence review, job editor, intake/bulk import, coaching and method/privacy views. |
 | `web/EducationEditor.tsx` | Explicit institution/program/outcome/transfer/chronology fields; changes require an explicit parent save. |
 | `web/api.ts` | Same-origin bearer requests, session authorization, bounded file encoding and authenticated private downloads. |
@@ -179,6 +193,14 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 | `scripts/code_index.py` | Python-AST declaration/variable line-map generation and read-only drift check. |
 | `scripts/ts_index.mjs` | TypeScript compiler-AST declaration/variable map generation and drift check. |
 | `scripts/benchmark.py` | 100/1,000/10,000-record synthetic scoring benchmark, timings, throughput and traced allocation peak. |
+| `scripts/build_desktop.py`, `scripts/native_package.py` | Fresh-directory patched-runtime portable build, actual cooked-library binding, five-member archives and archive/EXE checksums. |
+| `scripts/native_notices.py`, `licenses/*` | Actual dependency/Tcl/Tk notice discovery and exact reviewed upstream license sources. |
+| `scripts/native_ui_smoke.mjs`, `scripts/smoke_desktop.py` | Real frozen encrypted-UI and HTTP/account journeys; current versions require normal owned exit and listener shutdown. |
+| `scripts/portable_acceptance.py` | Immutable0.3.0 published-byte regression and current five-member archive extraction/source/embedded-identity acceptance. |
+| `scripts/desktop_release_guard.py` | Exact-main source/security gates, immutable draft upload verification and complete draft check; no publish operation. |
+| `tests/test_native_*.py`, `tests/native_notice_cases.py` | Real owner-window/HTTP-drain/profile/identity tests and thirteen mandatory isolated notice cases. |
+| `tests/test_desktop_release_guard.py`, `tests/test_portable_acceptance.py` | Failed/foreign/stale security and native reports, changed provider hashes and unsafe/incomplete ZIP/tar archive regression controls. |
+| `requirements-native.in`, `requirements-native.lock` | Exact hash-locked PyInstaller build graph; no build tooling required by app users. |
 | `scripts/export_examples.py` | Export only built-in synthetic batches, jobs, schemas and advisory report. |
 | `examples/synthetic-resume.txt` | Fictional intake example with a major change, transfer and in-progress degree. |
 | `examples/applicants.json`, `jobs.json` | Fictional standardized batch and configurable job rubrics. |
@@ -187,12 +209,15 @@ See [docs/validation.md](docs/validation.md) for observed results and honest gap
 | `pyproject.toml`, `package.json`, `package-lock.json` | Python packaging/tool configuration and locked browser dependencies. |
 | `tsconfig.json`, `vite.config.ts`, `playwright.config.ts`, `.prettierrc.json` | Strict types, browser build, isolated browser matrix and formatting. |
 | `.github/workflows/validate.yml` | Multi-platform CI, browser/a11y, audit/performance jobs and evidence artifacts. |
+| `.github/workflows/native-validation.yml` | Read-only three-OS build/extract/use of the actual current native application, without default Actions artifact uploads. |
+| `.github/workflows/desktop-release.yml` | Trusted-main-only three-OS build and verified immutable draft assembly; independent downloaded-app review precedes publication. |
 | `.gitignore`, `.gitattributes`, `SECURITY.md`, `LICENSE` | Private-data/build exclusions, consistent source line endings, security reporting and MIT license. |
 | `docs/architecture.md` | Design decisions, data boundary, complexity and expansion trade-offs. |
 | `docs/privacy.md` | Threat model, consent, human oversight, sensitive-data exclusions and production gates. |
 | `docs/user-guide.md` | Reviewer/applicant walkthrough, evidence strengths, transfers and imports. |
 | `docs/operations.md` | AI setup, environment options, storage, backup/restore and troubleshooting. |
 | `docs/validation.md`, `docs/release.md` | Test traceability/results, known gaps and release checklist. |
+| `docs/native-application.md`, `docs/releases/v0.3.1.md` | Native lifecycle, unchanged accounts, source/runtime checks, platform limits and current release notes. |
 | `docs/research.md` | Primary technical sources and their implementation implications. |
 | `docs/code-map-*.md`, `docs/reports/*` | Generated source maps and synthetic validation/benchmark evidence snapshots. |
 
